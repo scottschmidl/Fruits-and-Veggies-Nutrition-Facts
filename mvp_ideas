@@ -1,0 +1,26 @@
+capstone #mvp+/mvp++ ideas
+
+- imagescrape
+
+- how do i pull data from AWS when i want to run the neural network?
+
+- do i need the .py file that i used to get the data from its folder and into vscode after the data is on aws
+and then do i need the .py file that i used to push data to aws
+
+- how should i get this .csv file of nutrition facts into sql? ie spark, pyspark, postgres, mongodb, docker?
+how do i incorporate the spark, pyspark, postgres, mongodb into the same docker container that i have tensorflow/keras for the neural network?
+
+- can i just conda/pip install or is there something else?
+
+- using a neural network for image recognnition
+
+# def open_test_images():
+#     test_images = imread(r"data/Test/Apple/AB3_100.jpg")
+#     # show_img(image)
+#     red, yellow =   test_images.copy(), test_images.copy()
+#     red[:,:,(1,2)] = 0
+#     yellow[:,:,2]=0
+#     # show_images(images=[red,yellow], titles=['Red Intensity','Yellow Intensity'])
+#     # gray_image = rgb2gray(test_images) #for making image gray scale
+#     # show_images(images=[image,gray_image],titles=["Color","Grayscale"])
+#     return test_images
