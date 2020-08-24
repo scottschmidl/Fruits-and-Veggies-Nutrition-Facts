@@ -12,7 +12,7 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 import numpy as np
-from naive_bayes_fv import get_X_y
+from naive_bayes_fv import get_X_y_fv # maybe use PCA here
 
 np.random.seed(1337)  # for reproducibility
 
@@ -46,7 +46,7 @@ def define_model(nb_filters, kernel_size, input_shape, pool_size):
 
     model.add(Dropout(0.5))  # zeros out some fraction of inputs, helps prevent overfitting
 
-    model.add(Dense(nb_classes))  # 10 final nodes (one for each class)  KEEP
+    model.add(Dense(nb_classes))  # 68 final nodes (one for each class)  KEEP
     model.add(Activation('softmax'))  # softmax at end to pick between classes 0-9 KEEP
 
     # many optimizers available, see https://keras.io/optimizers/#usage-of-optimizers
@@ -61,17 +61,22 @@ def define_model(nb_filters, kernel_size, input_shape, pool_size):
 
 if __name__ == '__main__':
     # important inputs to the model: don't changes the ones marked KEEP
-    batch_size = 1000  # number of training samples used at a time to update the weights
-    nb_classes = 69    # number of output possibilities: [0 - 69] KEEP
-    nb_epoch = 3     # number of passes through the entire train dataset before weights "final"
-    img_rows, img_cols = 50, 50   # the size of the fruits/veggies images KEEP
+    batch_size = 20  # number of training samples used at a time to update the weights
+    nb_classes = 68    # number of output possibilities: [0 - 68] KEEP
+    nb_epoch = 8     # number of passes through the entire train dataset before weights "final"
+    img_rows, img_cols = 32, 32   # the size of the fruits/veggies images KEEP
     input_shape = (img_rows, img_cols, 1)   # 1 channel image input (grayscale) KEEP
-    nb_filters = 2    # number of convolutional filters to use
-    pool_size = (2, 2)  # pooling decreases image size, reduces computation, adds translational invariance
+    nb_filters = 4    # number of convolutional filters to use
+    pool_size = (4, 4)  # pooling decreases image size, reduces computation, adds translational invariance
     kernel_size = (4,4)  # convolutional kernel size, slides over image to learn features
 
-    X, y, _ = get_X_y()
-    X_train, X_test, y_train, y_test = train_test_split(X, y)
+    X, y_enumerated = get_X_y_fv()[0:4:2] # maybe use PCA here
+    # print(y_enumerated, '\n')
+    X_train, X_test, y_train, y_test = train_test_split(X, y_enumerated)
+    # print(X_train, 'X_train***********\n')
+    # print(y_train, 'y_train**************\n')
+    # print(X_test, 'X_test**************\n')
+    # print(y_test, 'y_test*************')
 
     #featurize
     X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1)
@@ -83,15 +88,20 @@ if __name__ == '__main__':
     X_train /= 255  # normalizing (scaling from 0 to 1)
     X_test /= 255   # normalizing (scaling from 0 to 1)
 
-    # print('X_train shape:', X_train.shape)
+    # y_train = to_categorical(y_train, nb_classes)
+    # print('y_train:', y_train.shape)
+    # print(y_train)
+    # y_test = to_categorical(y_test, nb_classes)
+    # print(y_test)
+    # print(y_test.shape)
+    # print(X_train.shape, 'X_train shape')
     # print(X_train.shape[0], 'train samples')
     # print(X_test.shape[0], 'test samples')
-    
+        
     #run the model
     activations = ['linear', 'sigmoid', 'tanh', 'relu', 'softplus', 'softsign']
-    
     model = define_model(nb_filters, kernel_size, input_shape, pool_size)
-
+    
     # during fit process watch train and test error simultaneously
     model.fit(X_train, y_train, batch_size=batch_size, epochs=nb_epoch,
               verbose=1, validation_data=(X_test, y_test))
