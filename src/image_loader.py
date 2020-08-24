@@ -6,7 +6,7 @@ import os
 def open_images(path):
     train_images = imread(path)
     gray_image = rgb2gray(train_images) #for making image gray scale
-    # color_size = resize(train_images, (50, 50))    
+    # color_size = resize(train_images, (32, 32))    
     gray_size = resize(gray_image, (32, 32))
     gray_ravel = gray_size.ravel()
     

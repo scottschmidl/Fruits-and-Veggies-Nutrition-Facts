@@ -1,26 +1,28 @@
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split, KFold
 import glob
-from sklearn.metrics import (accuracy_score, recall_score, precision_score, f1_score,
-                            multilabel_confusion_matrix, balanced_accuracy_score, classification_report)
+from sklearn.metrics import (accuracy_score, recall_score, precision_score, f1_score, confusion_matrix,
+                            multilabel_confusion_matrix, balanced_accuracy_score, classification_report,
+                            plot_confusion_matrix)
 import numpy as np
 from image_loader import open_images
 import os
 import matplotlib.pyplot as plt
 from sklearn.decomposition import NMF
+from sklearn.svm import SVC
 
 def get_X_y_fv():
     X = []
     y = []   
     y_enumerated = []                   
     data_folders = ['Train', 'Test']
-    all_fru_veg = os.listdir('data/Train')
-        
+    all_fru_veg = os.listdir('data/Train')[:5]
+            
     for folder in data_folders:
 
-        for idx, fruit_veg in enumerate(all_fru_veg):
-            path = glob.glob('data/{}/{}/*.jpg'.format(folder, fruit_veg))
-            label = fruit_veg
+        for idx, fru_veg in enumerate(all_fru_veg):
+            path = glob.glob('data/{}/{}/*.jpg'.format(folder, fru_veg))
+            label = fru_veg
             
             for p in path:
                 X.append(open_images(p))
@@ -67,14 +69,7 @@ def get_X_y_fv():
 #     # model.fit(X_train, y_train)
 #     # y_pred = model.predict(X_test) 
     
-#     fpr = {}
-#     tpr = {}
-#     thresholds = {}
-
-#     for i in range(n_classes): # try this for multiclass - IndexError: too many indices for array
-#         fpr[i], tpr[i], thresholds[i] = roc_curve(y_test[:, i], y_pred[:, i])        
-
-#     # fpr, tpr, thresholds = roc_curve(y_test, y_pred) # not working due to multiclass.
+#     # fpr, tpr, thresholds = roc_curve(y_test, y_pred)
 
 #     # x = np.linspace(0,1, 100)
 #     # _, ax = plt.subplots(1, figsize=(10,6))
@@ -97,9 +92,19 @@ def get_X_y_fv():
 
 #     return W, H
 
+# def plot_conf_matrix():
+#     X, y = get_X_y_fv()[0:2]
+#     all_fru_veg = get_X_y_fv()[3]
+#     X_train, X_test, y_train, y_test = train_test_split(X, y) 
+#     clf = MultinomialNB()
+#     clf.fit(X_train, y_train)
+
+#     plot_confusion_matrix(clf, X_test, y_test, labels=all_fru_veg, normalize=True, xticks_rotation=60)
+#     plt.show()
+
 def naive_bayes():
     X, y, _, all_fru_veg = get_X_y_fv()
-
+    
     X_train, X_test, y_train, y_test = train_test_split(X, y)    
     
     model = MultinomialNB()
@@ -110,11 +115,12 @@ def naive_bayes():
     # recall = recall_score(y_test, y_pred, labels=all_fru_veg, average=None)
     # prec = precision_score(y_test, y_pred, labels=all_fru_veg, average=None)
     # fone = f1_score(y_test, y_pred, labels=all_fru_veg, average=None)
-    mult_con_matrix = multilabel_confusion_matrix(y_test, y_pred, labels=all_fru_veg)
+    # conf_mat = confusion_matrix(y_test, y_pred, labels=all_fru_veg)
+    # mult_con_matrix = multilabel_confusion_matrix(y_test, y_pred, labels=all_fru_veg)
     # bal_acc_scor = balanced_accuracy_score(y_test, y_pred)
     report = classification_report(y_test, y_pred, digits=3)
 
-    return mult_con_matrix, report
+    return report
     
 if __name__ == '__main__':
     get_it = get_X_y_fv()
@@ -128,6 +134,8 @@ if __name__ == '__main__':
 
     # nnmf = non_negative_matris_factorization()
     # print(nnmf)
+
+    # plot = plot_conf_matrix()
  
     # naiveb_model = naive_bayes() # does not run due to negative values from pca, use get_it
     # print(naiveb_model)
