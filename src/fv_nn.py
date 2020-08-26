@@ -62,7 +62,7 @@ def define_model(nb_filters, kernel_size, input_shape, pool_size):
 if __name__ == '__main__':
     # important inputs to the model: don't changes the ones marked KEEP
     batch_size = 5  # number of training samples used at a time to update the weights
-    nb_classes = 68    # number of output possibilities: [0 - 68] KEEP
+    nb_classes = 2    # number of output possibilities: [0 - 68] KEEP
     nb_epoch = 5     # number of passes through the entire train dataset before weights "final"
     img_rows, img_cols = 32, 32   # the size of the fruits/veggies images KEEP
     input_shape = (img_rows, img_cols, 1)   # 1 channel image input (grayscale) KEEP
