@@ -109,7 +109,7 @@ Edge Confusion Matrix:
 
 Edge ROC Curve:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/edge_roccurve.png)
+![Edge](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/edge_roccurve.png)
 
 Classification Matrix For Edges Images:
 
