@@ -1,5 +1,4 @@
-
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/fv_world_cloud.png)
+![](images/fv_world_cloud.png)
 
 # Table of Contents
 1. [Background and Motivation](#BackGround-and-Motivation)
@@ -43,39 +42,39 @@ Tomatoes and Pears?
 
 Average Pear Grayscale Pixel Intensities:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/avg_Pear_grayscale_pixel_intensities.png)
+![](images/avg_Pear_grayscale_pixel_intensities.png)
 
 Average Pear Color Pixel Intensities:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/avg_Pear_color_pixel_intensities.png)
+![](images/avg_Pear_color_pixel_intensities.png)
 
 Average Pear Color KMean Cluster:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/avg_Pear_color_kmeans_clusters.png)
+![](images/avg_Pear_color_kmeans_clusters.png)
 
 Average Tomato Grayscale Pixel Intensities:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/avg_Tomato_grayscale_pixel_intensities.png)
+![](images/avg_Tomato_grayscale_pixel_intensities.png)
 
 Average Tomato Color Pixel Intensities:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/avg_Tomato_color_pixel_intensities.png)
+![](images/avg_Tomato_color_pixel_intensities.png)
 
 Average Tomato Color KMean Cluster:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/avg_Tomato_color_kmeans_clusters.png)
+![](images/avg_Tomato_color_kmeans_clusters.png)
 
 # Visualization
 
 Grayscale Confusion Matrix:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/gray_confusion_matrix.png)
+![](images/gray_confusion_matrix.png)
 
 Grayscale ROC Curve:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/gray_roccurve.png)
+![](images/gray_roccurve.png)
 
-Classification Matrix For Grayscale Images:
+Classification Report For Grayscale Images:
            
 |             | Precision | Recall | F1_Score | Support |
 |         --: |       --: |    --: |      --: |     --: |
@@ -87,13 +86,13 @@ Classification Matrix For Grayscale Images:
 
 Color Confusion Matrix:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/color_confusion_matrix.png)
+![](images/color_confusion_matrix.png)
 
 Color ROC Curve:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/color_roccurve.png)
+![](images/color_roccurve.png)
 
-Classification Matrix For Color Images:
+Classification Report For Color Images:
 
 |             | Precision | Recall | F1_Score | Support |
 |         --: |       --: |    --: |      --: |     --: |
@@ -105,13 +104,13 @@ Classification Matrix For Color Images:
 
 Edge Confusion Matrix:
 
-![](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/edge_confusion_matrix.png)
+![](images/edge_confusion_matrix.png)
 
 Edge ROC Curve:
 
-![Edge](/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/images/edge_roccurve.png)
+![](images/edge_roccurve.png)
 
-Classification Matrix For Edges Images:
+Classification Report For Edges Images:
 
 |             | Precision | Recall | F1_Score | Support |
 |         --: |       --: |    --: |      --: |     --: |

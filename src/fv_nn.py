@@ -9,19 +9,19 @@ from naive_bayes_fv import get_X_y_fv
 import os
 
 np.random.seed(1337)
-def fv_cnn(nb_filters, kernel_size, input_shape, pool_size):
+def fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func):
     model = Sequential() 
      
     model.add(Conv2D(nb_filters,
                      (kernel_size[0], kernel_size[1]),
                      padding='valid',
                      input_shape=input_shape))  # 1st conv. layer                     
-    model.add(Activation('relu'))  # Activation specification necessary for Conv2D and Dense layers
+    model.add(Activation(activ_func))  # Activation specification necessary for Conv2D and Dense layers
 
     model.add(Conv2D(nb_filters,
                      (kernel_size[0], kernel_size[1]),
                      padding='valid'))  # 2nd conv. layer
-    model.add(Activation('relu'))
+    model.add(Activation(activ_func))
 
     model.add(MaxPooling2D(pool_size=pool_size))  # decreases size, helps prevent overfitting
     model.add(Dropout(0.5))  # zeros out some fraction of inputs, helps prevent overfitting
@@ -30,28 +30,30 @@ def fv_cnn(nb_filters, kernel_size, input_shape, pool_size):
     print('Model flattened out to ', model.output_shape)
 
     model.add(Dense(32))  # 32 neurons in this layer
-    model.add(Activation('relu'))
+    model.add(Activation(activ_func))
 
     model.add(Dropout(0.5))  # zeros out some fraction of inputs, helps prevent overfitting
 
     model.add(Dense(nb_classes))  # 2 final nodes (one for each class)
     model.add(Activation('softmax'))  # softmax at end to pick between classes 0-1    
     
-    model.compile(loss='sparse_categorical_crossentropy',
+    model.compile(loss='categorical_crossentropy',
                   optimizer='adam',
                   metrics=['accuracy'])
     model.summary()
     return model
 
 if __name__ == '__main__':
-    batch_size = 5  # number of training samples used at a time to update the weights
+    batch_size = 20  # number of training samples used at a time to update the weights
     nb_classes = 2    # number of output possibilities: [0 - 1]
     nb_epoch = 5     # number of passes through the entire train dataset before weights "final"
     img_rows, img_cols = 32, 32   # the size of the fruits/veggies images
-    input_shape = (img_rows, img_cols, 1)   # 1 channel image input (grayscale)
-    nb_filters = 2    # number of convolutional filters to use
-    pool_size = (2, 2)  # pooling decreases image size, reduces computation, adds translational invariance
+    input_shape = (img_rows, img_cols, 1)
+    input_shape   # 1 channel image input (grayscale)
+    nb_filters = 4    # number of convolutional filters to use
+    pool_size = (3, 3)  # pooling decreases image size, reduces computation, adds translational invariance
     kernel_size = (4,4)  # convolutional kernel size, slides over image to learn features
+    activ_func = 'linear'
 
     X = []
     y = []
@@ -76,10 +78,10 @@ if __name__ == '__main__':
     X_test = X_test.astype('float32')    # data was uint8 [0-255]
     X_train /= 255  # normalizing (scaling from 0 to 1)
     X_test /= 255   # normalizing (scaling from 0 to 1)
-    # y_train = to_categorical(y_train, nb_classes) # use when loss = 'categorical entropy'
+    y_train = to_categorical(y_train, nb_classes) # use when loss = 'categorical entropy'
     # print('y_train: ', y_train[:20])
     # print(y_train.shape)
-    # y_test = to_categorical(y_test, nb_classes) # use when loss = 'categorical entropy'
+    y_test = to_categorical(y_test, nb_classes) # use when loss = 'categorical entropy'
     # print('y_test: ', y_test[:20])
     # print(y_test.shape)
     # print('X_train:\n', X_train[20])
@@ -89,7 +91,7 @@ if __name__ == '__main__':
             
     ## run the model
     activations = ['linear', 'sigmoid', 'tanh', 'relu', 'softplus', 'softsign']
-    model = fv_cnn(nb_filters, kernel_size, input_shape, pool_size)    
+    model = fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func)    
     model.fit(X_train, y_train, batch_size=batch_size, epochs=nb_epoch,
               verbose=1, validation_data=(X_test, y_test), shuffle=True)    
     score = model.evaluate(X_test, y_test, verbose=0)
