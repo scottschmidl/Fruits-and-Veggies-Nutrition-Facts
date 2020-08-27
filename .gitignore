@@ -1,5 +1,5 @@
 *.jpg
 *.json
 *.pdf
-*__pychache__
+*.pyc
 *.txt
