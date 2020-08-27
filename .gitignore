@@ -1,5 +1,6 @@
 *.jpg
 *.json
 *.pdf
-*.pyc
+__pycache__/
+*.py[cod]
 *.txt
