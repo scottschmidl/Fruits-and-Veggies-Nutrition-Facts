@@ -40,6 +40,7 @@ def fv_cnn(nb_filters, kernel_size, input_shape, pool_size):
     model.compile(loss='sparse_categorical_crossentropy',
                   optimizer='adam',
                   metrics=['accuracy'])
+    model.summary()
     return model
 
 if __name__ == '__main__':
