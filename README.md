@@ -127,7 +127,7 @@ There are too many rotations in the data set, leading to a high risk of training
 As a future project I would like to spend more time cleaning up the fruits, vegetables, and their rotations. I would also like to look at using AWS, as the data set was too long to run all pictures with original pixels.
 Something I would like to see come out of this project is an image recognition application that takes a picture of the item and returns it's nutrition facts.
 
-# Photo and Data Credits
+# Data Credit
 
 Horea Muresan, Mihai Oltean, Fruit recognition from images using deep learning, Acta Univ. Sapientiae, Informatica Vol. 10, Issue 1, pp. 26-42, 2018.
 Here is the GitHub: https://github.com/Horea94/Fruit-Images-Dataset
