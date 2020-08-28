@@ -26,6 +26,6 @@ def word_cloud(text, title, savefile):
 
 if __name__ == '__main__':
     d = getcwd()
-    all_fru_veg = listdir('data/Train')    
+    all_fru_veg = listdir('data/fruits_vegetables/')    
     jt = ' '.join(all_fru_veg)
-    word_cloud(jt, "fruits and  veggies", 'images/fv_world_cloud.png')
+    word_cloud(jt, "Fruits And  Veggies", 'images/fv_world_cloud.png')

@@ -3,7 +3,9 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.callbacks import ModelCheckpoint
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 import numpy as np
 from naive_bayes_fv import get_X_y_fv
 import os
@@ -46,7 +48,7 @@ def fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func):
 if __name__ == '__main__':
     batch_size = 20  # number of training samples used at a time to update the weights
     nb_classes = 2    # number of output possibilities: [0 - 1]
-    nb_epoch = 5     # number of passes through the entire train dataset before weights "final"
+    nb_epoch = 10     # number of passes through the entire train dataset before weights "final"
     img_rows, img_cols = 32, 32   # the size of the fruits/veggies images
     input_shape = (img_rows, img_cols, 1)
     input_shape   # 1 channel image input (grayscale)

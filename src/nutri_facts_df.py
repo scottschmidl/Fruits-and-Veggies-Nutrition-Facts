@@ -3,5 +3,4 @@
 import pandas as pd
 
 df = pd.read_csv('data/nutri_facts_name.csv')
-print(df)
-
+print(df.head())

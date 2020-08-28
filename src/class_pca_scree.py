@@ -53,7 +53,7 @@ class fruits_veggies_PCA(object):
         projected = pca.fit_transform(X)
         plt.scatter(projected[:, 0], projected[:, 1],
                 c=y_enumerated, edgecolor='none', alpha=0.5,
-                cmap=plt.cm.get_cmap('Dark2', 5))
+                cmap=plt.cm.get_cmap('seismic', 5))
         plt.xlabel('Component 1')
         plt.ylabel('Component 2')
         plt.colorbar()
@@ -83,5 +83,3 @@ if __name__ == '__main__':
     # screech = fru_veg_pca.scree_plot(pca)
     # var_exp = fru_veg_pca.variance_explained(prop_var_expl)
     # plot_pca = fru_veg_pca.pca_plot(X, y_enumerated)
-
-

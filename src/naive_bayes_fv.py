@@ -19,7 +19,7 @@ def get_X_y_fv(X, y, all_fru_veg):
     y = np.asarray(y)
     return X, y, all_fru_veg
 
-def roc_you_curve(X, y, all_fru_veg): 
+def roc_you_curve(X_train, X_test, y_train, y_test): 
     model = MultinomialNB()
     model.fit(X_train, y_train)   
     plot_roc_curve(model, X_test, y_test, name='ROC Curve for Edge Images NB')
@@ -28,7 +28,7 @@ def roc_you_curve(X, y, all_fru_veg):
     plt.show()        
     return 'cookie monster'
 
-def plot_conf_matrix(X, y, all_fru_veg):
+def plot_conf_matrix(X_train, X_test, y_train, y_test):
     model = MultinomialNB()
     model.fit(X_train, y_train)
     plot_confusion_matrix(model, X_test, y_test, labels=all_fru_veg, xticks_rotation=50)
@@ -37,7 +37,7 @@ def plot_conf_matrix(X, y, all_fru_veg):
     plt.show()
     return 'cookie monster'
     
-def naive_bayes(X, y, all_fru_veg):
+def naive_bayes(X_train, X_test, y_train, y_test):
     model = MultinomialNB()
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
@@ -51,8 +51,6 @@ if __name__ == '__main__':
     X, y, all_fru_veg = get_X_y_fv(X, y, all_fru_veg)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
-    # roc = roc_you_curve(X_train, X_test, y_train, y_test)
-        
-    # plot_conf_matrix = plot_conf_matrix(X_train, X_test, y_train, y_test)
-
-    # naiveb_model = naive_bayes(X_train, X_test, y_train, y_test)
+    roc = roc_you_curve(X_train, X_test, y_train, y_test)      
+    plot_conf_matrix = plot_conf_matrix(X_train, X_test, y_train, y_test)
+    naiveb_model = naive_bayes(X_train, X_test, y_train, y_test)

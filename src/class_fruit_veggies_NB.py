@@ -28,25 +28,25 @@ class fruits_veggies_NB(object):
 
     def roc_you_curve(self, X_train, X_test, y_train, y_test): 
         model = MultinomialNB()
-        model.fit(X, y_train)   
+        model.fit(X_train, y_train)   
         plot_roc_curve(model, X_test, y_test, name='ROC Curve for Edge Images NB')
         plt.legend()
-        plt.savefig('images/edge_roccurve.png',  bbox_inches='tight')
-        plt.show()        
+        # plt.savefig('images/edge_roccurve.png',  bbox_inches='tight')
+        # plt.show()        
         return 'cookie monster'
 
     def plot_conf_matrix(self, X_train, X_test, y_train, y_test):
         model = MultinomialNB()
-        model.fit(X, y_train)
+        model.fit(X_train, y_train)
         plot_confusion_matrix(model, X_test, y_test, labels=all_fru_veg, xticks_rotation=50)
         plt.title('Edge Confusion Matrix')
-        plt.savefig('images/edge_confusion_matrix.png',  bbox_inches='tight')
-        plt.show()
+        # plt.savefig('images/edge_confusion_matrix.png',  bbox_inches='tight')
+        # plt.show()
         return 'cookie monster'
         
     def naive_bayes(self, X_train, X_test, y_train, y_test):
         model = MultinomialNB()
-        model.fit(X, y_train)
+        model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
         report = classification_report(y_test, y_pred, digits=3)
         return report
@@ -59,8 +59,7 @@ if __name__ == '__main__':
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
     
-    roc = fru_veg_class.roc_you_curve(X_train, X_test, y_train, y_test)
-        
+    roc = fru_veg_class.roc_you_curve(X_train, X_test, y_train, y_test)        
     plot_conf_matrix = fru_veg_class.plot_conf_matrix(X_train, X_test, y_train, y_test)
-
     naiveb_model = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test)
+    print(naiveb_model)

@@ -7,13 +7,13 @@ import os
 
 def open_images(path, fruit_name):
     color_images = imread(path)
-    gray_image = rgb2gray(color_images) # for making image gray scale
-    # color_size = resize(color_images, (32, 32))
-    # color_ravel = color_size.ravel()    
-    gray_size = resize(gray_image, (32, 32))
+    # gray_image = rgb2gray(color_images) # for making image gray scale
+    color_size = resize(color_images, (32, 32))
+    color_ravel = color_size.ravel()    
+    # gray_size = resize(gray_image, (32, 32))
     # gray_edges = look_at_edges(fruit_name, gray_size) # for getting the edges
-    gray_ravel = gray_size.ravel()    
-    return gray_ravel
+    # gray_ravel = gray_size.ravel()    
+    return color_ravel
 
 def look_at_edges(fruit_name, size): 
     # fruit_name_gray = scale_fruit(fruit_name)[0]       
@@ -30,7 +30,7 @@ def look_at_edges(fruit_name, size):
     return sobel_img
 
 if __name__ == '__main__':     
-    ## function currently has grayscale active.
+    ## function currently has color active.
     tomato_img = open_images('data/fruits_vegetables/Tomato', 'Tomato')
     pear_img = open_images('data/fruits_vegetables/Pear', 'Pear')
 
