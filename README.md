@@ -1,4 +1,4 @@
-# Fruits, Vegetables, And Their Nutrition Facts
+# Fruits, Vegetables, and Their Nutrition Facts
 
 ![](images/fv_world_cloud.png)
 
