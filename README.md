@@ -157,7 +157,7 @@ The color images performed best, scoring about 86% for both fruits and for accur
 Using the Convolution Neural Network:
 For grayscale, the CNN outperformed the Naive Bayes by almost 10%.
 
-A bit of a snag, BoOh:
+To my chagrin:
 There are too many similar rotations in the data set and this was exacerbated by combining Training and Testing Folders. This can result in a high risk of training on the testing data and therefore better validation results, but poor overall results. 
 As a future project I would like to spend more time cleaning up the fruits, vegetables, and their rotations, or returning to separated folders and running the models again.
 I would also like to look at using AwS, as the data set was too large to run all images with original pixels on my local machine.
