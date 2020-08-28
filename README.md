@@ -1,4 +1,4 @@
-# Fruits, Vegetables, Nutrition
+# Fruits, Veggies and Nutrition
 
 ![](images/fv_world_cloud.png)
 
