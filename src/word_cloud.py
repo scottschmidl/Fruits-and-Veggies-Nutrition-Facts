@@ -9,9 +9,7 @@ import glob
 
 
 def word_cloud(text, title, savefile):
-    '''
-    Create and save a wordcloud with given text
-    '''
+    '''Create a wordcloud with from fruits and vegetable names'''
     fv_mask = np.array(Image.open(path.join(d, 'images/index.jpeg')))    
     wordcloud = WordCloud(mask=fv_mask, background_color='white', stopwords=ENGLISH_STOP_WORDS).generate_from_text(text)
     plt.figure(figsize=(10, 6), facecolor='k')

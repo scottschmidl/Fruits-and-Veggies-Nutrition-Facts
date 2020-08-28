@@ -4,7 +4,7 @@ import os
 from EDA_img import get_file_names
 
 def print_s3_contents_boto3(connection):
-    '''borrowed from DSI AWS lecture '''
+    ''''borrowed from DSI AWS lecture. send images to cloud'''
     for bucket in connection.buckets.all():
         for key in bucket.objects.all():
             print(key.key)

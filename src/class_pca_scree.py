@@ -14,6 +14,7 @@ class FruitsVeggiesPCA(object):
         self.prop_var_expl = prop_var_expl        
 
     def scree_plot(self, pca):
+        '''get a Scree Plot to find number of components'''
         # plot explained variance ratio in a scree plot
         plt.figure(1, figsize=(8, 6))
         plt.clf()
@@ -28,6 +29,7 @@ class FruitsVeggiesPCA(object):
         return
 
     def variance_explained(self, prop_var_expl): 
+        '''better visualization of Scree Plot'''
         _, ax = plt.subplots(figsize=(8,6))
         ax.plot(prop_var_expl, color='red', linewidth=2, label='Explained Variance')
         ax.axhline(0.9, label='90% goal', linestyle='--', color="black", linewidth=1)

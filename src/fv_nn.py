@@ -12,6 +12,7 @@ import os
 
 np.random.seed(1337)
 def fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func):
+    '''Fruits and Veggies Convolution Neural Network'''
     model = Sequential() 
      
     model.add(Conv2D(nb_filters,

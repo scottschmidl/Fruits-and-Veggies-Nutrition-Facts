@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 
 
 def open_images(path, fruit_name, grayscale=False, edges=False):
+    '''open images, resize, perform grayscale, get edges, ravel'''
     color_images = io.imread(path)   
     color_size = resize(color_images, (32, 32))
     if grayscale:
@@ -19,8 +20,9 @@ def open_images(path, fruit_name, grayscale=False, edges=False):
     color_ravel = color_size.ravel()        
     return color_ravel, gray_ravel
 
-def look_at_edges(fruit_name, size): 
-    sobel_img = filters.sobel(size)
+def look_at_edges(fruit_name, grayimage): 
+    '''function to get the edges of grayscaled images'''
+    sobel_img = filters.sobel(grayimage)
     io.imshow(sobel_img)
     plt.title('AVG {} Grayscale Edges'.format(fruit_name))
     plt.savefig('images/Avg_{}_color_edges.png'.format(fruit_name))
@@ -33,11 +35,12 @@ def look_at_edges(fruit_name, size):
     sobel_ravel = sobel_img.ravel()
     return sobel_ravel
 
-if __name__ == '__main__':     
+if __name__ == '__main__':
+    ## open up images   
     tomato_img = open_images('data/fruits_vegetables/Tomato', 'Tomato')
     pear_img = open_images('data/fruits_vegetables/Pear', 'Pear')
 
     ## Featurization-Looking for edges in images
-    plot_edges = look_at_edges('Tomato', size=None)
-    plot_edges = look_at_edges('Pear', size=None)
+    plot_edges = look_at_edges('Tomato', grayimage=None)
+    plot_edges = look_at_edges('Pear', grayimage=None)
     

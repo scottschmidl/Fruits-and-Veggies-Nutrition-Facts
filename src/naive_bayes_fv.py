@@ -19,7 +19,8 @@ def get_X_y_fv(X, y, all_fru_veg):
     y = np.asarray(y)
     return X, y, all_fru_veg
 
-def roc_you_curve(X_train, X_test, y_train, y_test): 
+def roc_you_curve(X_train, X_test, y_train, y_test):
+    '''get Receiver Operating Characteristic Curve'''
     model = MultinomialNB()
     model.fit(X_train, y_train)   
     plot_roc_curve(model, X_test, y_test, name='ROC Curve for Edge Images NB')
@@ -29,6 +30,7 @@ def roc_you_curve(X_train, X_test, y_train, y_test):
     return 
 
 def plot_conf_matrix(X_train, X_test, y_train, y_test):
+    '''get Confusion Matrix from NB'''
     model = MultinomialNB()
     model.fit(X_train, y_train)
     plot_confusion_matrix(model, X_test, y_test, labels=all_fru_veg, xticks_rotation=50)
@@ -38,6 +40,7 @@ def plot_conf_matrix(X_train, X_test, y_train, y_test):
     return
     
 def naive_bayes(X_train, X_test, y_train, y_test):
+    '''get Classification Report from NB'''
     model = MultinomialNB()
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)

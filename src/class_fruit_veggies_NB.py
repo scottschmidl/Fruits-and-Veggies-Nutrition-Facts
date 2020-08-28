@@ -27,6 +27,7 @@ class FruitsVeggiesNB(object):
         return X, y, all_fru_veg
 
     def roc_you_curve(self, X_train, X_test, y_train, y_test): 
+        '''get Receiver Operating Characteristic Curve'''
         model = MultinomialNB()
         model.fit(X_train, y_train)   
         plot_roc_curve(model, X_test, y_test, name='ROC Curve for Edge Images NB')
@@ -36,6 +37,7 @@ class FruitsVeggiesNB(object):
         return 
 
     def plot_conf_matrix(self, X_train, X_test, y_train, y_test):
+        '''get Confusion Matrix from NB'''
         model = MultinomialNB()
         model.fit(X_train, y_train)
         plot_confusion_matrix(model, X_test, y_test, labels=all_fru_veg, xticks_rotation=50)
@@ -45,6 +47,7 @@ class FruitsVeggiesNB(object):
         return 
         
     def naive_bayes(self, X_train, X_test, y_train, y_test):
+        '''get Classification Report from NB'''
         model = MultinomialNB()
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
@@ -55,7 +58,7 @@ if __name__ == '__main__':
     X = []
     y = []   
     all_fru_veg = os.listdir('data/fruits_vegetables')[10:41:27]    
-    fru_veg_class = FruitsVeggieNB(X, y, all_fru_veg)
+    fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
     
