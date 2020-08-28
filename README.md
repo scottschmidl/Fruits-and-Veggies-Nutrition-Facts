@@ -135,11 +135,13 @@ Information for the nutrition facts was compiled from google searches.
 
 # Extras
 
+![](images/scree_plot.png)
 
+![](images/variance_explained.png)
 
+![](images/information_discard.png)
 
-
-
+![](images/the_data_for_21_components_kept.png)
 
 
 

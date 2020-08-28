@@ -9,7 +9,7 @@ import numpy as np
 import glob
 import os
 
-class fruits_veggies(object):
+class fruits_veggies_NB(object):
     def __init__(self, X, y, all_fru_veg):
         self.X = X
         self.y = y
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     X = []
     y = []   
     all_fru_veg = os.listdir('data/fruits_vegetables')[10:41:27]    
-    fru_veg_class = fruits_veggies(X, y, all_fru_veg)
+    fru_veg_class = fruits_veggies_NB(X, y, all_fru_veg)
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
     
