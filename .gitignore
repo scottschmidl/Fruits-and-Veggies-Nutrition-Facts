@@ -5,6 +5,6 @@ __pycache__/
 *.py[cod]
 *.pyc
 *.txt
-*src/cloud_imgs_to_script.py
-*src/images_to_cloud.py
-*src/naive_bayes_fv.py
+*cloud_imgs_to_script.py
+*images_to_cloud.py
+*naive_bayes_fv.py
