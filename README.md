@@ -81,10 +81,13 @@ Once I got an idea of the pixels I began to model my images using greyscale, col
 
 Accuracy is the ratio of correctly predicted observations to the total observations. This is used with a even data set, for example, False Positives and False Negatives are almost same.
 Accuracy = TP+TN / TP+FP+FN+TN
+
 Precision is the ratio of correctly predicted positive observations to the total predicted positive observations. High precision relates to a low false positive rate.
 Precision = TP / TP+FP
+
 Recall is the ratio of correctly predicted positive observations to all observations in the actual class.
 Recall = TP / TP+FN. This is the True Positive Rate.
+
 F1 Score is the weighted average of Precision and Recall. This is used with uneven class distribution.
 F1 Score = 2*TP / 2*TP+FP+FN
 
