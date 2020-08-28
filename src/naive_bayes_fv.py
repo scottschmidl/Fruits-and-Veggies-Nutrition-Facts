@@ -26,7 +26,7 @@ def roc_you_curve(X_train, X_test, y_train, y_test):
     plt.legend()
     plt.savefig('images/edge_roccurve.png',  bbox_inches='tight')
     plt.show()        
-    return 'cookie monster'
+    return 
 
 def plot_conf_matrix(X_train, X_test, y_train, y_test):
     model = MultinomialNB()
@@ -35,7 +35,7 @@ def plot_conf_matrix(X_train, X_test, y_train, y_test):
     plt.title('Edge Confusion Matrix')
     plt.savefig('images/edge_confusion_matrix.png',  bbox_inches='tight')
     plt.show()
-    return 'cookie monster'
+    return
     
 def naive_bayes(X_train, X_test, y_train, y_test):
     model = MultinomialNB()

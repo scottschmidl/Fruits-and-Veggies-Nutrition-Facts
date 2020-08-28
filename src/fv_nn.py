@@ -81,15 +81,15 @@ if __name__ == '__main__':
     X_train /= 255  # normalizing (scaling from 0 to 1)
     X_test /= 255   # normalizing (scaling from 0 to 1)
     y_train = to_categorical(y_train, nb_classes) # use when loss = 'categorical entropy'
-    # print('y_train: ', y_train[:20])
-    # print(y_train.shape)
+    print('y_train: ', y_train[:20])
+    print(y_train.shape)
     y_test = to_categorical(y_test, nb_classes) # use when loss = 'categorical entropy'
-    # print('y_test: ', y_test[:20])
-    # print(y_test.shape)
-    # print('X_train:\n', X_train[20])
-    # print(X_train.shape)
-    # print('X_test:\n', X_test[20])
-    # print(X_test.shape)
+    print('y_test: ', y_test[:20])
+    print(y_test.shape)
+    print('X_train:\n', X_train[20])
+    print(X_train.shape)
+    print('X_test:\n', X_test[20])
+    print(X_test.shape)
             
     ## run the model
     activations = ['linear', 'sigmoid', 'tanh', 'relu', 'softplus', 'softsign']

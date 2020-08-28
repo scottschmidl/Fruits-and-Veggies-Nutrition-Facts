@@ -4,7 +4,7 @@ from naive_bayes_fv import get_X_y_fv
 import numpy as np
 import os
 
-class fruits_veggies_PCA(object):
+class FruitsVeggiesPCA(object):
     def __init__(self, X, y, pca, total_variance, cum_variance, prop_var_expl):
         self.X = X
         self.y = y
@@ -25,7 +25,7 @@ class fruits_veggies_PCA(object):
         plt.ylabel('Explained Variance')
         plt.savefig('images/scree_plot.png')
         plt.show()
-        return 'cookie monster'
+        return
 
     def variance_explained(self, prop_var_expl): 
         _, ax = plt.subplots(figsize=(8,6))
@@ -37,7 +37,7 @@ class fruits_veggies_PCA(object):
         ax.legend()
         plt.savefig('images/variance_explained.png')
         plt.show()
-        return 'cookie monster'
+        return
 
     def pca_plot(self, X, y_enumerated):        
         X_pca = pca.transform(X)
@@ -59,7 +59,7 @@ class fruits_veggies_PCA(object):
         plt.colorbar()
         plt.savefig('images/the_data_for_21_components_kept')
         plt.show()
-        return 'cookie monster'
+        return 
 
 if __name__ == '__main__':
     X = []
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     cum_variance = np.cumsum(pca.explained_variance_)
     prop_var_expl = cum_variance/total_variance    
 
-    fru_veg_pca = fruits_veggies_PCA(X, y, pca, total_variance, cum_variance, prop_var_expl)
-    # screech = fru_veg_pca.scree_plot(pca)
-    # var_exp = fru_veg_pca.variance_explained(prop_var_expl)
-    # plot_pca = fru_veg_pca.pca_plot(X, y_enumerated)
+    fru_veg_pca = FruitsVeggiesPCA(X, y, pca, total_variance, cum_variance, prop_var_expl)
+    screech = fru_veg_pca.scree_plot(pca)
+    var_exp = fru_veg_pca.variance_explained(prop_var_expl)
+    plot_pca = fru_veg_pca.pca_plot(X, y_enumerated)

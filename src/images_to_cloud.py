@@ -1,7 +1,7 @@
 # pushing to aws, mvp+
 import boto3
 import os
-from src.image_loader import get_file_names
+from EDA_img import get_file_names
 
 def print_s3_contents_boto3(connection):
     '''borrowed from DSI AWS lecture '''

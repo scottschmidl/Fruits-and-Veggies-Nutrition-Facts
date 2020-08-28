@@ -93,18 +93,21 @@ def scale_fruit(fruit_name):
     fruit_name_gray_values = np.ravel(fruit_name_gray)
     return fruit_name_gray, fruit_name_gray_values
 
-def plot_pixel_intensities(fruit_name):
-    # fruit_color_values = see_fruit(fruit_name)[2] #this plots as color
-    fruit_name_gray_values = scale_fruit(fruit_name)[1] #this plots as gray    
+def plot_pixel_intensities(fruit_name, color=False):
+    if color:
+        fruit_values = see_fruit(fruit_name)[2] #this plots as color
+    else:
+        fruit_values = scale_fruit(fruit_name)[1] #this plots as gray
     fig = plt.figure(figsize=(6,6))
     ax = fig.add_subplot(111)
-    ax.hist(fruit_name_gray_values, bins=256)
+    ax.hist(fruit_values, bins=256)
     ax.set_xlabel('Pixel Intensities', fontsize=14)
     ax.set_ylabel('Frequency In Image', fontsize=14)
     ax.set_title("{} Grayscale Image Histogram".format(fruit_name), fontsize=16)
     plt.savefig('images/AVG_{}_grayscale_pixel_intensities.png'.format(fruit_name))
     plt.show()
-    return 'cookie monster'
+    return 
+    
 
 def plot_threshold_intensity(fruit_name):
     fruit_img = see_fruit(fruit_name)[1]
@@ -130,7 +133,8 @@ def plot_threshold_intensity(fruit_name):
     plt.title('KMeans Cluster For Avg Color {}'.format(fruit_name))
     plt.savefig('images/avg_{}_color_kmeans_clusters.png'.format(fruit_name))
     plt.show()
-    return 'cookie monster'
+    return 
+    
 
 if __name__ == '__main__':
     ## returns all_files in path

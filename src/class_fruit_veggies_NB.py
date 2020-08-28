@@ -9,7 +9,7 @@ import numpy as np
 import glob
 import os
 
-class fruits_veggies_NB(object):
+class FruitsVeggiesNB(object):
     def __init__(self, X, y, all_fru_veg):
         self.X = X
         self.y = y
@@ -31,18 +31,18 @@ class fruits_veggies_NB(object):
         model.fit(X_train, y_train)   
         plot_roc_curve(model, X_test, y_test, name='ROC Curve for Edge Images NB')
         plt.legend()
-        # plt.savefig('images/edge_roccurve.png',  bbox_inches='tight')
-        # plt.show()        
-        return 'cookie monster'
+        plt.savefig('images/edge_roccurve.png',  bbox_inches='tight')
+        plt.show()        
+        return 
 
     def plot_conf_matrix(self, X_train, X_test, y_train, y_test):
         model = MultinomialNB()
         model.fit(X_train, y_train)
         plot_confusion_matrix(model, X_test, y_test, labels=all_fru_veg, xticks_rotation=50)
         plt.title('Edge Confusion Matrix')
-        # plt.savefig('images/edge_confusion_matrix.png',  bbox_inches='tight')
-        # plt.show()
-        return 'cookie monster'
+        plt.savefig('images/edge_confusion_matrix.png',  bbox_inches='tight')
+        plt.show()
+        return 
         
     def naive_bayes(self, X_train, X_test, y_train, y_test):
         model = MultinomialNB()
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     X = []
     y = []   
     all_fru_veg = os.listdir('data/fruits_vegetables')[10:41:27]    
-    fru_veg_class = fruits_veggies_NB(X, y, all_fru_veg)
+    fru_veg_class = FruitsVeggieNB(X, y, all_fru_veg)
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
     
