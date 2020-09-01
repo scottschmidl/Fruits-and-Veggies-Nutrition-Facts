@@ -3,11 +3,10 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.callbacks import ModelCheckpoint
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
-from naive_bayes_fv import get_X_y_fv
+from class_fruit_veggies_NB import FruitsVeggiesNB
 import os
 
 np.random.seed(1337)
@@ -62,7 +61,8 @@ if __name__ == '__main__':
     y = []
     y_enumerated = []
     all_fru_veg = os.listdir('data/fruits_vegetables')[10:41:27]
-    X, y, _ = get_X_y_fv(X, y, all_fru_veg)
+    fru_veg = FruitsVeggiesNB
+    X, y, _ = fru_veg.get_X_y_fv(X, y, all_fru_veg)
     for fruit in y:
         if fruit == 'Tomato':
             y_enumerated.append(1)

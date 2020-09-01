@@ -1,6 +1,6 @@
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
-from naive_bayes_fv import get_X_y_fv
+from class_fruit_veggies_NB import FruitsVeggiesNB
 import numpy as np
 import os
 
@@ -26,7 +26,7 @@ class FruitsVeggiesPCA(object):
         plt.ylabel('Explained Variance')
         plt.savefig('images/scree_plot.png')
         plt.show()
-        return
+        return plt
 
     def variance_explained(self, prop_var_expl): 
         '''better visualization of Scree Plot'''
@@ -39,9 +39,10 @@ class FruitsVeggiesPCA(object):
         ax.legend()
         plt.savefig('images/variance_explained.png')
         plt.show()
-        return
+        return plt
 
-    def pca_plot(self, X, y_enumerated):        
+    def pca_plot(self, X, y_enumerated):
+        '''gets the dimensionality reducation and plots'''
         X_pca = pca.transform(X)
         # Light is original data points, dark is projected data points
         # shows how much "information" is discarded in this reduction of dimensionality.
@@ -61,14 +62,15 @@ class FruitsVeggiesPCA(object):
         plt.colorbar()
         plt.savefig('images/the_data_for_21_components_kept')
         plt.show()
-        return 
+        return plt
 
 if __name__ == '__main__':
     X = []
     y = []
     y_enumerated = []
     all_fru_veg = os.listdir('data/fruits_vegetables')[10:41:27]
-    X, y, _ = get_X_y_fv(X, y, all_fru_veg)
+    fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
+    X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg)
     for fruit in y:
         if fruit == 'Tomato':
             y_enumerated.append(1)

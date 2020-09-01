@@ -10,15 +10,11 @@ from image_loader import open_images
 
 ### start: part of initial EDA
 def get_file_names(dir_name):
-    # create a list of file and sub directories 
-    # names in the given directory 
+    '''gets the file names of the images'''
     list_of_file = os.listdir(dir_name)
     all_files = []
-    # Iterate over all the entries
     for entry in list_of_file:
-        # Create full path
         full_path = os.path.join(dir_name, entry)
-        # If entry is a directory then get the list of files in this directory 
         if os.path.isdir(full_path):
             all_files = all_files + get_file_names(full_path)
         else:
@@ -26,6 +22,7 @@ def get_file_names(dir_name):
     return all_files
 
 def get_jpgs(t_set, fruit_name):
+    '''get the images as an array'''
     images_array = []
     for path in t_set:
         if path[-3:] == 'jpg':
@@ -34,6 +31,7 @@ def get_jpgs(t_set, fruit_name):
 ### end: part of initial EDA
 
 def see_fruit(fruit_name):
+    '''gets images, looks at them, then ravels'''
     fruit_path = os.listdir('data/fruits_vegetables/{}'.format(fruit_name))
     imlist_fruit = [filename for filename in fruit_path if filename[-3:] in "jpg"]    
     for img in imlist_fruit:        
@@ -52,6 +50,7 @@ def see_fruit(fruit_name):
 ### start avg img
 ## Access all jpg files in directory
 def avg_img(fruit_name):
+    '''looks at average of image'''
     imlist_fruit = see_fruit(fruit_name)[0]
     #below just looks at size of first img in imlistfruit
     w, h = Image.open('data/fruits_vegetables/{}/{}'.format(fruit_name, imlist_fruit[0])).size 
@@ -71,6 +70,7 @@ def avg_img(fruit_name):
 ### end avg image
 
 def scale_fruit(fruit_name):
+    '''makes grayscale and ravels'''
     fruit_img = see_fruit(fruit_name)[1]
     fruit_name_middle = fruit_img[30:40, 30:40]   
     fruit_name_middle_red = fruit_name_middle[:, :, 0]
@@ -94,6 +94,7 @@ def scale_fruit(fruit_name):
     return fruit_name_gray, fruit_name_gray_values
 
 def plot_pixel_intensities(fruit_name, color=False):
+    '''plots pixel intensities'''
     if color:
         fruit_values = see_fruit(fruit_name)[2] #this plots as color
     else:
@@ -106,10 +107,11 @@ def plot_pixel_intensities(fruit_name, color=False):
     ax.set_title("{} Grayscale Image Histogram".format(fruit_name), fontsize=16)
     plt.savefig('images/AVG_{}_grayscale_pixel_intensities.png'.format(fruit_name))
     plt.show()
-    return 
+    return  plt
     
 
 def plot_threshold_intensity(fruit_name):
+    '''plots pixel intensities above a threshold'''
     fruit_img = see_fruit(fruit_name)[1]
     fruit_name_gray = scale_fruit(fruit_name)[0]    
     fruit_name_threshold_intensity = 0.7 # play with this
@@ -133,8 +135,7 @@ def plot_threshold_intensity(fruit_name):
     plt.title('KMeans Cluster For Avg Color {}'.format(fruit_name))
     plt.savefig('images/avg_{}_color_kmeans_clusters.png'.format(fruit_name))
     plt.show()
-    return 
-    
+    return plt    
 
 if __name__ == '__main__':
     ## returns all_files in path

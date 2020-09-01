@@ -19,7 +19,7 @@ def word_cloud(text, title, savefile):
     plt.tight_layout()
     plt.savefig(savefile, bbox_inches='tight')
     plt.show()
-    return
+    return plt
 
 if __name__ == '__main__':
     d = getcwd()
