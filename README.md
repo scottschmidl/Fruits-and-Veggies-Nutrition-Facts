@@ -127,7 +127,7 @@ Edge Confusion Matrix/Edge ROC Curve:
 |  --:                                  |                           --: |
 | ![](images/edge_confusion_matrix.png) | ![](images/edge_roccurve.png) |
 
-Classification Report For Edges Images:
+Classification Report For Edge Images:
 
 | | Precision | Recall | F1_Score | Support |
 |  --: |  --: | --: | --: | --: |
@@ -147,13 +147,13 @@ My first few attempts were around 50% with a ReLu activation function. I switche
 # Conclusion
 
 Using the Multinomial Naive Bayes:
-The color images performed best, scoring about 86% for both fruits and for accuracy and F1. Grayscale was second at 82% for both fruits and for accuracy and F1. The edges were last with an F1 score of 81% for Pear and 82% for Tomato, with an accuracy of 81%.
+The edge images performed best, scoring about 80%/81% for Tomato/Pear for F1. Color was second at 79%/80% for Pear/Tomato  for  F1. The grayscale was last scoring 77%/79% for Tomato/Pear for F1 score.
 
 Using the Convolution Neural Network:
 For grayscale, the CNN outperformed the Naive Bayes by almost 10%.
 
 Update To "To My Chagrin" on 01/SEP/2020: Images have been cleaned to between 15 and 20 different rotations for nine different pears and tomatoes. This results in 163 pears and 145 tomatoes. I will continue to add/adjust images/variety/code/plots/readme as more images are acquired.
-
+Update to "To My Chagrin" on 02/SEP/2020: Update code to make more automatic. Made plots with updated cleaned images from 01/SEP/2020.
 To My Chagrin:
 
 There are too many similar rotations in the data set and this was exacerbated by combining Training and Testing Folders. This can result in a high risk of training on the testing data and therefore better validation results, but poor overall results. 
