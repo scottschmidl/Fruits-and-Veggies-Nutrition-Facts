@@ -43,22 +43,31 @@ I chose to combine the Training and Testing Folders for simplicity and settled o
 
 Average Pear/Average Tomato:
 
+| Average Pear                       |                       Average Tomato |
+|  --:                               |                                  --: |
 | ![](images/pear_average_color.png) | ![](images/tomato_average_color.png) |
 
 To get an idea of what the pixels were doing I looked at the pixel intensities for grayscale and color.
 
 Average Pear Grayscale Pixel Intensities/Average Pear Color Pixel Intensities:
 
+| Average Pear Grayscale Pixel Intensities | Average Pear Color Pixel Intensities|
+|  --:                                                 |                                              --: |
 | ![](images/avg_Pear_grayscale_pixel_intensities.png) | ![](images/avg_Pear_color_pixel_intensities.png) |
 
 Average Tomato Grayscale Pixel Intensities/Average Tomato Color Pixel Intensities:
 
+| Average Tomato Grayscale Pixel Intensities             |              Average Tomato Color Pixel Intensities|
+|  --:                                                   |                                                --: |
 | ![](images/avg_Tomato_grayscale_pixel_intensities.png) | ![](images/avg_Tomato_color_pixel_intensities.png) |
 
 KMeans was used to get an idea of how the pixels were clusterd based off of centroid of the pixels.
 
 Average Pear Color KMean Cluster/Average Tomato Color KMean Cluster:
 
+
+| Average Pear Color KMean Cluster               |                Average Tomato Color KMean Cluster|
+|  --:                                           |                                              --: |
 | ![](images/avg_Pear_color_kmeans_clusters.png) | ![](images/avg_Tomato_color_kmeans_clusters.png) |
 
 # Visualization
@@ -83,6 +92,8 @@ F1 Score = 2*TP / 2*TP+FP+FN
 
 Grayscale Confusion Matrix/Grayscale ROC Curve:
 
+| Grayscale Confusion Matrix           |             Grayscale ROC Curve|
+|  --:                                 |                            --: |
 | ![](images/gray_confusion_matrix.png) | ![](images/gray_roccurve.png) |
 
 Classification Report For Grayscale Images:
@@ -97,6 +108,8 @@ Classification Report For Grayscale Images:
 
 Color Confusion Matrix/Color ROC Curve:
 
+| Color Confusion Matrix                 |                 Color ROC Curve|
+|  --:                                   |                            --: |
 | ![](images/color_confusion_matrix.png) | ![](images/color_roccurve.png) |
 
 Classification Report For Color Images:
@@ -110,7 +123,8 @@ Classification Report For Color Images:
 | weighted avg| 0.862|  0.862| 0.862| 3384|
 
 Edge Confusion Matrix/Edge ROC Curve:
-
+| Edge Confusion Matrix                 |                 Edge ROC Curve|
+|  --:                                  |                           --: |
 | ![](images/edge_confusion_matrix.png) | ![](images/edge_roccurve.png) |
 
 Classification Report For Edges Images:
@@ -158,8 +172,12 @@ Information for the nutrition facts was compiled from Google searches.
 
 For some extra work I used Scree, Explained Variance, and PCA plots to perform Dimensionality Reduction. The ideal number of Principal Components was 21.
 
+| Scree Plot                 |                  Variance Explained|
+|  --:                       |                                --: |
 | ![](images/scree_plot.png) | ![](images/variance_explained.png) |
 
+| Information Discarded               |                           Data for 21 Components|
+|  --:                                |                                             --: |
 | ![](images/information_discard.png) | ![](images/the_data_for_21_components_kept.png) |
 
 Below is a table of the 68 unique fruits and vegetables and some nutriion facts.
