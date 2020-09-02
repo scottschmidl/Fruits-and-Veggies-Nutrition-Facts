@@ -154,7 +154,8 @@ For grayscale, the CNN outperformed the Naive Bayes by almost 10%.
 
 Update To "To My Chagrin" on 01/SEP/2020: Images have been cleaned to between 15 and 20 different rotations for nine different pears and tomatoes. This results in 163 pears and 145 tomatoes. I will continue to add/adjust images/variety/code/plots/readme as more images are acquired.
 
-Update to "To My Chagrin" on 02/SEP/2020: Update code to make more automatic. Made plots with updated cleaned images from 01/SEP/2020.
+Update to "To My Chagrin" on 02/SEP/2020: Update to code to make more automatic. Updated plots and CNN statistics with updated cleaned images from 01/SEP/2020.
+
 To My Chagrin:
 
 There are too many similar rotations in the data set and this was exacerbated by combining Training and Testing Folders. This can result in a high risk of training on the testing data and therefore better validation results, but poor overall results. 
