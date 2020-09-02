@@ -94,7 +94,7 @@ Grayscale Confusion Matrix/Grayscale ROC Curve:
 
 | Grayscale Confusion Matrix           |             Grayscale ROC Curve|
 |  --:                                 |                            --: |
-| ![](images/gray_confusion_matrix.png) | ![](images/gray_roccurve.png) |
+| ![](images/grayscale_confusion_matrix.png) | ![](images/grayscale_roccurve.png) |
 
 Classification Report For Grayscale Images:
  
