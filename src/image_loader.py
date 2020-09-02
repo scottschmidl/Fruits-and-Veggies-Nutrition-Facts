@@ -24,15 +24,15 @@ def open_images(path, fruit_name, grayscale=False, edges=False):
 def look_at_edges(fruit_name, grayimage): 
     '''function to get the edges of grayscaled images'''
     sobel_img = filters.sobel(grayimage)
-    io.imshow(sobel_img)
-    plt.title('AVG {} Grayscale Edges'.format(fruit_name))
-    plt.savefig('images/Avg_{}_color_edges.png'.format(fruit_name))
-    plt.show()
-    sobel_img.round(2)
-    io.imshow(gaussian(sobel_img, sigma=3))
-    plt.title('AVG {} Gaussian'.format(fruit_name))
-    plt.savefig('images/avg_{}_gaussian.png'.format(fruit_name))
-    plt.show()
+    # io.imshow(sobel_img)
+    # plt.title('AVG {} Grayscale Edges'.format(fruit_name))
+    # plt.savefig('images/Avg_{}_color_edges.png'.format(fruit_name))
+    # plt.show()
+    # sobel_img.round(2)
+    # io.imshow(gaussian(sobel_img, sigma=3))
+    # plt.title('AVG {} Gaussian'.format(fruit_name))
+    # plt.savefig('images/avg_{}_gaussian.png'.format(fruit_name))
+    # plt.show()
     sobel_ravel = sobel_img.ravel()
     return sobel_ravel
 

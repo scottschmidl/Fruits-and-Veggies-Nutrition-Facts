@@ -100,11 +100,11 @@ Classification Report For Grayscale Images:
  
 | | Precision | Recall | F1_Score | Support |
 |  --: |  --: | --: | --: | --: |
-|  Pear| 0.844|  0.807| 0.825| 1734|
-|  Tomato| 0.806|  0.844| 0.824| 1650|
-| accuracy| | | 0.825| 3384|
-| macro avg| 0.825|  0.825| 0.825| 3384|
-| weighted avg| 0.826|  0.825| 0.825| 3384|
+|  Pear| 0.838|  0.738| 0.785| 42|
+|  Tomato| 0.725|  0.829| 0.773| 35|
+| accuracy| | | 0.779| 77|
+| macro avg| 0.781|  0.783| 0.779| 77|
+| weighted avg| 0.787|  0.779| 0.780 77|
 
 Color Confusion Matrix/Color ROC Curve:
 
@@ -116,11 +116,11 @@ Classification Report For Color Images:
 
 | | Precision | Recall | F1_Score | Support |
 |  --: |  --: | --: | --: | --: |
-|  Pear| 0.858|  0.873| 0.865| 1720|
-| Tomato | 0.866|  0.850| 0.858| 1664|
-| accuracy| | | 0.862| 3384|
-| macro avg| 0.862|  0.862| 0.862| 3384|
-| weighted avg| 0.862|  0.862| 0.862| 3384|
+|  Pear| 0.750|  0.833| 0.789| 36|
+| Tomato | 0.838|  0.756| 0.795| 41|
+| accuracy| | | 0.792| 77|
+| macro avg| 0.794|  0.795| 0.792| 77|
+| weighted avg| 0.797|  0.792| 0.792| 77|
 
 Edge Confusion Matrix/Edge ROC Curve:
 | Edge Confusion Matrix                 |                 Edge ROC Curve|
@@ -131,11 +131,11 @@ Classification Report For Edges Images:
 
 | | Precision | Recall | F1_Score | Support |
 |  --: |  --: | --: | --: | --: |
-|  Pear| 0.818|  0.806| 0.812| 1664|
-|  Tomato| 0.815|  0.827| 0.821| 1720|
-| accuracy| | | 0.816| 3384|
-| macro avg| 0.817|  0.816| 0.816| 3384|
-| weighted avg| 0.817|  0.816| 0.816| 3384|
+|  Pear| 0.821|  0.800| 0.810| 40|
+|  Tomato| 0.789|  0.811| 0.800| 37|
+| accuracy| | | 0.805| 77|
+| macro avg| 0.805|  0.805| 0.805| 77|
+| weighted avg| 0.806|  0.805| 0.805| 77|
 
 I, then, ran a Convolution Neural Network on the grayscale images as I was interested to see how that would train.
 My first few attempts were around 50% with a ReLu activation function. I switched the activation function to Linear and it scored a 91%.
