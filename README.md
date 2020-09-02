@@ -166,7 +166,10 @@ The color images performed best, scoring about 86% for both fruits and for accur
 Using the Convolution Neural Network:
 For grayscale, the CNN outperformed the Naive Bayes by almost 10%.
 
-To my chagrin:
+Update To "To My Chagrin" on 01/SEP/2020: Images have been cleaned to between 15 and 20 different rotations for nine different pears and tomatoes. This results in 163 pears and 145 tomatoes. I will continue to add/adjust images/variety/code/plots/readme as more images are acquired.
+
+To My Chagrin:
+
 There are too many similar rotations in the data set and this was exacerbated by combining Training and Testing Folders. This can result in a high risk of training on the testing data and therefore better validation results, but poor overall results. 
 As a future project I would like to spend more time cleaning up the fruits, vegetables, and their rotations, or returning to separated folders and running the models again.
 I would also like to look at using AwS, as the data set was too large to run all images with original pixels on my local machine.
@@ -263,7 +266,4 @@ Tangelo | They are rich in dietary fiber, which aids in digestion and healthy bo
 Tomato|	Tomatoes are a source of Vitamin C and Vitamin A. They are also high in Lycopene which helps fight heart disease and some Cancers.|
 Walnut | Decrease inflammation. Promotes a healthy Gut. Reduce risk of Cancer. Supports weight control. Helps manage Type 2 Diabetes and lowers risk. Help lower blood pressure.|
 Watermelon | Helps hydration, contains nutrients and beneficial plant compounds, contains compounds that help prevent Cancer, improves Heart health, lowers inflammation and oxidative stress, helps prevent Macular Degeneration, helps relieve muscle soreness.|
-
-
-
 
