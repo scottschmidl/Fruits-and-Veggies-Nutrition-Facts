@@ -60,9 +60,11 @@ if __name__ == '__main__':
     X = []
     y = []
     y_enumerated = []
+    grayscale = True
+    edge = False
     all_fru_veg = os.listdir('data/fruits_vegetables')[10:41:27]
     fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
-    X, y, _ = fru_veg_class.get_X_y_fv(X, y, all_fru_veg)
+    X, y, _ = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)
     for fruit in y:
         if fruit == 'Tomato':
             y_enumerated.append(1)
