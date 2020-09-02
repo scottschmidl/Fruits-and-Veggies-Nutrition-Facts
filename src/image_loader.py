@@ -6,19 +6,20 @@ from skimage.filters import gaussian
 import os
 import matplotlib.pyplot as plt
 
-
 def open_images(path, fruit_name, grayscale=False, edges=False):
     '''open images, resize, perform grayscale, get edges, ravel'''
     color_images = io.imread(path)   
     color_size = resize(color_images, (32, 32))
     if grayscale:
         gray_image = rgb2gray(color_size) # for making image gray scale
-        gray_ravel = gray_image.ravel()  
         if edges:
             gray_edges = look_at_edges(fruit_name, gray_image) # for getting the edges 
-            gray_ravel = gray_edges.ravel()           
-    color_ravel = color_size.ravel()        
-    return color_ravel, gray_ravel
+            ravel = gray_edges.ravel()
+        else:
+            ravel = gray_image.ravel()           
+    else:
+        ravel = color_size.ravel()        
+    return ravel
 
 def look_at_edges(fruit_name, grayimage): 
     '''function to get the edges of grayscaled images'''

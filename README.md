@@ -41,41 +41,25 @@ Learn Nutrition Facts from the 68 fruits and vegetables in the entire data set.
 I spent quite a while deciding if I would use the whole data set with all unique items, but settled on a binary approach. I was left with deciding fruits and vegetables or which 2 unique fruits or vegetables. I ultimately decided on the latter.
 I chose to combine the Training and Testing Folders for simplicity and settled on the 6810 images of Tomatoes and the 6726 images of Pears. with my goals in mind I started by taking a look at the images and for visualization I got the average images.
 
-Average Pear:
+Average Pear/Average Tomato:
 
-![](images/pear_average_color.png)
-
-Average Tomato:
-
-![](images/tomato_average_color.png)
+![](images/pear_average_color.png) ![](images/tomato_average_color.png)
 
 To get an idea of what the pixels were doing I looked at the pixel intensities for grayscale and color.
 
-Average Pear Grayscale Pixel Intensities:
+Average Pear Grayscale Pixel Intensities/Average Pear Color Pixel Intensities:
 
-![](images/avg_Pear_grayscale_pixel_intensities.png)
+![](images/avg_Pear_grayscale_pixel_intensities.png) ![](images/avg_Pear_color_pixel_intensities.png)
 
-Average Pear Color Pixel Intensities:
+Average Tomato Grayscale Pixel Intensities/Average Tomato Color Pixel Intensities:
 
-![](images/avg_Pear_color_pixel_intensities.png)
-
-Average Tomato Grayscale Pixel Intensities:
-
-![](images/avg_Tomato_grayscale_pixel_intensities.png)
-
-Average Tomato Color Pixel Intensities:
-
-![](images/avg_Tomato_color_pixel_intensities.png)
+![](images/avg_Tomato_grayscale_pixel_intensities.png) ![](images/avg_Tomato_color_pixel_intensities.png)
 
 KMeans was used to get an idea of how the pixels were clusterd based off of centroid of the pixels.
 
-Average Pear Color KMean Cluster:
+Average Pear Color KMean Cluster/Average Tomato Color KMean Cluster:
 
-![](images/avg_Pear_color_kmeans_clusters.png)
-
-Average Tomato Color KMean Cluster:
-
-![](images/avg_Tomato_color_kmeans_clusters.png)
+![](images/avg_Pear_color_kmeans_clusters.png) ![](images/avg_Tomato_color_kmeans_clusters.png)
 
 # Visualization
 
@@ -97,13 +81,9 @@ F1 Score is the weighted average of Precision and Recall. This is used with unev
 
 F1 Score = 2*TP / 2*TP+FP+FN
 
-Grayscale Confusion Matrix:
+Grayscale Confusion Matrix/Grayscale ROC Curve:
 
-![](images/gray_confusion_matrix.png)
-
-Grayscale ROC Curve:
-
-![](images/gray_roccurve.png)
+![](images/gray_confusion_matrix.png) ![](images/gray_roccurve.png)
 
 Classification Report For Grayscale Images:
  
@@ -115,13 +95,9 @@ Classification Report For Grayscale Images:
 | macro avg| 0.825|  0.825| 0.825| 3384|
 | weighted avg| 0.826|  0.825| 0.825| 3384|
 
-Color Confusion Matrix:
+Color Confusion Matrix/Color ROC Curve:
 
-![](images/color_confusion_matrix.png)
-
-Color ROC Curve:
-
-![](images/color_roccurve.png)
+![](images/color_confusion_matrix.png) ![](images/color_roccurve.png)
 
 Classification Report For Color Images:
 
@@ -133,13 +109,9 @@ Classification Report For Color Images:
 | macro avg| 0.862|  0.862| 0.862| 3384|
 | weighted avg| 0.862|  0.862| 0.862| 3384|
 
-Edge Confusion Matrix:
+Edge Confusion Matrix/Edge ROC Curve:
 
-![](images/edge_confusion_matrix.png)
-
-Edge ROC Curve:
-
-![](images/edge_roccurve.png)
+![](images/edge_confusion_matrix.png) ![](images/edge_roccurve.png)
 
 Classification Report For Edges Images:
 
@@ -186,13 +158,9 @@ Information for the nutrition facts was compiled from Google searches.
 
 For some extra work I used Scree, Explained Variance, and PCA plots to perform Dimensionality Reduction. The ideal number of Principal Components was 21.
 
-![](images/scree_plot.png)
+![](images/scree_plot.png) ![](images/variance_explained.png)
 
-![](images/variance_explained.png)
-
-![](images/information_discard.png)
-
-![](images/the_data_for_21_components_kept.png)
+![](images/information_discard.png) ![](images/the_data_for_21_components_kept.png)
 
 Below is a table of the 68 unique fruits and vegetables and some nutriion facts.
 
