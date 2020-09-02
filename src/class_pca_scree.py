@@ -67,16 +67,18 @@ class FruitsVeggiesPCA(object):
 if __name__ == '__main__':
     X = []
     y = []
+    grayscale = False
+    edge = False
     y_enumerated = []
     all_fru_veg = os.listdir('data/fruits_vegetables')[10:41:27]
     fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
-    X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=False, edges=False)
+    X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)
     for fruit in y:
         if fruit == 'Tomato':
             y_enumerated.append(1)
         elif fruit == 'Pear':
             y_enumerated.append(0)
-    pca = PCA(n_components=21)
+    pca = PCA(n_components=25)
     pca.fit(X)
     y_enumerated = np.asarray(y_enumerated)
     total_variance = np.sum(pca.explained_variance_)
@@ -84,6 +86,6 @@ if __name__ == '__main__':
     prop_var_expl = cum_variance/total_variance    
 
     fru_veg_pca = FruitsVeggiesPCA(X, y, pca, total_variance, cum_variance, prop_var_expl)
-    screech = fru_veg_pca.scree_plot(pca)
-    var_exp = fru_veg_pca.variance_explained(prop_var_expl)
+    # screech = fru_veg_pca.scree_plot(pca)
+    # var_exp = fru_veg_pca.variance_explained(prop_var_expl)
     plot_pca = fru_veg_pca.pca_plot(X, y_enumerated)
