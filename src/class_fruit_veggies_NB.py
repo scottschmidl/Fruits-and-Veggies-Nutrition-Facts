@@ -78,12 +78,12 @@ if __name__ == '__main__':
     y = []
     grayscale = True
     edge = True
-    all_fru_veg = os.listdir('data/fruits_vegetables')[10:41:27]    
+    all_fru_veg = os.listdir('data/fruits_vegetables')[:3:2]
     fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
     
-    roc = fru_veg_class.roc_you_curve(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)        
-    plot_conf_matrix = fru_veg_class.plot_conf_matrix(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    naiveb_model = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    print(naiveb_model)
+    # roc = fru_veg_class.roc_you_curve(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)        
+    # plot_conf_matrix = fru_veg_class.plot_conf_matrix(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
+    # naiveb_model = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
+    # print(naiveb_model)

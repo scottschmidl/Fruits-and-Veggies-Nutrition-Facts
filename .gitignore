@@ -1,10 +1,8 @@
 *.jpg
 *.json
 *.pdf
+*.png
 __pycache__/
 *.py[cod]
 *.pyc
 *.txt
-*cloud_imgs_to_script.py
-*images_to_cloud.py
-*naive_bayes_fv.py

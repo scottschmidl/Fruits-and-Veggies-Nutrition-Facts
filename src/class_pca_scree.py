@@ -70,7 +70,7 @@ if __name__ == '__main__':
     grayscale = False
     edge = False
     y_enumerated = []
-    all_fru_veg = os.listdir('data/fruits_vegetables')[10:41:27]
+    all_fru_veg = os.listdir('data/fruits_vegetables')
     fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)
     for fruit in y:
