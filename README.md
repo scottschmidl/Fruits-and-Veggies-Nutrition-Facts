@@ -156,7 +156,7 @@ Update To "To My Chagrin" on 01/SEP/2020: Images have been cleaned to between 15
 
 Update to "To My Chagrin" on 02/SEP/2020: Update to code to make more automatic. Updated plots and CNN statistics with updated cleaned images from 01/SEP/2020.
 
-Update to "To My Chagrin" on 04/SEP/2020: Removed all but cleaned images from 02/SEP/2020 and downloaded three new data sets for Pear(3175), Tomato(2298). Along with the cleaned images from the previous set, the new images have: multiple,
+Update to "To My Chagrin" on 04/SEP/2020: Removed all but cleaned images from 02/SEP/2020 and downloaded three new data sets for Pear(3175) and Tomato(2298). Along with the cleaned images from the previous set, the new images have: multiple,
 a back drop, and rotations. Will make updates to code and plots/images in the coming days.
 
 To My Chagrin:
