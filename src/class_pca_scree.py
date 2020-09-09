@@ -60,7 +60,7 @@ class FruitsVeggiesPCA(object):
         plt.xlabel('Component 1')
         plt.ylabel('Component 2')
         plt.colorbar()
-        plt.savefig('images/the_data_for_21_components_kept')
+        plt.savefig('images/the_data_for_86_components_kept')
         plt.show()
         return plt
 
