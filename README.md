@@ -181,7 +181,7 @@ For some extra work I used Scree, Explained Variance, and PCA plots to perform D
 |  --:                       |                                --: |
 | ![](images/scree_plot.png) | ![](images/variance_explained.png) |
 
-| Information Discarded               |                           Data for 21 Components|
+| Information Discarded               |                           Data for 86 Components|
 |  --:                                |                                             --: |
 | ![](images/information_discard.png) | ![](images/the_data_for_86_components_kept.png) |
 
