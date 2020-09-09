@@ -18,7 +18,7 @@ class FruitsVeggiesNB(object):
     def get_X_y_fv(self, X, y, all_fru_veg, grayscale, edge):
         '''gets images and places into array'''
         for fru_veg in all_fru_veg:
-            path = glob.glob('data/fruits_vegetables/{}/*.jpg'.format(fru_veg))
+            path = glob.glob('data/fruits_vegetables/{}/*'.format(fru_veg))
             label = fru_veg
             for p in path:
                 X.append(open_images(p, '{}'.format(fru_veg), grayscale, edge))
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     y = []
     grayscale = True
     edge = True
-    all_fru_veg = os.listdir('data/fruits_vegetables')[:3:2]
+    all_fru_veg = os.listdir('data/fruits_vegetables')
     fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)
     X_train, X_test, y_train, y_test = train_test_split(X, y)

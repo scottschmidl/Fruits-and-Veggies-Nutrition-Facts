@@ -6,3 +6,12 @@ __pycache__/
 *.py[cod]
 *.pyc
 *.txt
+*.html
+*.css
+*.eot
+*.svg
+*.ttf
+*.woff
+*.woff2
+*.js
+*.map
