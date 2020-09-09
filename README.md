@@ -183,7 +183,7 @@ For some extra work I used Scree, Explained Variance, and PCA plots to perform D
 
 | Information Discarded               |                           Data for 21 Components|
 |  --:                                |                                             --: |
-| ![](images/information_discard.png) | ![](images/the_data_for_21_components_kept.png) |
+| ![](images/information_discard.png) | ![](images/the_data_for_86_components_kept.png) |
 
 Below is a table of the 68 unique fruits and vegetables and some nutriion facts.
 
