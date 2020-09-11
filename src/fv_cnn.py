@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from class_fruit_veggies_NB import FruitsVeggiesNB
 import os
+from keras.callbacks import TensorBoard, EarlyStopping
 
 np.random.seed(1337)
 def fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func):
@@ -45,7 +46,17 @@ def fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func):
     model.summary()
     return model
 
+def tensor_board():
+    '''view tensorflow model after it has trained using tensorboard'''
+    tbCallBack = TensorBoard(log_dir='./logs', histogram_freq=0, write_graph=True, write_images=True)
+    return tbCallBack
+
+def early_stopping():
+    earlyStopping = EarlyStopping(monitor='acc', min_delta=0.001, patience=0, verbose=0, mode='auto')
+    return earlyStopping
+
 if __name__ == '__main__':
+    ###### turn this into a class ###### 
     batch_size = 20  # number of training samples used at a time to update the weights
     nb_classes = 2    # number of output possibilities: [0 - 1]
     nb_epoch = 10     # number of passes through the entire train dataset before weights "final"
@@ -102,3 +113,15 @@ if __name__ == '__main__':
     score = model.evaluate(X_test, y_test, verbose=0)
     print('Test score:', score[0])
     print('Test accuracy:', score[1])
+
+    ## might need to replace the model.fit from above
+    ## after python script run successfully, then in terminal run: tensorboard --logidr ./logs
+    # tb = tensor_board()
+    # model.fit(X_train, y_train, batch_size=batch_size, epochs=nb_epoch, verbose=1, validation_split=0.2,
+    #            class_weight='auto', shuffle=True, callbacks=[tb])
+
+    ## to stop at a convergence critia.
+    ## might need to replace the model.fit from above
+    # es = early_stopping()
+    # model.fit(X_train, y_train, batch_size=batch_size, epochs=nb_epoch, verbose=1, validation_split=0.2,
+    #           class_weight='auto', shuffle=True, callbacks=[es])

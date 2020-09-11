@@ -76,8 +76,8 @@ class FruitsVeggiesNB(object):
 if __name__ == '__main__':
     X = []
     y = []
-    grayscale = True
-    edge = True
+    grayscale = False
+    edge = False
     all_fru_veg = os.listdir('data/fruits_vegetables')
     fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)

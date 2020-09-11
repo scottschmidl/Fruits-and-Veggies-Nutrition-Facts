@@ -45,7 +45,7 @@ Average Pear/Average Tomato:
 
 | Average Pear                       |                       Average Tomato |
 |  --:                               |                                  --: |
-| ![](images/pear_average_color.png) | ![](images/tomato_average_color.png) |
+| ![](images/Pear_average_color.png) | ![](images/Tomato_average_color.png) |
 
 To get an idea of what the pixels were doing I looked at the pixel intensities for grayscale and color.
 
@@ -53,13 +53,13 @@ Average Pear Grayscale Pixel Intensities/Average Pear Color Pixel Intensities:
 
 | Average Pear Grayscale Pixel Intensities | Average Pear Color Pixel Intensities|
 |  --:                                                 |                                              --: |
-| ![](images/avg_Pear_grayscale_pixel_intensities.png) | ![](images/avg_Pear_color_pixel_intensities.png) |
+| ![](images/Pear_grayscale_pixel_intensities.png) | ![](images/Pear_color_pixel_intensities.png) |
 
 Average Tomato Grayscale Pixel Intensities/Average Tomato Color Pixel Intensities:
 
 | Average Tomato Grayscale Pixel Intensities             |              Average Tomato Color Pixel Intensities|
 |  --:                                                   |                                                --: |
-| ![](images/avg_Tomato_grayscale_pixel_intensities.png) | ![](images/avg_Tomato_color_pixel_intensities.png) |
+| ![](images/Tomato_grayscale_pixel_intensities.png) | ![](images/Tomato_color_pixel_intensities.png) |
 
 KMeans was used to get an idea of how the pixels were clusterd based off of centroid of the pixels.
 
@@ -68,7 +68,7 @@ Average Pear Color KMean Cluster/Average Tomato Color KMean Cluster:
 
 | Average Pear Color KMean Cluster               |                Average Tomato Color KMean Cluster|
 |  --:                                           |                                              --: |
-| ![](images/avg_Pear_color_kmeans_clusters.png) | ![](images/avg_Tomato_color_kmeans_clusters.png) |
+| ![](images/Pear_color_kmeans_clusters.png) | ![](images/Tomato_color_kmeans_clusters.png) |
 
 # Visualization
 

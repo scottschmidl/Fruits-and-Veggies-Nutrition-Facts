@@ -1,10 +1,13 @@
 # Demonstrates Bootstrap version 3.3 Starter Template
 # available here: https://getbootstrap.com/docs/3.3/getting-started/#examples
 
-from flask import Flask, render_template
-import build_model as bm
-import os
 from sklearn.model_selection import train_test_split
+from flask import Flask, render_template
+import sys
+sys.path.append('src')
+from class_fruit_veggies_NB import FruitsVeggiesNB
+import os
+
 
 app = Flask(__name__)
 
@@ -33,7 +36,7 @@ if __name__ == '__main__':
     grayscale = False
     edge = False
     all_fru_veg = os.listdir('data/fruits_vegetables')
-    fru_veg_class = bm.FruitsVeggiesNB(X, y, all_fru_veg)
+    fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
