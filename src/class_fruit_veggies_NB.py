@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import glob
 import os
+import argparse
+import pickle as pickle
 
 class FruitsVeggiesNB(object):
     def __init__(self, X, y, all_fru_veg):
@@ -68,10 +70,10 @@ class FruitsVeggiesNB(object):
     def naive_bayes(self, X_train, X_test, y_train, y_test, grayscale, edge):
         '''get Classification Report from NB'''
         model = MultinomialNB()
-        model.fit(X_train, y_train)
-        y_pred = model.predict(X_test)
+        mod = model.fit(X_train, y_train)
+        y_pred = mod.predict(X_test)
         report = classification_report(y_test, y_pred, digits=3)
-        return report
+        return mod, report
     
 if __name__ == '__main__':
     X = []
@@ -85,5 +87,7 @@ if __name__ == '__main__':
     
     # roc = fru_veg_class.roc_you_curve(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)        
     # plot_conf_matrix = fru_veg_class.plot_conf_matrix(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    # naiveb_model = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    # print(naiveb_model)
+    mod, report = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
+    
+    filename = 'fv_app/fv_nb_model.sav'
+    pickle.dump(mod, open(filename, 'wb'))    

@@ -49,26 +49,32 @@ Average Pear/Average Tomato:
 
 To get an idea of what the pixels were doing I looked at the pixel intensities for grayscale and color.
 
-Average Pear Grayscale Pixel Intensities/Average Pear Color Pixel Intensities:
+Pear Grayscale Pixel Intensities/Pear Color Pixel Intensities:
 
-| Average Pear Grayscale Pixel Intensities | Average Pear Color Pixel Intensities|
+| Pear Grayscale Pixel Intensities | Pear Color Pixel Intensities|
 |  --:                                                 |                                              --: |
 | ![](images/Pear_grayscale_pixel_intensities.png) | ![](images/Pear_color_pixel_intensities.png) |
 
-Average Tomato Grayscale Pixel Intensities/Average Tomato Color Pixel Intensities:
+Tomato Grayscale Pixel Intensities/Tomato Color Pixel Intensities:
 
-| Average Tomato Grayscale Pixel Intensities             |              Average Tomato Color Pixel Intensities|
+| Tomato Grayscale Pixel Intensities             |              Tomato Color Pixel Intensities|
 |  --:                                                   |                                                --: |
 | ![](images/Tomato_grayscale_pixel_intensities.png) | ![](images/Tomato_color_pixel_intensities.png) |
 
 KMeans was used to get an idea of how the pixels were clusterd based off of centroid of the pixels.
 
-Average Pear Color KMean Cluster/Average Tomato Color KMean Cluster:
+Pear Color KMean Cluster/Tomato Color KMean Cluster:
 
 
-| Average Pear Color KMean Cluster               |                Average Tomato Color KMean Cluster|
+| Pear Color KMean Cluster               |                Tomato Color KMean Cluster|
 |  --:                                           |                                              --: |
 | ![](images/Pear_color_kmeans_clusters.png) | ![](images/Tomato_color_kmeans_clusters.png) |
+
+Edge Detection Pear/Tomato
+
+| Pear Grayscale Edge             |                Tomato Grayscale Edge|
+|  --:                            |                                 --: |
+| ![](images/Pear_gray_edges.png) |   ![](images/Tomato_gray_edges.png) |
 
 # Visualization
 

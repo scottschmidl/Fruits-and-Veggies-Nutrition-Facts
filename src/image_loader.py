@@ -14,7 +14,7 @@ def open_images(path, fruit_name, grayscale, edges):
     if grayscale:
         gray_image = rgb2gray(color_size) # for making image gray scale
         if edges:
-            sobel_img = filters.sobel(gray_image)# for getting the edges 
+            sobel_img = filters.sobel(gray_image) # for getting the edges 
             ravel = sobel_img.ravel()
         else:
             ravel = gray_image.ravel()           
