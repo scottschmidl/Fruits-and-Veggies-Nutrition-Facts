@@ -8,4 +8,4 @@ def get_nutri_facts(data):
 
 if __name__ == "__main__":
     get_dat_data = get_nutri_facts('data/nutri_facts_name.csv')
-    print(get_dat_data.head())
+   

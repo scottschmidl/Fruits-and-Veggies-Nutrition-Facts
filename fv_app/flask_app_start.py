@@ -55,7 +55,8 @@ def pear_facts():
     nutri_facts_filename = 'data/nutri_facts_name.csv'
     df = get_nutri_facts(nutri_facts_filename)
     pear_nf = df[df['Fruits_Vegetables_Name'] == "Pear"]['Nutrition_Facts']
-    return render_template('pear.html', peary=pear_nf)
+    the_pear = pear_nf.iloc[0]
+    return render_template('pear.html', peary_good=the_pear)
 
 @app.route('/tomato', methods=['POST'])
 def tomato_facts():
@@ -63,14 +64,18 @@ def tomato_facts():
     nutri_facts_filename = 'data/nutri_facts_name.csv'
     df = get_nutri_facts(nutri_facts_filename)
     tomato_nf = df[df['Fruits_Vegetables_Name'] == "Tomato"]['Nutrition_Facts']
-    return render_template('tomato.html', tomato_goodness=tomato_nf)
+    the_tomato = tomato_nf.iloc[0]
+    return render_template('tomato.html', tomato_goodness=the_tomato)
 
 @app.route('/word_cloud', methods=['POST'])
 def word_cloud_facts():
     '''returns nutrition facts for each fruit on file'''
     nutri_facts_filename = 'data/nutri_facts_name.csv'
-    df = get_nutri_facts(nutri_facts_filename)
-    return render_template('word_cloud.html', full=df)
+    full_nf = get_nutri_facts(nutri_facts_filename)
+    full_names = full_nf['Fruits_Vegetables_Name'].tolist()
+    full_facts = full_nf['Nutrition_Facts'].tolist()
+    name_fact_dict = dict(zip(full_names, full_facts))    
+    return render_template('word_cloud.html', full_names_facts=name_fact_dict)
 
 # contact information page
 @app.route('/contact', methods=['GET'])

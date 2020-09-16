@@ -18,7 +18,7 @@ class FruitsVeggiesNB(object):
         self.all_fru_veg = all_fru_veg
 
     def get_X_y_fv(self, X, y, all_fru_veg, grayscale, edge):
-        '''gets images and places into array'''
+        '''opens images and return an array'''
         for fru_veg in all_fru_veg:
             path = glob.glob('data/fruits_vegetables/{}/*'.format(fru_veg))
             label = fru_veg
@@ -30,7 +30,7 @@ class FruitsVeggiesNB(object):
         return X, y, all_fru_veg
         
     def roc_you_curve(self, X_train, X_test, y_train, y_test, grayscale, edge): 
-        '''get Receiver Operating Characteristic Curve for NB'''
+        '''returns Receiver Operating Characteristic Curve for NB'''
         model = MultinomialNB()
         model.fit(X_train, y_train)
         if edge and grayscale:
@@ -51,7 +51,7 @@ class FruitsVeggiesNB(object):
         return plt
 
     def plot_conf_matrix(self, X_train, X_test, y_train, y_test, grayscale, edge):
-        '''get Confusion Matrix from NB'''
+        '''returns Confusion Matrix from NB'''
         model = MultinomialNB()
         model.fit(X_train, y_train)       
         plot_confusion_matrix(model, X_test, y_test, labels=all_fru_veg, xticks_rotation=50)
@@ -68,7 +68,7 @@ class FruitsVeggiesNB(object):
         return plt
         
     def naive_bayes(self, X_train, X_test, y_train, y_test, grayscale, edge):
-        '''get Classification Report from NB'''
+        '''returns Classification Report from NB'''
         model = MultinomialNB()
         mod = model.fit(X_train, y_train)
         y_pred = mod.predict(X_test)
@@ -88,6 +88,6 @@ if __name__ == '__main__':
     # roc = fru_veg_class.roc_you_curve(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)        
     # plot_conf_matrix = fru_veg_class.plot_conf_matrix(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
     mod, report = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    
+    print(report)
     filename = 'fv_app/fv_nb_model.sav'
     pickle.dump(mod, open(filename, 'wb'))    
