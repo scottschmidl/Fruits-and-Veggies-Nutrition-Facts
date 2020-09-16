@@ -1,12 +1,12 @@
 # Demonstrates Bootstrap version 3.3 Starter Template
 # available here: https://getbootstrap.com/docs/3.3/getting-started/#examples
 
-from sklearn.model_selection import train_test_split
 from flask import Flask, render_template, request,  redirect, url_for
 import os
-from werkzeug.utils import secure_filename
 import pandas as pd
 import sys
+from skimage import io
+from skimage.transform import resize
 sys.path.append('src')
 from class_fruit_veggies_NB import FruitsVeggiesNB
 from nutri_facts_df import get_nutri_facts
@@ -20,30 +20,62 @@ loaded_model = pickle.load(open(filename, 'rb'))
 
 # home page
 @app.route('/', methods=['GET'])
-def home(): 
+def home():
+    """render the home screen"""
     return render_template('home.html')
 
-# create a input box for images
+# create an input box for images
 @app.route('/submit', methods=['GET'])
 def get_image():
+    """render submit template with buttons for fruit and vegetable model"""
     return render_template('submit.html')
 
 # nutrition facts page
 @app.route('/nutrition_facts', methods=['POST'])
 def predict_nut_facts():
-    """receive the image to be classified from input form and use model to classify.
-    Once classified return nutrition facts about selected image"""
-    data_ = request.form['nutr_facts']
-    pred = loaded_model.predict([data_])[0]
+    """Receive the image to be classified from input form. Use model to classify. 
+        Once classified return nutrition facts about selected image"""        
+    for uploaded_file in request.files.getlist('image'):        
+        if uploaded_file.filename != '':
+            uploaded_file.save('fv_app/static/uploads/what_fruit_veggie_am_I.png')
+    img = io.imread('fv_app/static/uploads/what_fruit_veggie_am_I.png')        
+    size = resize(img, (32, 32))
+    ravel = size.ravel()
+    pred = loaded_model.predict([ravel])[0]
     # contains dataframe with nutrition facts
-    # df = 'data/nutri_facts_name.csv'
-    # get_dat_data = get_nutri_facts(df)
-    return render_template('nutrition_facts.html', image=data_, predicted=pred)
+    nutri_facts_filename = 'data/nutri_facts_name.csv'
+    df = get_nutri_facts(nutri_facts_filename)
+    nf = df[df['Fruits_Vegetables_Name'] == pred]['Nutrition_Facts']
+    the_nutrition_fact = nf.iloc[0]
+    return render_template('nutrition_facts.html', predicted=pred, fv=the_nutrition_fact)
+
+@app.route('/pear', methods=['POST'])
+def pear_facts():
+    '''returns nutrition facts for pears'''
+    nutri_facts_filename = 'data/nutri_facts_name.csv'
+    df = get_nutri_facts(nutri_facts_filename)
+    pear_nf = df[df['Fruits_Vegetables_Name'] == "Pear"]['Nutrition_Facts']
+    return render_template('pear.html', peary=pear_nf)
+
+@app.route('/tomato', methods=['POST'])
+def tomato_facts():
+    '''returns nutrition facts for tomatoes'''
+    nutri_facts_filename = 'data/nutri_facts_name.csv'
+    df = get_nutri_facts(nutri_facts_filename)
+    tomato_nf = df[df['Fruits_Vegetables_Name'] == "Tomato"]['Nutrition_Facts']
+    return render_template('tomato.html', tomato_goodness=tomato_nf)
+
+@app.route('/word_cloud', methods=['POST'])
+def word_cloud_facts():
+    '''returns nutrition facts for each fruit on file'''
+    nutri_facts_filename = 'data/nutri_facts_name.csv'
+    df = get_nutri_facts(nutri_facts_filename)
+    return render_template('word_cloud.html', full=df)
 
 # contact information page
 @app.route('/contact', methods=['GET'])
 def contact_info():
-    """Render a page containing the contact information."""
+    """Render a page containing my contact information."""
     return render_template('contact_info.html')
 
 if __name__ == '__main__':

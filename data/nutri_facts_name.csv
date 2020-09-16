@@ -45,7 +45,7 @@ Orange,Healthy immune system. ... Prevents skin damage. ... Keeps blood pressure
 Papaya,Helps in improving eye health. ... Aids digestion. ... Anti-ageing. ... Boosts Immunity. ... Helps in weight loss. ... Better kidney health. ... Great for diabetics. ... Better cardiovascular health.
 Passion_Fruit,"Passion fruit is highly rich in Vitamin C, beta-cryptoxanthin and alpha-carotene that boosts your immunity. It also has iron which increases haemoglobin in our red blood cells. The rich content of riboflavin (Vitamin B6) and niacin (Vitamin B3) in passion fruit helps in regulating the thyroid activity in our body"
 Peach,"Peaches are full of Vitamin C, Vitamin A, Vitamin K, Vitamin B6, potassium, magnesium, calcium and iron. "
-Pear,May promote gut health. ... Contain beneficial plant compounds. ... Have anti-inflammatory properties. ... May offer anticancer effects. ... Linked to a lower risk of diabetes. ... May boost heart health. ... May help you lose weight.
+Pear,promote gut health. Contain beneficial plant compounds. Have anti-inflammatory properties. offer anticancer effects. Linked to a lower risk of diabetes. boost heart health. help you lose weight.|
 Pecan,Pecan nuts contain monounsaturated fats such as oleic acid along with phenolic antioxidants which help reduce the risk of heart disease. ... Improves Digestion. ... Helps with Weight Loss. ... Reduces the Risk of Certain Cancer. ... Anti-Inflammatory Benefits. ... Boosts Immunity. ... Prevents Skin Problems. ... Anti-aging Benefits.
 Pepino,Reduces the risks of stress.     Reduces the risk of hypertension.     Helps in preventing diabetes.     It lowers the blood cholesterol levels.     It is essential in increasing stamina.
 Bell_Pepper,"Reduced risk of many chronic illnesses, such as cancer and heart disease. Eye health. Anemia prevention. "
@@ -64,6 +64,6 @@ Salak,Eye medication. Good for stomach. Memory booster. Control of blood sugar l
 Strawberry,"Protect your heart, increase HDL (good) cholesterol, lower your blood pressure, and guard against cancer."
 Tamarillo,"Responsible in helping reduce the level of blood sugar, especially in people with type II diabetes mellitus. “The antioxidant helps to lessen the oxidative stress in the liver and pancreas."
 Tangelo,"They are rich in dietary fiber, which aids in digestion and healthy bowels. They are also a good source of vitamin C, which aids in the growth and repair of tissues, and vitamin A, which helps boost the immune system"
-Tomato,Tomatoes are a source of Vitamin C and Vitamin A. They are also high in Lycopene which helps fight heart disease and some cancers.
+Tomato,Tomatoes are a source of Vitamin C and Vitamin A. They are also high in Lycopene which helps fight heart disease and some Cancers.
 Walnut,May Decrease Inflammation. ... Promotes a Healthy Gut. ... May Reduce Risk of Some Cancers. ... Supports Weight Control. ... May Help Manage Type 2 Diabetes and Lower Your Risk. ... May Help Lower Blood Pressure.
 Watermelon,"Helps You Hydrate,  contains Nutrients and Beneficial Plant Compounds, contains compounds that may help prevent Cancer,  may Improve Heart health, may lower inflammation and oxidative stress, may help prevent macular degeneration, may help relieve muscle soreness."
