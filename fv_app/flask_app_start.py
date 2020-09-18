@@ -2,16 +2,16 @@
 # available here: https://getbootstrap.com/docs/3.3/getting-started/#examples
 
 from flask import Flask, render_template, request,  redirect, url_for
-import os
-import pandas as pd
-import sys
-from skimage import io
 from skimage.transform import resize
-sys.path.append('src')
-from class_fruit_veggies_NB import FruitsVeggiesNB
-from nutri_facts_df import get_nutri_facts
+from skimage import io
+import pandas as pd
+import numpy as np
+import tensorflow
 import pickle
-# import tensorflow
+import sys
+import os
+sys.path.append('src')
+from nutri_facts_df import get_nutri_facts
 
 app = Flask(__name__)
 
@@ -20,8 +20,8 @@ filename_nb = 'fv_app/fv_nb_model.sav'
 loaded_model_nb = pickle.load(open(filename_nb, 'rb'))
 
 ## convolutional neural network model to run through flask app
-# filename_cnn = 'fv_app/fv_cnn_model.sav'
-# load_model_cnn = tensorflow.keras.models.load_model('fv_app/fv_cnn_model.sav')
+filename_cnn = 'fv_app/fv_cnn_model.sav'
+load_model_cnn = tensorflow.keras.models.load_model('fv_app/fv_cnn_model.sav')
 
 ## home page
 @app.route('/', methods=['GET'])
@@ -46,9 +46,12 @@ def predict_nut_facts():
     img = io.imread('fv_app/static/uploads/what_fruit_veggie_am_I.png')        
     size = resize(img, (32, 32))
     ravel = size.ravel()
+    ###########MNB LOADED GOODS######################
     pred = loaded_model_nb.predict([ravel])[0]
-    # pred_cnn = load_model_cnn.evaluate([ravel])[0]
-    ## contains dataframe with nutrition facts
+    ###########END OF MNB LOADED GOODS###############
+    ###########CNN LOADED GOODS###################### 
+    ## pred_cnn = load_model_cnn.predict(img) ## not working yet, getting a shape error
+    ###########END OF CNN LOADED GOODS###############
     nutri_facts_filename = 'data/nutri_facts_name.csv'
     df = get_nutri_facts(nutri_facts_filename)
     nf = df[df['Fruits_Vegetables_Name'] == pred]['Nutrition_Facts']
