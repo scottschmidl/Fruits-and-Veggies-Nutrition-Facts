@@ -46,17 +46,34 @@ def predict_nut_facts():
     img = io.imread('fv_app/static/uploads/what_fruit_veggie_am_I.png')        
     size = resize(img, (32, 32))
     ravel = size.ravel()
-    ###########MNB LOADED GOODS######################
-    pred = loaded_model_nb.predict([ravel])[0]
-    ###########END OF MNB LOADED GOODS###############
-    ###########CNN LOADED GOODS###################### 
-    ## pred_cnn = load_model_cnn.predict(img) ## not working yet, getting a shape error
-    ###########END OF CNN LOADED GOODS###############
+    ########### MNB Loaded Goods ######################
+    pred_mnb = loaded_model_nb.predict([ravel])[0]
+    print('pred_mnb*******************', pred_mnb)
+    ########### End OF MNB Loaded Goods ###############
+    ########### CNN Loaded Goods ######################
+    vals = ['Pear', 'Tomato']
+    cnn_size = resize(img, (32, 32, 32, 3))
+    pred_cnn = load_model_cnn.predict([cnn_size])[0]
+    print('pred_cnn*******************', pred_cnn)
+    new_pred = np.argmax(pred_cnn)
+    print('new_pred**************', new_pred)
+    # new_pred_cnn = vals[new_pred] ## not working yet, getting a shape error
+    final = pd.DataFrame({'name' : np.array(vals),'probability' :pred_cnn[0]})
+    final, new_pred_cnn  =final.sort_values(by = 'probability',ascending=False), vals[new_pred]
+    print('new_pred_cnn*****************', new_pred_cnn)    
+    print('final', final)
+    ########### End Of CNN Loaded Goods ###############
+    ########### Loaded Data Frame #####################
     nutri_facts_filename = 'data/nutri_facts_name.csv'
     df = get_nutri_facts(nutri_facts_filename)
-    nf = df[df['Fruits_Vegetables_Name'] == pred]['Nutrition_Facts']
-    the_nutrition_fact = nf.iloc[0]
-    return render_template('nutrition_facts.html', predicted=pred, fv=the_nutrition_fact)
+    nf_mnb = df[df['Fruits_Vegetables_Name'] == pred_mnb]['Nutrition_Facts']
+    print(nf_mnb)
+    mnb_nf = nf_mnb.iloc[0]
+    nf_cnn = df[df['Fruits_Vegetables_Name'] == new_pred_cnn]['Nutrition_Facts']
+    cnn_nf = nf_cnn.iloc[0]
+    print(cnn_nf)
+    ########### End of Loaded Data Frame ##############
+    return render_template('nutrition_facts.html', predicted=pred_mnb, fv_nf_mnb=mnb_nf)
 
 ## pear nutrition facts page
 @app.route('/pear', methods=['POST'])
