@@ -34,7 +34,7 @@ def fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func):
     model.add(Dropout(0.5)) # zeros out some fraction of inputs, helps prevent overfitting
 
     model.add(Dense(nb_classes)) # 2 final nodes (one for each class)
-    model.add(Activation('sigmoid')) # softmax at end to pick between classes 0-1    
+    model.add(Activation('sigmoid')) # sigmoid at end to pick between classes 0-1    
     
     model.compile(loss='binary_crossentropy',
                   optimizer='adam',

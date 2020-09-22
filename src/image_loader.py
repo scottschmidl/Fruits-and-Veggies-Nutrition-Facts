@@ -6,20 +6,25 @@ from skimage.filters import gaussian
 import os
 import matplotlib.pyplot as plt
 from eda_img import scale_fruit
+import numpy as np
 
 def open_images(path, fruit_name, grayscale, edges):
     '''open images, resize, perform grayscale, get edges, ravel'''
-    color_images = io.imread(path)   
+    color_images = io.imread(path)
     color_size = resize(color_images, (32, 32))
+    ## rescale image as it scales down the pixels
+    rescaled_image = 255 * color_size
+    ## Convert to integer data type pixels.
+    final_image = rescaled_image.astype(np.uint8)
     if grayscale:
-        gray_image = rgb2gray(color_size) # for making image gray scale
+        gray_image = rgb2gray(final_image) ## for making image gray scale
         if edges:
-            sobel_img = filters.sobel(gray_image) # for getting the edges 
+            sobel_img = filters.sobel(gray_image) ## for getting the edges 
             ravel = sobel_img.ravel()
         else:
             ravel = gray_image.ravel()           
     else:
-        ravel = color_size.ravel()        
+        ravel = final_image.ravel()      
     return ravel
 
 def look_at_edges(fruit_name, grayimage): 
