@@ -12,6 +12,7 @@
 7. [Photo and Data Credits](#Photo-and-Data-Credits)
 8. [Extras](#Extras)
 
+![](images/index.jpeg)
 
 # Background and Motivation
 
