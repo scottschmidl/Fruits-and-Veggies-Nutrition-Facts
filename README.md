@@ -102,6 +102,8 @@ F1 Score is the weighted average of Precision and Recall. This is used with unev
 
 F1 Score = 2*TP / 2*TP+FP+FN
 
+Multinomial Naive Bayes:
+
 Grayscale Confusion Matrix/Grayscale ROC Curve:
 
 | Grayscale Confusion Matrix           |             Grayscale ROC Curve|
@@ -112,11 +114,11 @@ Classification Report For Grayscale Images:
  
 | | Precision | Recall | F1_Score | Support |
 |  --: |  --: | --: | --: | --: |
-|  Pear| 0.838|  0.829| 0.834| 785|
-|  Tomato| 0.775|  0.785| 0.780| 587|
-| accuracy| | | 0.810| 1372|
-| macro avg| 0.806|  0.807| 0.807| 1372|
-| weighted avg| 0.811|  0.810 | 0.811 | 1372|
+|  Pear| 0.84|  0.85| 0.85| 822|
+|  Tomato| 0.77|  0.77| 0.77| 550|
+| accuracy| | | 0.820| 1372|
+| macro avg| 0.81|  0.81| 0.81| 1372|
+| weighted avg| 0.82|  0.82 | 0.82 | 1372|
 
 Color Confusion Matrix/Color ROC Curve:
 
@@ -128,11 +130,11 @@ Classification Report For Color Images:
 
 | | Precision | Recall | F1_Score | Support |
 |  --: |  --: | --: | --: | --: |
-|  Pear| 0.837|  0.845| 0.841| 802|
-| Tomato | 0.779|  0.768| 0.774| 570|
-| accuracy| | | 0.813| 1372|
-| macro avg| 0.808|  0.807 0.808| 1372|
-| weighted avg| 0.813|  0.813| 0.813| 1372|
+|  Pear| 0.83|  0.86| 0.84| 800|
+| Tomato | 0.79|  0.75| 0.77| 572|
+| accuracy| | | 0.81| 1372|
+| macro avg| 0.81|  0.80 | 0.81| 1372|
+| weighted avg| 0.81|  0.81| 0.81| 1372|
 
 Edge Confusion Matrix/Edge ROC Curve:
 | Edge Confusion Matrix                 |                 Edge ROC Curve|
@@ -143,18 +145,50 @@ Classification Report For Edge Images:
 
 | | Precision | Recall | F1_Score | Support |
 |  --: |  --: | --: | --: | --: |
-|  Pear| 0.768|  0.770| 0.769| 781|
-|  Tomato| 0.694|  0.692| 0.693| 591|
-| accuracy| | | 0.736| 1372|
-| macro avg| 0.731|  0.731| 0.731| 1372|
-| weighted avg| 0.736|  0.736| 0.736| 1372|
+|  Pear| 0.80|  0.77| 0.79| 835|
+|  Tomato| 0.66|  0.70| 0.68| 537|
+| accuracy| | | 0.74| 1372|
+| macro avg| 0.73|  0.74| 0.73| 1372|
+| weighted avg| 0.75|  0.74| 0.75| 1372|
+
+Random Forest Classifier:
+
+Classification Report For Grayscale Images:
+
+|             | Precision |   Recall | F1_Score |  Support |
+|         --: |    --:    |    --:   |    --:  |       --: |
+|        Pear |      0.97 |     0.96  |    0.96   |    822 |
+|      Tomato |      0.94 |     0.95  |    0.95   |    550 |        
+|    accuracy |           |           |    0.96   |   1372 |
+|   macro avg |      0.96 |     0.96  |    0.96   |   1372 |
+|weighted avg |      0.96 |     0.96  |    0.96   |   1372 |
+
+Classification Report For Color Images:
+
+|             | Precision |   Recall | F1_Score |  Support |
+|         --: |    --:    |    --:   |    --:  |       --: |
+|        Pear |      0.98 |     0.99  |    0.98   |    800 |
+|      Tomato |      0.98 |     0.97  |    0.98   |    572 |        
+|    accuracy |           |           |    0.98   |   1372 |
+|   macro avg |      0.98 |     0.98  |    0.98   |   1372 |
+|weighted avg |      0.98 |     0.98  |    0.98   |   1372 |
+
+Classification Report For Edge Images:
+
+|             | Precision |   Recall | F1_Score |  Support |
+|         --: |    --:    |    --:   |    --:  |       --: |
+|        Pear |      0.90 |     0.94  |    0.92   |    835 |
+|      Tomato |      0.90 |     0.84  |    0.87   |    537 |        
+|    accuracy |           |           |    0.90   |   1372 |
+|   macro avg |      0.90 |     0.89  |    0.89   |   1372 |
+|weighted avg |      0.90 |     0.90  |    0.90   |   1372 |
 
 I, then, ran a Convolution Neural Network on the grayscale images as I was interested to see how that would train.
 My first few attempts were around 50% with a ReLu activation function. I switched the activation function to Linear and it scored a 91%.
 
-![](images/fv_nn_summary.png)
+![](images/epoch_accuracy.svg)
 
-![](images/fv_nn_performance.png)
+![](images/epoch_loss.svg)
 
 # Conclusion
 

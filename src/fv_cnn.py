@@ -97,8 +97,8 @@ if __name__ == '__main__':
     ### run the model
     model = fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func)
     ### fit the model
-    ### when tensorboard or easystop is true: after python script run successfully, then in terminal run: tensorboard --logidr logs
-    tensorboard = False
+    ### when tensorboard or easystop is true: after python script run successfully, then in terminal run: tensorboard --logdir logs
+    tensorboard = True
     easystop = False
     if tensorboard:
         tbCallBack = tensor_board()
