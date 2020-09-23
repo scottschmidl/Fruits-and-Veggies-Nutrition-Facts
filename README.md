@@ -183,14 +183,16 @@ Classification Report For Edge Images:
 |   macro avg |      0.90 |     0.89  |    0.89   |   1372 |
 |weighted avg |      0.90 |     0.90  |    0.90   |   1372 |
 
-I, then, ran a Convolution Neural Network on the grayscale images as I was interested to see how that would train.
-My first few attempts were around 50% with a ReLu activation function. I switched the activation function to Linear and it scored a 91%.
+I, then, ran a Convolution Neural Network on the color images as I was interested to see how that would train.
+My first few attempts were around 50% and so I made some changes to get a scored of 94%.
 
 ![](images/epoch_accuracy.svg)
 
 ![](images/epoch_loss.svg)
 
 # Conclusion
+
+below needs to be updates
 
 Using the Multinomial Naive Bayes:
 The edge images performed best, scoring about 80%/81% for Tomato/Pear for F1. Color was second at 79%/80% for Pear/Tomato  for  F1. The grayscale was last scoring 77%/79% for Tomato/Pear for F1 score.
@@ -303,4 +305,3 @@ Tangelo | They are rich in dietary fiber, which aids in digestion and healthy bo
 Tomato|	Tomatoes are a source of Vitamin C and Vitamin A. They are also high in Lycopene which helps fight heart disease and some Cancers.|
 Walnut | Decrease inflammation. Promotes a healthy Gut. Reduce risk of Cancer. Supports weight control. Helps manage Type 2 Diabetes and lowers risk. Help lower blood pressure.|
 Watermelon | Helps hydration, contains nutrients and beneficial plant compounds, contains compounds that help prevent Cancer, improves Heart health, lowers inflammation and oxidative stress, helps prevent Macular Degeneration, helps relieve muscle soreness.|
-
