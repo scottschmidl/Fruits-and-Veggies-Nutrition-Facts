@@ -3,6 +3,7 @@ from sklearn.metrics import (classification_report, plot_confusion_matrix,
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.decomposition import PCA
+from sklearn.ensemble import RandomForestClassifier
 from image_loader import open_images
 import matplotlib.pyplot as plt
 import numpy as np
@@ -66,6 +67,25 @@ class FruitsVeggiesNB(object):
             plt.savefig('images/color_confusion_matrix.png',  bbox_inches='tight')
         plt.show()
         return plt
+    
+    def random_forest(self, X_train, X_test, y_train, y_test, grayscale, edge):
+        '''return Classification Report from RF'''
+        model = RandomForestClassifier(n_estimators=25,
+                                        criterion='gini',
+                                        max_depth=10,
+                                        min_samples_split=2,
+                                        min_samples_leaf=1,
+                                        min_weight_fraction_leaf=0.0,
+                                        max_features='auto',
+                                        bootstrap=True,
+                                        n_jobs=None,
+                                        random_state=None,
+                                        verbose=1,
+                                        max_samples=None)
+        mod = model.fit(X_train, y_train)
+        y_pred = mod.predict(X_test)
+        report = classification_report(y_test, y_pred, digits=2)
+        return mod, report
         
     def naive_bayes(self, X_train, X_test, y_train, y_test, grayscale, edge):
         '''returns Classification Report from NB'''
@@ -86,7 +106,11 @@ if __name__ == '__main__':
     X_train, X_test, y_train, y_test = train_test_split(X, y)
     # roc = fru_veg_class.roc_you_curve(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)        
     # plot_conf_matrix = fru_veg_class.plot_conf_matrix(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    mod, report = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
+    rf_mod, report = fru_veg_class.random_forest(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
+    print(report)
+    # filename_rf = 'fv_app/fv_rf_model.sav'
+    # pickle.dump(rf_mod, open(filename_rf, 'wb'))
+    # nb_mod, mod, report = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
     # print(report)
-    filename = 'fv_app/fv_nb_model.sav'
-    pickle.dump(mod, open(filename, 'wb'))    
+    # filename_nb = 'fv_app/fv_nb_model.sav'
+    # pickle.dump(nb_mod, open(filename_nb, 'wb'))    
