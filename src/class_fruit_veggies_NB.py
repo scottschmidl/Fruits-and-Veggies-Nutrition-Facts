@@ -105,12 +105,12 @@ if __name__ == '__main__':
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)
     X_train, X_test, y_train, y_test = train_test_split(X, y)
     # roc = fru_veg_class.roc_you_curve(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)        
-    # plot_conf_matrix = fru_veg_class.plot_conf_matrix(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    rf_mod, report = fru_veg_class.random_forest(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    print(report)
+    plot_conf_matrix = fru_veg_class.plot_conf_matrix(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
+    # rf_mod, report = fru_veg_class.random_forest(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
+    # print(report)
     # filename_rf = 'fv_app/fv_rf_model.sav'
     # pickle.dump(rf_mod, open(filename_rf, 'wb'))
-    # nb_mod, mod, report = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    # print(report)
+    nb_mod, report = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
+    print(report)
     # filename_nb = 'fv_app/fv_nb_model.sav'
     # pickle.dump(nb_mod, open(filename_nb, 'wb'))    

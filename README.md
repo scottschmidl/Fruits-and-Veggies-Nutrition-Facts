@@ -23,23 +23,29 @@ our nutrition, which affects our health and wellness. It explains how food, drin
 several other things affect our bodies in negative and positive ways.
 This book is my main motivation for this capstone.
 
+“Optimum nutrition is the medicine of the future.” - Linus Pauling, two-time Nobel Prize winner
+
 # Data
 
-I was able to find a data set on kaggle named ‘Fruits 360’. The data set is comprised of
-90,483 100x100 ‘.jpgs’ of fruits and vegetables. 90,380 of those pictures are either a fruit or
+I was able to find a couple data sets on kaggle named ‘Fruits 360’ and 'Fruit Recognition'.
+The former data set is comprised of 90,483 100x100 ‘.jpgs’ of fruits and vegetables. 90,380 of those pictures are either a fruit or
 vegetable and 103 have multiple fruits or vegetables. The 90,380 images were split into Training and Testing Folders. The data set has 131 folders for each class of fruits
-and vegetables as different varieties of the same item were stored as belonging to
-different classes. There are 68 unique fruits and vegetables. I, also, built my own data set of each item and some of its nutrition facts, which I placed into a ‘.csv’ and called as a data frame in pandas. As part of my check of the data set I verified there were no broken nor fraudulent images.
+and vegetables as different varieties of the same item were stored as belonging to different classes. There are 68 unique fruits and vegetables. 
+The latter data set has 44,406 labelled fruit images. They are each 320×258 '.png'.
+I, also, built my own data set of each item and some of its nutrition facts, which I placed into a ‘.csv’ and called as a data frame in pandas.
+As part of my check of the data set I verified there were no broken nor fraudulent images.
 
 # Goals
 
 How successfully will a Naive Bayes model and a Convolution Neural Network train and test on a subset of all the images?
-Learn Nutrition Facts from the 68 fruits and vegetables in the entire data set.
+Learn Nutrition Facts from Pears and Tomatoes
+
+Update to this 09/23/2020: Will be adding more ML models and Recommender, as well as deploying on AWS. I will expand on the database, as well.
 
 # Closer Look
 
 I spent quite a while deciding if I would use the whole data set with all unique items, but settled on a binary approach. I was left with deciding fruits and vegetables or which 2 unique fruits or vegetables. I ultimately decided on the latter.
-I chose to combine the Training and Testing Folders for simplicity and settled on the 6810 images of Tomatoes and the 6726 images of Pears. with my goals in mind I started by taking a look at the images and for visualization I got the average images.
+I chose to combine the Training, Testing, and variety folders to their own unique folders, for simplicity. To start I've used a subset of Pears and Tomatoes from these two data sets. I settled on 2313 images of Tomatoes and 3175 images of Pears. With my goals in mind, I started by taking a look at the images and for visualization I got the average images. 
 
 Average Pear/Average Tomato:
 
@@ -65,7 +71,6 @@ KMeans was used to get an idea of how the pixels were clusterd based off of cent
 
 Pear Color KMean Cluster/Tomato Color KMean Cluster:
 
-
 | Pear Color KMean Cluster               |                Tomato Color KMean Cluster|
 |  --:                                           |                                              --: |
 | ![](images/Pear_color_kmeans_clusters.png) | ![](images/Tomato_color_kmeans_clusters.png) |
@@ -78,7 +83,7 @@ Edge Detection Pear/Tomato
 
 # Visualization
 
-Once I got an idea of the pixels I began to model my images using greyscale, color, and the edges. I resized the images from 100x100 to 32x32. Using Multinomial Naive Bayes I plotted a Confusion Matrix, ROC Curve, and the Classification Report.
+Once I got an idea of the pixels I began to model my images using greyscale, color, and the edges. I resized the images to 32x32. Using Multinomial Naive Bayes I plotted a Confusion Matrix, ROC Curve, and the Classification Report.
 
 Accuracy is the ratio of correctly predicted observations to the total observations. This is used with a even data set, for example, False Positives and False Negatives are almost same.
 
