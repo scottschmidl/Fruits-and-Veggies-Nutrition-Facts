@@ -1,34 +1,24 @@
 from sklearn.metrics import (classification_report, plot_confusion_matrix,
                             plot_roc_curve)
 from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier
-from image_loader import open_images
+from sklearn.naive_bayes import MultinomialNB
+from img_open_get_xy_class import OpenGet
 import matplotlib.pyplot as plt
+import pickle as pickle
 import numpy as np
+import argparse
 import glob
 import os
-import argparse
-import pickle as pickle
 
-class FruitsVeggiesNB(object):
-    def __init__(self, X, y, all_fru_veg):
-        self.X = X
-        self.y = y
-        self.all_fru_veg = all_fru_veg
-
-    def get_X_y_fv(self, X, y, all_fru_veg, grayscale, edge):
-        '''opens images and return an array'''
-        for fru_veg in all_fru_veg:
-            path = glob.glob('data/fruits_vegetables/{}/*'.format(fru_veg))
-            label = fru_veg
-            for p in path:
-                X.append(open_images(p, '{}'.format(fru_veg), grayscale, edge))
-                y.append(label)
-        X = np.asarray(X)
-        y = np.asarray(y)
-        return X, y, all_fru_veg
+class ModelsFruitsVeggies(object):
+    def __init__(self, X_train, X_test, y_train, y_test, grayscale, edge):
+        self.X_train = X_train
+        self.X_test = X_test
+        self.y_train = y_train
+        self.y_test = y_test
+        self.grayscale = grayscale
+        self.edge = edge
         
     def roc_you_curve(self, X_train, X_test, y_train, y_test, grayscale, edge): 
         '''returns Receiver Operating Characteristic Curve for NB'''
@@ -96,21 +86,43 @@ class FruitsVeggiesNB(object):
         return mod, report
     
 if __name__ == '__main__':
-    X = []
-    y = []
-    grayscale = True
-    edge = True
+    ## paths to images
     all_fru_veg = os.listdir('data/fruits_vegetables')
-    fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
-    X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)
-    X_train, X_test, y_train, y_test = train_test_split(X, y)
+    all_train_fv = os.listdir('data/Train')
+    all_test_fv = os.listdir('data/Test')
+    ## use grayscale/edge
+    grayscale = False
+    edge = False
+    ## instantiate class 
+    open_get_class = OpenGet(grayscale=grayscale, edge=edge) 
+    ## open images and ravel
+    # open_get_train = open_get_class.open_images(path=all_train_fv, grayscale=grayscale, edge=edge)
+    # open_get_test = open_get_class.open_images(path=all_test_fv, grayscale=grayscale, edge=edge)
+    ## instantiate lists for getting arrays
+    X = []
+    y = []       
+    ## open up images and get X_train, X_test, y_train, y_test
+    all = True
+    train = False
+    test = False
+    if all:
+        X, y, all_fru_veg = open_get_class.get_X_y_fv(X=X, y=y, all_fru_veg=all_fru_veg, folder='fruits_vegetables', grayscale=grayscale, edge=edge) 
+        X_train, X_test, y_train, y_test = train_test_split(X, y)
+    elif train:
+        X_train, y_train, _ = open_get_class.get_X_y_fv(X=X, y=y, all_fru_veg=all_train_fv, folder='Train', grayscale=grayscale, edge=edge)
+    elif test:
+        X_test, y_test, _ = open_get_class.get_X_y_fv(X=X, y=y, all_fru_veg=all_test_fv, folder='Test', grayscale=grayscale, edge=edge)    
+    ## instantiate class
+    fru_veg_class = ModelsFruitsVeggies(X_train, X_test, y_train, y_test, grayscale, edge)
+    ## models
     fru_veg_class.roc_you_curve(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)        
     fru_veg_class.plot_conf_matrix(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
     rf_mod, report = fru_veg_class.random_forest(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    print(report)
+    # print(report)
     # filename_rf = 'fv_app/fv_rf_model.sav'
     # pickle.dump(rf_mod, open(filename_rf, 'wb'))
     nb_mod, report = fru_veg_class.naive_bayes(X_train, X_test, y_train, y_test, grayscale=grayscale, edge=edge)
-    print(report)
+    # print(report)
     # filename_nb = 'fv_app/fv_nb_model.sav'
-    # pickle.dump(nb_mod, open(filename_nb, 'wb'))    
+    # pickle.dump(nb_mod, open(filename_nb, 'wb'))   
+    

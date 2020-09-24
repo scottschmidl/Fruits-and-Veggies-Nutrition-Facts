@@ -1,8 +1,7 @@
 import pandas as pd
 
-'''import csv with nutrition facts into data frame'''
-
 def get_nutri_facts(data):
+    '''import csv with nutrition facts into data frame'''
     df = pd.read_csv(data)
     return df
 

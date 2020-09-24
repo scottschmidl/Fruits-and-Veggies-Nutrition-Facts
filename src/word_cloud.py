@@ -1,12 +1,9 @@
-from image_loader import open_images
-from wordcloud import WordCloud, ImageColorGenerator
-import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
-from os import path, getcwd, listdir, walk
+from os import path, getcwd, listdir
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
-import glob
-
 
 def word_cloud(text, title, savefile):
     '''Create a wordcloud with from fruits and vegetable names'''
@@ -23,6 +20,6 @@ def word_cloud(text, title, savefile):
 
 if __name__ == '__main__':
     d = getcwd()
-    all_fru_veg = listdir('data/fruits_vegetables/')    
+    all_fru_veg = listdir('data/Train/')    
     jt = ' '.join(all_fru_veg)
-    word_cloud(jt, "Fruits And  Veggies", 'images/fv_world_cloud.png')
+    word_cloud(jt, title="Fruits And Veggies", savefile='images/fv_world_cloud.png')

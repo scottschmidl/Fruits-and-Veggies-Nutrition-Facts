@@ -1,9 +1,9 @@
-import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, InputSpec
+from tensorflow.keras.layers import (Dense, Dropout, Activation, Flatten,
+                                        Conv2D, MaxPooling2D)
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import TensorBoard, EarlyStopping
+from tensorflow.keras.models import Sequential
+import tensorflow as tf
 import numpy as np
 
 np.random.seed(1337)
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     model = fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func)
     ### fit the model
     ### when tensorboard or easystop is true: after python script run successfully, then in terminal run: tensorboard --logdir logs
-    tensorboard = True
+    tensorboard = False
     easystop = False
     if tensorboard:
         tbCallBack = tensor_board()
@@ -147,5 +147,5 @@ if __name__ == '__main__':
     print('Test score:', score[0])
     print('Test accuracy:', score[1])
     ### save the model
-    filename = '../fv_app/fv_cnn_model.sav'
-    model.save(filename)  
+    # filename = '../fv_app/fv_cnn_model.sav'
+    # model.save(filename)  

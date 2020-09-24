@@ -1,10 +1,10 @@
+from models_fv_class import ModelsFruitsVeggies
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
-from class_fruit_veggies_NB import FruitsVeggiesNB
 import numpy as np
 import os
 
-class FruitsVeggiesPCA(object):
+class PCAFruitsVeggies(object):
     def __init__(self, X, y, pca, total_variance, cum_variance, prop_var_expl):
         self.X = X
         self.y = y
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     edge = False
     y_enumerated = []
     all_fru_veg = os.listdir('data/fruits_vegetables')
-    fru_veg_class = FruitsVeggiesNB(X, y, all_fru_veg)
+    fru_veg_class = ModelsFruitsVeggies(X, y, all_fru_veg)
     X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)
     for fruit in y:
         if fruit == 'Tomato':
@@ -85,7 +85,7 @@ if __name__ == '__main__':
     cum_variance = np.cumsum(pca.explained_variance_)
     prop_var_expl = cum_variance/total_variance    
 
-    fru_veg_pca = FruitsVeggiesPCA(X, y, pca, total_variance, cum_variance, prop_var_expl)
+    fru_veg_pca = PCAFruitsVeggies(X, y, pca, total_variance, cum_variance, prop_var_expl)
     # screech = fru_veg_pca.scree_plot(pca)
     # var_exp = fru_veg_pca.variance_explained(prop_var_expl)
     plot_pca = fru_veg_pca.pca_plot(X, y_enumerated)
