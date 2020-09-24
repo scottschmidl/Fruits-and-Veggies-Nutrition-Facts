@@ -218,12 +218,15 @@ Something I would like to see come out of this project is an image recognition a
 
 Horea Muresan, Mihai Oltean, Fruit recognition from images using deep learning, Acta Univ. Sapientiae, Informatica Vol. 10, Issue 1, pp. 26-42, 2018.
 Here is the GitHub: https://github.com/Horea94/Fruit-Images-Dataset
+Here is the Kaggle: https://www.kaggle.com/moltean/fruits
+
+https://www.kaggle.com/chrisfilo/fruit-recognition
 
 Information for the nutrition facts was compiled from Google searches.
 
 # Extras
 
-For some extra work I used Scree, Explained Variance, and PCA plots to perform Dimensionality Reduction. The ideal number of Principal Components was 21.
+For some extra work I used Scree, Explained Variance, and PCA plots to perform Dimensionality Reduction. The ideal number of Principal Components was 86.
 
 | Scree Plot                 |                  Variance Explained|
 |  --:                       |                                --: |
@@ -233,6 +236,7 @@ For some extra work I used Scree, Explained Variance, and PCA plots to perform D
 |  --:                                |                                             --: |
 | ![](images/information_discard.png) | ![](images/the_data_for_86_components_kept.png) |
 
+Below needs to be updated.
 Below is a table of the 68 unique fruits and vegetables and some nutriion facts.
 
 | Fruits Vegetables Name | Nutrition Facts |
