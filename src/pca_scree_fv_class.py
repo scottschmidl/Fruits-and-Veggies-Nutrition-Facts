@@ -1,4 +1,4 @@
-from models_fv_class import ModelsFruitsVeggies
+from img_open_get_xy_class import OpenGet
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import numpy as np
@@ -67,18 +67,19 @@ class PCAFruitsVeggies(object):
 if __name__ == '__main__':
     X = []
     y = []
+    folder = 'fruits_vegetables'
     grayscale = False
     edge = False
     y_enumerated = []
     all_fru_veg = os.listdir('data/fruits_vegetables')
-    fru_veg_class = ModelsFruitsVeggies(X, y, all_fru_veg)
-    X, y, all_fru_veg = fru_veg_class.get_X_y_fv(X, y, all_fru_veg, grayscale=grayscale, edge=edge)
+    open_get_class = OpenGet(grayscale, edge)
+    X, y, all_fru_veg = open_get_class.get_X_y_fv(X, y, all_fru_veg, folder, grayscale=grayscale, edge=edge)
     for fruit in y:
         if fruit == 'Tomato':
             y_enumerated.append(1)
         elif fruit == 'Pear':
             y_enumerated.append(0)
-    pca = PCA(n_components=86)
+    pca = PCA()
     pca.fit(X)
     y_enumerated = np.asarray(y_enumerated)
     total_variance = np.sum(pca.explained_variance_)
@@ -86,6 +87,6 @@ if __name__ == '__main__':
     prop_var_expl = cum_variance/total_variance    
 
     fru_veg_pca = PCAFruitsVeggies(X, y, pca, total_variance, cum_variance, prop_var_expl)
-    # screech = fru_veg_pca.scree_plot(pca)
-    # var_exp = fru_veg_pca.variance_explained(prop_var_expl)
-    plot_pca = fru_veg_pca.pca_plot(X, y_enumerated)
+    screech = fru_veg_pca.scree_plot(pca)
+    var_exp = fru_veg_pca.variance_explained(prop_var_expl)
+    # plot_pca = fru_veg_pca.pca_plot(X, y_enumerated)
