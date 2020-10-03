@@ -35,6 +35,8 @@ class OpenGet(object):
         else:
             aug_image = final_image.ravel()      
         return aug_image
+    
+    ## Consider writing functions for every different augment
 
     def get_X_y_fv(self, X, y, all_fru_veg, folder, grayscale, edge):
         '''opens images and return an array'''
