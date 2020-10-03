@@ -76,7 +76,7 @@ if __name__ == '__main__':
                                     data_format='channels_last',        
                                     validation_split=0.2)
     print('datagen', datagen, '\n')
-    X_train_generator = datagen.flow_from_directory(directory='data/fruits_vegetables',
+    X_train_generator = datagen.flow_from_directory(directory='data/Train',
                                                         target_size=(32, 32),
                                                         color_mode='rgb',
                                                         class_mode='binary',
@@ -85,7 +85,7 @@ if __name__ == '__main__':
                                                         seed=23,
                                                         subset='training')
     print('X_train_gen', X_train_generator, '\n')
-    X_validation_generator = datagen.flow_from_directory(directory='data/fruits_vegetables',
+    X_validation_generator = datagen.flow_from_directory(directory='data/Test',
                                                             target_size=(32, 32),
                                                             color_mode='rgb',
                                                             class_mode='binary',

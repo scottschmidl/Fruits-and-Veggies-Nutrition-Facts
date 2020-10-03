@@ -5,9 +5,8 @@ import numpy as np
 import os
 
 class PCAFruitsVeggies(object):
-    def __init__(self, X, y, pca, total_variance, cum_variance, prop_var_expl):
+    def __init__(self, X, pca, total_variance, cum_variance, prop_var_expl):
         self.X = X
-        self.y = y
         self.pca = pca
         self.total_variance = total_variance
         self.cum_variance = cum_variance
@@ -41,7 +40,7 @@ class PCAFruitsVeggies(object):
         plt.show()
         return plt
 
-    def pca_plot(self, X, y_enumerated):
+    def pca_plot(self, X, list_of_colors):
         '''gets the dimensionality reducation and plots'''
         X_pca = pca.transform(X)
         # Light is original data points, dark is projected data points
@@ -55,7 +54,7 @@ class PCAFruitsVeggies(object):
         
         projected = pca.fit_transform(X)
         plt.scatter(projected[:, 0], projected[:, 1],
-                c=y_enumerated, edgecolor='none', alpha=0.5,
+                c=list_of_colors, edgecolor='none', alpha=0.5,
                 cmap=plt.cm.get_cmap('seismic', 5))
         plt.xlabel('Component 1')
         plt.ylabel('Component 2')
@@ -67,26 +66,21 @@ class PCAFruitsVeggies(object):
 if __name__ == '__main__':
     X = []
     y = []
-    folder = 'fruits_vegetables'
+    folder = 'Train'
     grayscale = False
     edge = False
-    y_enumerated = []
-    all_fru_veg = os.listdir('data/fruits_vegetables')
+    all_train_fv = os.listdir('data/Train')
     open_get_class = OpenGet(grayscale, edge)
-    X, y, all_fru_veg = open_get_class.get_X_y_fv(X, y, all_fru_veg, folder, grayscale=grayscale, edge=edge)
-    for fruit in y:
-        if fruit == 'Tomato':
-            y_enumerated.append(1)
-        elif fruit == 'Pear':
-            y_enumerated.append(0)
+    X, _, _ = open_get_class.get_X_y_fv(X, y, all_train_fv, folder, grayscale=grayscale, edge=edge)
     pca = PCA()
-    pca.fit(X)
-    y_enumerated = np.asarray(y_enumerated)
+    pca.fit(X=(78756, 138))
+    ## calculations for modles
     total_variance = np.sum(pca.explained_variance_)
     cum_variance = np.cumsum(pca.explained_variance_)
-    prop_var_expl = cum_variance/total_variance    
-
-    fru_veg_pca = PCAFruitsVeggies(X, y, pca, total_variance, cum_variance, prop_var_expl)
+    prop_var_expl = cum_variance/total_variance
+    list_of_colors = list(range(138))
+    ## models
+    fru_veg_pca = PCAFruitsVeggies(X, pca, total_variance, cum_variance, prop_var_expl)
     screech = fru_veg_pca.scree_plot(pca)
     var_exp = fru_veg_pca.variance_explained(prop_var_expl)
-    # plot_pca = fru_veg_pca.pca_plot(X, y_enumerated)
+    # plot_pca = fru_veg_pca.pca_plot(X, list_of_colors)
