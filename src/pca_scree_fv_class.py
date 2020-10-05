@@ -1,4 +1,4 @@
-from img_open_get_xy_class import OpenGet
+from open_get_xy_class import OpenGet
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import numpy as np
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     grayscale = False
     edge = False
     all_train_fv = os.listdir('data/Train')
-    open_get_class = OpenGet(grayscale, edge)
+    open_get_class = OpenGet(path=all_train_fv)
     X, _, _ = open_get_class.get_X_y_fv(X, y, all_train_fv, folder, grayscale=grayscale, edge=edge)
     pca = PCA()
     pca.fit(X=(78756, 138))

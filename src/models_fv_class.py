@@ -3,7 +3,7 @@ from sklearn.metrics import (classification_report, plot_confusion_matrix,
 from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
-from img_open_get_xy_class import OpenGet
+from open_get_xy_class import OpenGet
 import matplotlib.pyplot as plt
 import pickle as pickle
 import numpy as np
@@ -95,11 +95,11 @@ class ModelsFruitsVeggies(object):
         return mod, report
     
 if __name__ == '__main__':
-    ## instantiate class 
-    open_get_class = OpenGet(grayscale=grayscale, edge=edge)
     ## paths to images
     all_train_fv = os.listdir('data/Train')
     all_test_fv = os.listdir('data/Test')
+    ## instantiate class 
+    open_get_class = OpenGet(path=all_train_fv)
     ## use augments
     grayscale = False
     edge = False 
