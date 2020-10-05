@@ -19,7 +19,7 @@ class OpenGet(object):
         final_image = rescaled_image.astype(np.uint8)
         return final_image
 
-    def get_X_y_fv(self, X, y, all_fru_veg, folder, grayscale, edge):
+    def get_X_y_fv(self, X, y, all_fru_veg, folder, grayscale):
         '''opens images and return an array'''
         ## updating this .py file to augment images in 20% subsets of each fv
         for fru_veg in all_fru_veg:
@@ -37,7 +37,7 @@ class OpenGet(object):
                     y.append(label)
                 for p in path[path_20 + 1:path_40 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    X.append(Augmentation.translate(self, final_image, direction='up', shift=10, roll=False))
+                    X.append(Augmentation.shift(self, final_image, direction='up', shift=10, roll=False))
                     y.append(label)
                 for p in path[path_40 + 1:path_60 + 1]:
                     final_image = OpenGet.open_images(self, p)
@@ -49,14 +49,17 @@ class OpenGet(object):
                     y.append(label)
                 for p in path[path_80 + 1:]:
                     final_image = OpenGet.open_images(self, p)
-                    X.append(Augmentation.sobel_filter_aug(self, final_image))
+                    ## put augment here
                     y.append(label)
             elif folder == 'Test':
-                path = glob.glob('data/Test/{}/*'.format(fru_veg))            
-                final_image = OpenGet.open_images(self, p)
+                path = glob.glob('data/Test/{}/*'.format(fru_veg))
+                for p in path:
+                    final_image = OpenGet.open_images(self, p)
+                    X.append(final_image)
+                    y.append(label)
         X = np.asarray(X)
         y = np.asarray(y)
-        return X, y, all_fru_veg
+        return X, y
 
 if __name__ == '__main__':
     pass    
