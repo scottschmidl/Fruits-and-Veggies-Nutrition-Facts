@@ -36,15 +36,15 @@ class Augmentation(object):
             final_image[:, shift:] = final_image[:, :-shift]
             if roll:
                 final_image[:,:shift] = np.fliplr(final_image[:, -shift:])
-        if direction == 'left':
+        elif direction == 'left':
             final_image[:, :-shift] = final_image[:, shift:]
             if roll:
                 final_image[:, -shift:] = final_image[:, :shift]
-        if direction == 'down':
+        elif direction == 'down':
             final_image[shift:, :] = final_image[:-shift,:]
             if roll:
                 final_image[:shift, :] = final_image[-shift:, :]
-        if direction == 'up':
+        elif direction == 'up':
             final_image[:-shift, :] = final_image[shift:, :]
             if roll:
                 final_image[-shift:,:] = final_image[:shift, :]
