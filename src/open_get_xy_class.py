@@ -1,5 +1,6 @@
 from augmentation_class import Augmentation
 from skimage.transform import resize
+from sklearn.utils import shuffle 
 from skimage import io
 import numpy as np
 import glob
@@ -59,6 +60,7 @@ class OpenGet(object):
                     y.append(label)
         X = np.asarray(X)
         y = np.asarray(y)
+        X, y = shuffle(X, y)
         return X, y
 
 if __name__ == '__main__':
