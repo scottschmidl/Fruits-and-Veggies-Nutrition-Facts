@@ -12,7 +12,7 @@ import glob
 import os
 
 class ModelsFruitsVeggies(object):
-    def __init__(self, X_train, X_test, y_train, y_test, grayscale, edge=edge):
+    def __init__(self, X_train, X_test, y_train, y_test, grayscale, edge):
         self.X_train = X_train
         self.X_test = X_test
         self.y_train = y_train
@@ -22,19 +22,20 @@ class ModelsFruitsVeggies(object):
         
     def grid_search(self, X_train, y_train):
         '''return best parameters for random_forest'''
-        random_forest_grid = {'max_depth': [3, 5, None],
-                            'max_features': ['sqrt', 'log2', None],
-                            'min_samples_split': [2, 4],
-                            'min_samples_leaf': [1, 5, 10, 15],
-                            'bootstrap': [True, False],
-                            'n_estimators': [20, 40, 50, 100, 200],
+        random_forest_grid = {'n_estimators': [20, 40, 50, 100],
+                            'criterion':['gini', 'entropy'],
+                            'max_depth': list(range(1, 6)),
+                            'min_samples_split': [2],
+                            'min_samples_leaf': [1, 5],
+                            'max_features': ['sqrt', 'log2', 'auto'],
+                            'bootstrap': [True, False],                            
                             'random_state': [1]}
         rf_gridsearch = RandomizedSearchCV(RandomForestClassifier(),
                                     random_forest_grid,
-                                    n_iter = 200,
+                                    n_iter = 10,
                                     n_jobs=-1,
                                     verbose=True,
-                                    scoring='accuracy')
+                                    scoring='f1')
         rf_gridsearch.fit(X_train, y_train)
         best_rf_model = rf_gridsearch.best_estimator_
         return best_rf_model
@@ -104,24 +105,24 @@ if __name__ == '__main__':
     X_train, y_train = open_get_class.get_X_y_fv(X=[], y=[], all_fru_veg=all_train_fv, folder='Train', grayscale=grayscale)
     X_test, y_test = open_get_class.get_X_y_fv(X=[], y=[], all_fru_veg=all_test_fv, folder='Test', grayscale=grayscale)    
     ## instantiate class
-    fru_veg_class = ModelsFruitsVeggies(X_train, X_test, y_train, y_test, grayscale)
+    fru_veg_class = ModelsFruitsVeggies(X_train, X_test, y_train, y_test, grayscale, edge)
     ## models
     model = [RandomForestClassifier(), MultinomialNB()]
     best_rf_model = fru_veg_class.grid_search(X_train, y_train)
     print("Random Forest best parameters:", best_rf_model)
-    '''run grid_search before below'''
-    for m in model:
-        fit_model = fru_veg_class.fit_the_models(model=m, X_train=X_train, y_train=y_train)
-        fru_veg_class.roc_you_curve(fit_model, X_test, y_test, grayscale=grayscale, edge=edge)        
-        fru_veg_class.plot_conf_matrix(fit_model, X_test, y_test, grayscale=grayscale, edge=edge)
-        if m == RandomForestClassifier():
-            rf_mod, report = fru_veg_class.random_forest(fit_model, X_test, y_test, grayscale=grayscale, edge=edge)
-            # print(report)
-            # filename_rf = 'fv_app/fv_rf_model.sav'
-            # pickle.dump(fit_model, open(filename_rf, 'wb'))
-        elif m == MultinomialNB():
-            nb_mod, report = fru_veg_class.naive_bayes(fit_model, X_test, y_test, grayscale=grayscale, edge=edge)
-            # print(report)
-            # filename_nb = 'fv_app/fv_nb_model.sav'
-            # pickle.dump(fit_model, open(filename_nb, 'wb'))   
+    # '''run grid_search before below'''
+    # for m in model:
+    #     fit_model = fru_veg_class.fit_the_models(model=m, X_train=X_train, y_train=y_train)
+    #     fru_veg_class.roc_you_curve(fit_model, X_test, y_test, grayscale=grayscale, edge=edge)        
+    #     fru_veg_class.plot_conf_matrix(fit_model, X_test, y_test, grayscale=grayscale, edge=edge)
+    #     if m == RandomForestClassifier():
+    #         rf_mod, report = fru_veg_class.random_forest(fit_model, X_test, y_test, grayscale=grayscale, edge=edge)
+    #         # print(report)
+    #         # filename_rf = 'fv_app/fv_rf_model.sav'
+    #         # pickle.dump(fit_model, open(filename_rf, 'wb'))
+    #     elif m == MultinomialNB():
+    #         nb_mod, report = fru_veg_class.naive_bayes(fit_model, X_test, y_test, grayscale=grayscale, edge=edge)
+    #         # print(report)
+    #         # filename_nb = 'fv_app/fv_nb_model.sav'
+    #         # pickle.dump(fit_model, open(filename_nb, 'wb'))   
     

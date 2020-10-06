@@ -1,6 +1,6 @@
-from skimage.color import rgb2gray
+import imgaug.augmenters as iaa
 from skimage.util import random_noise
-from imgaug.augmenters import color, convolutional
+from skimage.color import rgb2gray
 from skimage import filters
 import numpy as np 
  
@@ -17,12 +17,14 @@ class Augmentation(object):
         return sobel_img
 
     def hue_saturation(self, final_image):
-        hue_sat_img = color.AddToHueAndSaturation(value=[-255, 255], value_hue=None, value_saturation=None,
-                                                    per_channel=True, seed=50)(final_image)
+        hue_sat_img = iaa.AddToHueAndSaturation(value=[-255, 255], value_hue=None, value_saturation=None,
+                                                    per_channel=True, seed=50)
+        hue_sat_img = hue_sat_img.augment_image(image=final_image)                                               
         return hue_sat_img
 
     def sharpen(self, final_image):
-        sharper = convolutional.Sharpen(alpha=[0.25, 0.75], lightness=[1.0, 1.5], seed=50)(final_image)
+        sharper = iaa.Sharpen(alpha=[0.25, 0.75], lightness=[1.0, 1.5], seed=50)
+        sharper = sharper.augment_image(image=final_image)
         return sharper
 
     def rand_noise(self, final_image):

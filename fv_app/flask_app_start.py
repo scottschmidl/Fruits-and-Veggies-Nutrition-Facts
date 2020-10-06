@@ -114,4 +114,4 @@ def contact_info():
 
 if __name__ == '__main__':
     ## run the flask app
-    app.run(host='0.0.0.0', port=8080, threaded=True, debug=True)
+    app.run(host='0.0.0.0', port=8150, threaded=True, debug=True)
