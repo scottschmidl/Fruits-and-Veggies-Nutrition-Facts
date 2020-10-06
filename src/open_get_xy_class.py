@@ -33,7 +33,7 @@ class OpenGet(object):
                 path_80 = int(len(path) * 0.80)
                 for p in path[:path_20 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    X.append(Augmentation.gray_aug(self, final_image))
+                    X.append(Augmentation.rand_noise(self, final_image))
                     y.append(label)
                 for p in path[path_20 + 1:path_40 + 1]:
                     final_image = OpenGet.open_images(self, p)
@@ -41,15 +41,15 @@ class OpenGet(object):
                     y.append(label)
                 for p in path[path_40 + 1:path_60 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    ## put augment here
+                    X.append(Augmentation.hue_saturation(self, final_image))
                     y.append(label)
                 for p in path[path_60 + 1:path_80 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    ## put augment here
+                    X.append(final_image)
                     y.append(label)
                 for p in path[path_80 + 1:]:
                     final_image = OpenGet.open_images(self, p)
-                    ## put augment here
+                    X.append(Augmentation.sharpen(self, final_image))
                     y.append(label)
             elif folder == 'Test':
                 path = glob.glob('data/Test/{}/*'.format(fru_veg))
