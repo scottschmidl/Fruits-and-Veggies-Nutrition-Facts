@@ -33,7 +33,7 @@ class ModelsFruitsVeggies(object):
         rf_gridsearch = RandomizedSearchCV(RandomForestClassifier(),
                                     random_forest_grid,
                                     n_iter = 10,
-                                    n_jobs=-1,
+                                    n_jobs=3,
                                     verbose=True,
                                     scoring='f1')
         rf_gridsearch.fit(X_train, y_train)
@@ -103,11 +103,15 @@ if __name__ == '__main__':
     edge = False        
     ## open up images and get X_train, X_test, y_train, y_test
     X_train, y_train = open_get_class.get_X_y_fv(X=[], y=[], all_fru_veg=all_train_fv, folder='Train', grayscale=grayscale)
+    print('this is x_train, y_train')
     X_test, y_test = open_get_class.get_X_y_fv(X=[], y=[], all_fru_veg=all_test_fv, folder='Test', grayscale=grayscale)    
+    print('this is x_test, y_test')
     ## instantiate class
     fru_veg_class = ModelsFruitsVeggies(X_train, X_test, y_train, y_test, grayscale, edge)
+    print('fruits veggies class instantiated')
     ## models
     model = [RandomForestClassifier(), MultinomialNB()]
+    print('model')
     best_rf_model = fru_veg_class.grid_search(X_train, y_train)
     print("Random Forest best parameters:", best_rf_model)
     # '''run grid_search before below'''
