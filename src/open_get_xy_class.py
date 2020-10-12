@@ -7,8 +7,10 @@ import glob
 import os
 
 class OpenGet(object):
-    def __init__(self, path):
-        self.path = path
+    def __init__(self, X, y, grayscale):
+        self.X = X
+        self.y = y
+        self.grayscale = grayscale
 
     def open_images(self, path):
         '''open images, resize, perform grayscale, get edges, ravel'''
@@ -20,7 +22,7 @@ class OpenGet(object):
         final_image = rescaled_image.astype(np.uint8)
         return final_image
 
-    def get_X_y_fv(self, X, y, all_fru_veg, folder, grayscale):
+    def get_X_y_fv(self, all_fru_veg, folder):
         '''opens images and return an array'''
         ## updating this .py file to augment images in 20% subsets of each fv
         for fru_veg in all_fru_veg:
