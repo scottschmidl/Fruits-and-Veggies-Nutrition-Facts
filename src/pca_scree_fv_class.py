@@ -12,7 +12,7 @@ class PCAFruitsVeggies(object):
         self.cum_variance = cum_variance
         self.prop_var_expl = prop_var_expl        
 
-    def scree_plot(self, pca):
+    def scree_plot(self):
         '''get a Scree Plot to find number of components'''
         # plot explained variance ratio in a scree plot
         plt.figure(1, figsize=(8, 6))
@@ -27,7 +27,7 @@ class PCAFruitsVeggies(object):
         plt.show()
         return plt
 
-    def variance_explained(self, prop_var_expl): 
+    def variance_explained(self): 
         '''better visualization of Scree Plot'''
         _, ax = plt.subplots(figsize=(8,6))
         ax.plot(prop_var_expl, color='red', linewidth=2, label='Explained Variance')
@@ -40,7 +40,7 @@ class PCAFruitsVeggies(object):
         plt.show()
         return plt
 
-    def pca_plot(self, X, list_of_colors):
+    def pca_plot(self, list_of_colors):
         '''gets the dimensionality reducation and plots'''
         X_pca = pca.transform(X)
         # Light is original data points, dark is projected data points
@@ -70,8 +70,8 @@ if __name__ == '__main__':
     grayscale = False
     edge = False
     all_train_fv = os.listdir('data/Train')
-    open_get_class = OpenGet(path=all_train_fv)
-    X, _, _ = open_get_class.get_X_y_fv(X, y, all_train_fv, folder, grayscale=grayscale, edge=edge)
+    open_get_class = OpenGet(X, y, grayscale)
+    X, _ = open_get_class.get_X_y_fv(all_train_fv, folder)
     pca = PCA()
     pca.fit(X=(78756, 138))
     ## calculations for modles
@@ -81,6 +81,6 @@ if __name__ == '__main__':
     list_of_colors = list(range(138))
     ## models
     fru_veg_pca = PCAFruitsVeggies(X, pca, total_variance, cum_variance, prop_var_expl)
-    screech = fru_veg_pca.scree_plot(pca)
-    var_exp = fru_veg_pca.variance_explained(prop_var_expl)
-    # plot_pca = fru_veg_pca.pca_plot(X, list_of_colors)
+    screech = fru_veg_pca.scree_plot()
+    var_exp = fru_veg_pca.variance_explained()
+    # plot_pca = fru_veg_pca.pca_plot(list_of_colors)
