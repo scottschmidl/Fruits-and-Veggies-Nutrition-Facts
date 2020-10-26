@@ -4,7 +4,7 @@ from skimage.color import rgb2gray
 from skimage import filters
 import numpy as np 
  
-class Augmentation(object):
+class Augmentation():
     def __init__(self, final_image):
         self.final_image = final_image
 

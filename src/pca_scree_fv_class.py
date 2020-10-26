@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-class PCAFruitsVeggies(object):
+class PCAFruitsVeggies():
     def __init__(self, X, pca, total_variance, cum_variance, prop_var_expl):
         self.X = X
         self.pca = pca

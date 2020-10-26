@@ -10,16 +10,16 @@ np.random.seed(1337)
 def fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func):
     '''Fruits and Veggies Convolution Neural Network'''
     model = Sequential() 
-     
+    # 1st conv. layer                     
     model.add(Conv2D(kernel_size=kernel_size,
                     filters=nb_filters,
                     padding='valid',
-                    input_shape=input_shape)) # 1st conv. layer                     
+                    input_shape=input_shape))
     model.add(Activation(activ_func)) # Activation specification necessary for Conv2D and Dense layers
-    
+    # 2nd conv. layer
     model.add(Conv2D(nb_filters,
                     (kernel_size[0], kernel_size[1]),
-                    padding='valid')) # 2nd conv. layer
+                    padding='valid'))
     model.add(Activation(activ_func))
 
     model.add(MaxPooling2D(pool_size=pool_size)) # decreases size, helps prevent overfitting
@@ -37,8 +37,8 @@ def fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func):
     model.add(Activation('sigmoid')) # sigmoid at end to pick between classes 0-1    
     
     model.compile(loss='binary_crossentropy',
-                  optimizer='adam',
-                  metrics=['accuracy'])
+                optimizer='adam',
+                metrics=['accuracy'])
     model.summary()
     return model
 

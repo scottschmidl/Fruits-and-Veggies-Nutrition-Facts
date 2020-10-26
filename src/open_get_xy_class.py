@@ -36,32 +36,32 @@ class OpenGet(object):
                 path_80 = int(len(path) * 0.80)
                 for p in path[:path_20 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    X.append(Augmentation.rand_noise(self, final_image))
-                    y.append(label)
+                    self.X.append(Augmentation.rand_noise(self, final_image))
+                    self.y.append(label)
                 for p in path[path_20 + 1:path_40 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    X.append(Augmentation.shift(self, final_image, direction='up', shift=10, roll=False))
-                    y.append(label)
+                    self.X.append(Augmentation.shift(self, final_image, direction='up', shift=10, roll=False))
+                    self.y.append(label)
                 for p in path[path_40 + 1:path_60 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    X.append(Augmentation.hue_saturation(self, final_image))
-                    y.append(label)
+                    self.X.append(Augmentation.hue_saturation(self, final_image))
+                    self.y.append(label)
                 for p in path[path_60 + 1:path_80 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    X.append(final_image)
-                    y.append(label)
+                    self.X.append(final_image)
+                    self.y.append(label)
                 for p in path[path_80 + 1:]:
                     final_image = OpenGet.open_images(self, p)
-                    X.append(Augmentation.sharpen(self, final_image))
-                    y.append(label)
+                    self.X.append(Augmentation.sharpen(self, final_image))
+                    self.y.append(label)
             elif folder == 'Test':
                 path = glob.glob('data/Test/{}/*'.format(fru_veg))
                 for p in path:
                     final_image = OpenGet.open_images(self, p)
-                    X.append(final_image)
-                    y.append(label)
-        X = np.asarray(X)
-        y = np.asarray(y)
+                    self.X.append(final_image)
+                    self.y.append(label)
+        X = np.asarray(self.X)
+        y = np.asarray(self.y)
         X, y = shuffle(X, y)
         return X, y
 
