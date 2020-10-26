@@ -6,7 +6,7 @@ import numpy as np
 import glob
 import os
 
-class OpenGet(object):
+class OpenGet():
     def __init__(self, X, y, grayscale):
         self.X = X
         self.y = y
