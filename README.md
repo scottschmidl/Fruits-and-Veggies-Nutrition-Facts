@@ -188,12 +188,14 @@ My first few attempts were around 50% and so I made some changes to get a traini
 
 | CNN Epoch Accuracy                 |
 |  --:                                  |
+
 ![](images/epoch_accuracy.svg)
 
 The training(blue) loss got down to 0.225 with a validation(orange) loss of about 0.1.
 
 | CNN Epoch Loss                 |
 |  --:                                  |
+
 ![](images/epoch_loss.svg)
 
 
