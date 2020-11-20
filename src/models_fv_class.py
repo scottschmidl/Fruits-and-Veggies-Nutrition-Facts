@@ -103,7 +103,7 @@ if __name__ == '__main__':
     grayscale = False
     edge = False        
     ## instaniate class
-    open_get_class = OpenGet(X, y, grayscale)
+    open_get_class = OpenGet(X, y)
     ## open up images and get X_train, X_test, y_train, y_test
     X_train, y_train = open_get_class.get_X_y_fv(all_fru_veg=all_train_fv, folder='Train')
     print('this is x_train, y_train')
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     print('model')
     best_rf_model = fru_veg_class.grid_search()
     print("Random Forest best parameters:", best_rf_model)
-    # '''run grid_search before below'''
+    # TODO: run grid_search to find best parameters, before running below
     # for m in model:
     #     fit_model = fru_veg_class.fit_the_models(fit_model=m)
     #     fru_veg_class.roc_you_curve(fit_model)        

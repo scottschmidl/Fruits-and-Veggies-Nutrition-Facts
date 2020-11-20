@@ -1,3 +1,4 @@
+### this file is for displaying nutrition facts on the flask app ###
 import pandas as pd
 
 def get_nutri_facts(data):

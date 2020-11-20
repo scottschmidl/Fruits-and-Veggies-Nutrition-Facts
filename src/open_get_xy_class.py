@@ -7,13 +7,12 @@ import glob
 import os
 
 class OpenGet():
-    def __init__(self, X, y, grayscale):
+    def __init__(self, X, y):
         self.X = X
         self.y = y
-        self.grayscale = grayscale
 
     def open_images(self, path):
-        '''open images, resize, perform grayscale, get edges, ravel'''
+        '''open images, resize, ravel'''
         color_images = io.imread(path)
         color_size = resize(color_images, (32, 32))
         ## rescale image as resize scales down the pixels
@@ -27,7 +26,7 @@ class OpenGet():
         ## updating this .py file to augment images in 20% subsets of each fv
         for fru_veg in all_fru_veg:
             label = fru_veg
-            ## shuffle each fv image per folder, but after augment
+            ## TODO: shuffle each fv image per folder, but after augment. Ensure X, y are shuffled the same way
             if folder == 'Train':
                 path = glob.glob('data/Train/{}/*'.format(fru_veg))
                 path_20 = int(len(path) * 0.20)

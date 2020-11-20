@@ -1,3 +1,5 @@
+### TODO: once images are loaded to AWS this needs update for multiclass ###
+### this is currently setup for binary classification for tomatoes and pears ###
 from tensorflow.keras.layers import (Dense, Dropout, Activation, Flatten,
                                         Conv2D, MaxPooling2D)
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -52,7 +54,7 @@ def early_stopping():
     return earlyStopping
 
 if __name__ == '__main__':
-    ###### turn this into a class ######
+    ###### TODO: turn this into a class ######
     activations = ['linear', 'sigmoid', 'tanh', 'relu', 'softplus', 'softsign']
     batch_size = 32 # number of training samples used at a time to update the weights
     nb_classes = 1 # number of output possibilities: [0 - 1]
