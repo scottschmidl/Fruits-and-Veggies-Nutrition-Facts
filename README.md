@@ -184,11 +184,18 @@ Classification Report For Edge Images:
 |weighted avg |      0.90 |     0.90  |    0.90   |   1372 |
 
 I, then, ran a Convolution Neural Network on the color images as I was interested to see how that would train.
-My first few attempts were around 50% and so I made some changes to get a scored of 94%.
+My first few attempts were around 50% and so I made some changes to get a training(blue line) score of about 94% and validation(orange) score of about 97%.
 
-![](images/epoch_accuracy.svg)
+| CNN Epoch Accuracy                 |
+|  --:                                  |
+| ![](images/epoch_accuracy.svg) |
 
-![](images/epoch_loss.svg)
+The training(blue) loss got down to 0.225 with a validation(orange) loss of about 0.1.
+
+| CNN Epoch Loss                 |
+|  --:                                  |
+| ![](images/epoch_loss.svg) |
+
 
 # Conclusion
 
