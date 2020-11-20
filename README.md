@@ -17,12 +17,12 @@
 # Background and Motivation
 
 I have always been intrigued by how the cells in our bodies interact with each other, from
-how we deal with stress to how what we put in our bodies. Several years ago, I came across
+how we deal with stress to what we put in our bodies. Several years ago, I came across
 a book called ‘The Optimum Nutrition Bible’, but it wasn’t until last year that I was finally
 able to start reading it. The book explains how a variety of stimulus to our bodies affects
 our nutrition, which affects our health and wellness. It explains how food, drinks, sleep, stress, and
 several other things affect our bodies in negative and positive ways.
-This book is my main motivation for this capstone.
+This book is my main motivation for this project.
 
 “Optimum nutrition is the medicine of the future.” - Linus Pauling, two-time Nobel Prize winner
 
@@ -38,15 +38,21 @@ As part of my check of the data set I verified there were no broken nor fraudule
 
 # Goals
 
-How successfully will a Naive Bayes model and a Convolution Neural Network train and test on a subset of all the images?
-Learn Nutrition Facts from Pears and Tomatoes
-
-Update to this 09/23/2020: Will be adding more ML models and Recommender, as well as deploying on AWS. I will expand on the database, as well.
+How successfully will a Naive Bayes model, Random Forest, and a Convolution Neural Network train and test on the images?
+Incorporate a Recommender, NLP, and Unsupervised Learning.
+Make a Flask App that can be deployed to the public via AWS to help people reach optimum nutrition.
+Learn Nutrition Facts of various fruits and vegetables.
 
 # Closer Look
 
+How this project started: 
+
 I spent quite a while deciding if I would use the whole data set with all unique items, but settled on a binary approach. I was left with deciding fruits and vegetables or which 2 unique fruits or vegetables. I ultimately decided on the latter.
 I chose to combine the Training, Testing, and variety folders to their own unique folders, for simplicity. To start I've used a subset of Pears and Tomatoes from these two data sets. I settled on 2313 images of Tomatoes and 3175 images of Pears. With my goals in mind, I started by taking a look at the images and for visualization I got the average images. 
+
+Where it will go:
+
+Even though the above is where the project started, it has had many updates and updates will continue to happen, until it is ready to deploy to public.
 
 Average Pear/Average Tomato:
 
@@ -201,27 +207,19 @@ The training(blue) loss got down to 0.225 with a validation(orange) loss of abou
 
 # Conclusion
 
-below needs to be updates
-
 Using the Multinomial Naive Bayes:
 The edge images performed best, scoring about 80%/81% for Tomato/Pear for F1. Color was second at 79%/80% for Pear/Tomato  for  F1. The grayscale was last scoring 77%/79% for Tomato/Pear for F1 score.
 
+Using Random Forest:
+The color images performed the best, scoring 98%/98% for Tomato/pear for F1. Grayscale was second 95%/96% Tomato/Pear. The edge filter was last scoring 87%/92% Tomato/Pear.
+
 Using the Convolution Neural Network:
-For grayscale, the CNN outperformed the Naive Bayes by almost 10%.
+The CNN be performed best with color images and so only the color images have been reported. It scord a 96% with validation accuracy.
 
-Update To "To My Chagrin" on 01/SEP/2020: Images have been cleaned to between 15 and 20 different rotations for nine different pears and tomatoes. This results in 163 pears and 145 tomatoes. I will continue to add/adjust images/variety/code/plots/readme as more images are acquired.
-
-Update to "To My Chagrin" on 02/SEP/2020: Update to code to make more automatic. Updated plots and CNN statistics with updated cleaned images from 01/SEP/2020.
-
-Update to "To My Chagrin" on 04/SEP/2020: Removed all but cleaned images from 02/SEP/2020 and downloaded three new data sets for Pear(3175) and Tomato(2298). Along with the cleaned images from the previous set, the new images have: multiple,
-a back drop, and rotations. Will make updates to code and plots/images in the coming days.
-
-To My Chagrin:
-
-There are too many similar rotations in the data set and this was exacerbated by combining Training and Testing Folders. This can result in a high risk of training on the testing data and therefore better validation results, but poor overall results. 
-As a future project I would like to spend more time cleaning up the fruits, vegetables, and their rotations, or returning to separated folders and running the models again.
-I would also like to look at using AwS, as the data set was too large to run all images with original pixels on my local machine.
-Something I would like to see come out of this project is an image recognition application that takes a picture of the item and returns its nutrition information.
+As a future project I will be adding a Recommender/Natural Language Processing to take nutrition facts and recommend a fruit or vegetable. The purpose behind this project is for those that know what kind of nutrition they want to achieve, but are not sure what to eat.
+For another project I will use a Recommender/Unsupervised Learning to cluster fruits and vegetables by nutrition facts and return the cluster of fruits or vegetables that share those nutrition facts. The purpose behind this  project is for people that know what nutrition they want, but are allergic to or do not like certain foods, and so would like other recommendations.
+I will be deploying to public on AWS, as the data set is too large to run all images with original pixels on my local machine.
+I really believe this product can help the public and because of this I am passioniate and excited to see where I can take it.
 
 # Data Credit
 
