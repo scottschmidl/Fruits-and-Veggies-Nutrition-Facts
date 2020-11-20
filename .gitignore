@@ -9,7 +9,6 @@ __pycache__/
 *.html
 *.css
 *.eot
-*.svg
 *.ttf
 *.woff
 *.woff2
