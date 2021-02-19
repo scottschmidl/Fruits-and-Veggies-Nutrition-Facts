@@ -7,7 +7,7 @@ import numpy as np
 
 def word_cloud(text, title, savefile):
     '''Create a wordcloud with from fruits and vegetable names'''
-    fv_mask = np.array(Image.open(path.join(d, 'images/index.jpeg')))    
+    fv_mask = np.array(Image.open(path.join(d, 'images/index.jpeg')))
     wordcloud = WordCloud(mask=fv_mask, background_color='white', stopwords=ENGLISH_STOP_WORDS).generate_from_text(text)
     plt.figure(figsize=(10, 6), facecolor='k')
     plt.imshow(wordcloud, interpolation='bilinear')
@@ -18,8 +18,12 @@ def word_cloud(text, title, savefile):
     plt.show()
     return plt
 
+def main():
+    pass
+
 if __name__ == '__main__':
+    main()
     d = getcwd()
-    all_fru_veg = listdir('data/Train/')    
+    all_fru_veg = listdir('data/Train/')
     jt = ' '.join(all_fru_veg)
     word_cloud(jt, title="Fruits And Veggies", savefile='images/fv_world_cloud.png')

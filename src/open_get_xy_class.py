@@ -1,6 +1,6 @@
 from augmentation_class import Augmentation
 from skimage.transform import resize
-from sklearn.utils import shuffle 
+from sklearn.utils import shuffle
 from skimage import io
 import numpy as np
 import glob
@@ -65,4 +65,4 @@ class OpenGet():
         return X, y
 
 if __name__ == '__main__':
-    pass    
+    pass

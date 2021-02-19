@@ -10,7 +10,7 @@ class PCAFruitsVeggies():
         self.pca = pca
         self.total_variance = total_variance
         self.cum_variance = cum_variance
-        self.prop_var_expl = prop_var_expl        
+        self.prop_var_expl = prop_var_expl
 
     def scree_plot(self):
         '''get a Scree Plot to find number of components'''
@@ -27,7 +27,7 @@ class PCAFruitsVeggies():
         plt.show()
         return plt
 
-    def variance_explained(self): 
+    def variance_explained(self):
         '''better visualization of Scree Plot'''
         _, ax = plt.subplots(figsize=(8,6))
         ax.plot(prop_var_expl, color='red', linewidth=2, label='Explained Variance')
@@ -51,7 +51,7 @@ class PCAFruitsVeggies():
         plt.axis('equal')
         plt.savefig('images/information_discard.png')
         plt.show()
-        
+
         projected = pca.fit_transform(X)
         plt.scatter(projected[:, 0], projected[:, 1],
                 c=list_of_colors, edgecolor='none', alpha=0.5,
@@ -63,15 +63,7 @@ class PCAFruitsVeggies():
         plt.show()
         return plt
 
-if __name__ == '__main__':
-    X = []
-    y = []
-    folder = 'Train'
-    grayscale = False
-    edge = False
-    all_train_fv = os.listdir('data/Train')
-    open_get_class = OpenGet(X, y, grayscale)
-    X, _ = open_get_class.get_X_y_fv(all_train_fv, folder)
+def main():
     pca = PCA()
     pca.fit(X=(78756, 138))
     ## calculations for modles
@@ -84,3 +76,14 @@ if __name__ == '__main__':
     screech = fru_veg_pca.scree_plot()
     var_exp = fru_veg_pca.variance_explained()
     # plot_pca = fru_veg_pca.pca_plot(list_of_colors)
+
+if __name__ == '__main__':
+    X = []
+    y = []
+    folder = 'Train'
+    grayscale = False
+    edge = False
+    all_train_fv = os.listdir('data/Train')
+    open_get_class = OpenGet(X, y)
+    X, _ = open_get_class.get_X_y_fv(all_train_fv, folder)
+    main()
