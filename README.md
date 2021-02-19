@@ -90,6 +90,8 @@ Edge Detection Pear/Tomato
 
 # Visualization
 
+THE STATISTICS IN THIS SECTION ARE CURRENTLY BASED OFF THE FEW THOUSAND IMAGES OF TOMATOES AND PEARS I HAD STATED UNDER 'CLOSER LOOK:HOW THIS PROJECT STARTED'. ONCE I GET AWS TO HANDLE THE CURRENT 100K+ IMAGES THIS WILL BE UPDATED.
+
 Once I got an idea of the pixels I began to model my images using greyscale, color, and the edges. I resized the images to 32x32. Using Multinomial Naive Bayes I plotted a Confusion Matrix, ROC Curve, and the Classification Report.
 
 Accuracy is the ratio of correctly predicted observations to the total observations. This is used with a even data set, for example, False Positives and False Negatives are almost same.
