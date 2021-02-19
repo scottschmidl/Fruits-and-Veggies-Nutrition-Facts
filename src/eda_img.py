@@ -131,7 +131,7 @@ def plot_kmeans(fruit_name, size):
     plt.show()
     return plt
 
-def look_at_edges(fruit_name, grayimage): 
+def look_at_edges(fruit_name, grayimage):
     '''function to get the edges of grayscaled images'''
     sobel_img = filters.sobel(grayimage)
     io.imshow(sobel_img)
@@ -146,31 +146,29 @@ def look_at_edges(fruit_name, grayimage):
     sobel_ravel = sobel_img.ravel()
     return sobel_ravel
 
+def main(grayscale=False, thres=False, threshold=0.7):
+    fruits_list = ['Tomato','Pear']
+    for fruit in fruits_list:
+        ## look at fruit
+        see = see_fruit(fruit)
+
+        ## get average images
+        plot_avg_images = avg_img(fruit)
+
+        ## look at scale
+        color_gray = scale_fruit(fruit)
+
+        ## plot pixel intensities
+        plot_intense = plot_pixel_intensities(fruit, grayscale, thres, threshold)
+
+        ## plot kmeans
+        dim = ((480, 322), (320,258))
+        plot_km = plot_kmeans('Tomato', dim[0]) if fruit == 'Tomato' else plot_kmeans('Pear', dim[1])
+
+        ## Featurization-Looking for edges in images
+        plot_edges = look_at_edges(fruit, grayimage=None)
+
+    return see, plot_avg_images, color_gray, plot_intense, plot_km, plot_edges
+
 if __name__ == '__main__':
-    grayscale = False
-    thres = False
-    threshold = 0.7
-
-    ## look at fruit
-    see = see_fruit('Tomato')
-    see = see_fruit('Pear')
-
-    ## get average images
-    plot_avg_images = avg_img('Tomato')
-    plot_avg_images = avg_img('Pear')
-
-    ## look at scale
-    color_gray = scale_fruit('Tomato')
-    color_gray = scale_fruit('Pear')
-
-    ## plot pixel intensities
-    plot_intense = plot_pixel_intensities('Tomato', grayscale, thres, threshold)
-    plot_intense = plot_pixel_intensities('Pear', grayscale, thres, threshold)
-
-    ## plot kmeans
-    plot_km = plot_kmeans('Tomato', (480, 322))
-    plot_km = plot_kmeans('Pear', (320, 258))
-
-    ## Featurization-Looking for edges in images
-    plot_edges = look_at_edges('Tomato', grayimage=None)
-    plot_edges = look_at_edges('Pear', grayimage=None)
+    main()

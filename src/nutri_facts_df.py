@@ -6,10 +6,6 @@ def get_nutri_facts(data):
     df = pd.read_csv(data)
     return df
 
-def main():
-    pass
-
 if __name__ == "__main__":
-    main()
     get_dat_data = get_nutri_facts('data/nutri_facts_name.csv')
-    print(get_dat_data['Fruits_Vegetables_Name'].tolist())
+    names = get_dat_data['Fruits_Vegetables_Name'].tolist()

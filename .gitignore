@@ -17,3 +17,16 @@ __pycache__/
 *.map
 *.odp
 *.sav
+*._.DS_Store
+*._augmentation_class.py
+*.._cnn_fv.py
+*.._eda_img.py
+*._kmeans_fv_class.py
+*._models_fv_class.py
+*._nlp_fv_class.py
+*._nutri_facts_df.py
+*._open_get_xy_class.py
+*._pca_scree_fv_class.py
+*._recommender_fv_class.py
+*._word_cloud.py
+
