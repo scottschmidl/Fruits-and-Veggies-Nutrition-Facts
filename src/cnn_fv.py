@@ -12,8 +12,8 @@ np.random.seed(1337)
 class fruit_veggies_cnn():
     pass
 
-def get_X_data(data_gen):
-    X_train_generator = datagen.flow_from_directory(directory='data/Train',
+def get_X_data(data_gen, batch_size):
+    X_train_generator = data_gen.flow_from_directory(directory='data/Train',
                                                         target_size=(32, 32),
                                                         color_mode='rgb',
                                                         class_mode='binary',
@@ -21,7 +21,7 @@ def get_X_data(data_gen):
                                                         shuffle=True,
                                                         seed=23,
                                                         subset='training')
-    X_validation_generator = datagen.flow_from_directory(directory='data/Test',
+    X_validation_generator = data_gen.flow_from_directory(directory='data/Test',
                                                             target_size=(32, 32),
                                                             color_mode='rgb',
                                                             class_mode='binary',
@@ -31,7 +31,7 @@ def get_X_data(data_gen):
                                                             subset='validation')
     return X_train_generator, X_validation_generator
 
-def fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func):
+def fv_cnn(nb_filters, nb_classes, kernel_size, input_shape, pool_size, activ_func):
     '''Fruits and Veggies Convolution Neural Network'''
     model = Sequential()
     # 1st conv. layer
@@ -67,64 +67,8 @@ def fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func):
     return model
 
 def main(tensorboard=False, easystop=False):
-    ###get X_train and X_validation
-    X_train_generator, X_validation_generator = get_X_data(data_gen=datagen)
-    print(f'X_train_gen: {X_train_generator}\n')
-    print(f'X_val_gen: {X_validation_generator}\n')
-    ### run the model
-    model = fv_cnn(nb_filters, kernel_size, input_shape, pool_size, activ_func)
-    ### fit the model
-    ### when tensorboard or easystop is true: after python script run successfully,
-            #then in terminal run: tensorboard --logdir logs
-    if tensorboard:
-        tbCallBack = TensorBoard(log_dir='./logs', histogram_freq=0, write_graph=True, write_images=True)
-        model.fit(x=X_train_generator,
-                    epochs=nb_epoch,
-                    verbose=1,
-                    callbacks=[tbCallBack],
-                    validation_data=X_validation_generator,
-                    steps_per_epoch=(4391 // batch_size),
-                    validation_steps=500,
-                    validation_batch_size=batch_size,
-                    validation_freq=1,
-                    max_queue_size=10,
-                    workers=1)
-    elif easystop:
-        earlyStopping = EarlyStopping(monitor='acc', min_delta=0.001, patience=0, verbose=0, mode='auto')
-        model.fit(x=X_train_generator,
-                    epochs=nb_epoch,
-                    verbose=1,
-                    callbacks=[earlyStopping],
-                    validation_data=X_validation_generator,
-                    steps_per_epoch=(4391 // batch_size),
-                    validation_steps=500,
-                    validation_batch_size=batch_size,
-                    validation_freq=1,
-                    max_queue_size=10,
-                    workers=1) ### to stop at a convergence critia and get tensorboard, use easystop
-    else:
-        model.fit(x=X_train_generator,
-                    epochs=nb_epoch,
-                    verbose=1,
-                    validation_data=X_validation_generator,
-                    steps_per_epoch=(4391 // batch_size),
-                    validation_steps=500,
-                    validation_batch_size=batch_size,
-                    validation_freq=1,
-                    max_queue_size=10,
-                    workers=1)
-        ### evaluate model
-    score = model.evaluate(x=X_validation_generator,
-                            batch_size=batch_size,
-                            verbose=1,
-                            steps=4391 // batch_size,
-                            max_queue_size=10,
-                            workers=1)
-    return score[0], score[1]
-
-if __name__ == '__main__':
     ###### TODO: turn this into a class ######
-    activations = ['linear', 'sigmoid', 'tanh', 'relu', 'softplus', 'softsign']
+    #activations = ['linear', 'sigmoid', 'tanh', 'relu', 'softplus', 'softsign']
     batch_size = 32 # number of training samples used at a time to update the weights
     nb_classes = 1 # number of output possibilities: [0 - 1]
     nb_epoch = 10 # number of passes through the entire train dataset before weights "final"
@@ -146,12 +90,51 @@ if __name__ == '__main__':
                                     data_format='channels_last',
                                     validation_split=0.2)
     print(f'datagen: {datagen}\n')
-    ###run main function
-    tensorboard = False
-    easystop = False
-    test_score, test_accuracy = main()
-    print(f'test score: {test_score}')
-    print(f'test accuracy: {test_accuracy}')
+    ###get X_train and X_validation
+    X_train_generator, X_validation_generator = get_X_data(data_gen=datagen, batch_size=batch_size)
+    print(f'X_train_gen: {X_train_generator}\n')
+    print(f'X_val_gen: {X_validation_generator}\n')
+    ### run the model
+    model = fv_cnn(nb_filters, nb_classes, kernel_size, input_shape, pool_size, activ_func)
+    ### fit the model
+    ### when tensorboard or easystop is true: after python script run successfully,
+            #then in terminal run: tensorboard --logdir logs
+    ### to stop at a convergence critia and get tensorboard, use easystop
+    cb = [[TensorBoard(log_dir='./logs', histogram_freq=0, write_graph=True, write_images=True)],
+            [EarlyStopping(monitor='acc', min_delta=0.001, patience=0, verbose=0, mode='auto')]]
+
+    if tensorboard:
+        callbacks=cb[0]
+    elif easystop:
+        callbacks = cb[1]
+    else:
+        callbacks = None
+    #fit the model
+    model.fit(x=X_train_generator,
+                    epochs=nb_epoch,
+                    verbose=1,
+                    callbacks=callbacks,
+                    validation_data=X_validation_generator,
+                    steps_per_epoch=(4391 // batch_size),
+                    validation_steps=500,
+                    validation_batch_size=batch_size,
+                    validation_freq=1,
+                    max_queue_size=10,
+                    workers=1)
+        ### evaluate model
+    score = model.evaluate(x=X_validation_generator,
+                            batch_size=batch_size,
+                            verbose=1,
+                            steps=4391 // batch_size,
+                            max_queue_size=10,
+                            workers=1)
     ### save the model
     # filename = '../fv_app/fv_cnn_model.sav'
     # model.save(filename)
+    return score[0], score[1]
+
+if __name__ == '__main__':
+    ###run main function
+    test_score, test_accuracy = main()
+    print(f'test score: {test_score}')
+    print(f'test accuracy: {test_accuracy}')
