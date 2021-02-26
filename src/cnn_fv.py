@@ -131,7 +131,7 @@ def main(tensorboard=False, easystop=False):
     ### save the model
     # filename = '../fv_app/fv_cnn_model.sav'
     # model.save(filename)
-    return score[0], score[1]
+    return score #score[0], score[1]
 
 if __name__ == '__main__':
     ###run main function
