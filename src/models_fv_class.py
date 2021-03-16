@@ -94,7 +94,9 @@ class ModelsFruitsVeggies():
         return report
 
 def main():
+
     '''run all class instances'''
+
     ## paths to images
     all_train_fv = os.listdir('data/Train')
     all_test_fv = os.listdir('data/Test')

@@ -38,12 +38,12 @@ def get_image():
 ## nutrition facts page
 @app.route('/nutrition_facts', methods=['POST'])
 def predict_nut_facts():
-    """Receive the image to be classified from input form. Use model to classify. 
-        Once classified return nutrition facts about selected image"""        
-    for uploaded_file in request.files.getlist('image'):        
+    """Receive the image to be classified from input form. Use model to classify
+        Once classified return nutrition facts about selected image"""
+    for uploaded_file in request.files.getlist('image'):
         if uploaded_file.filename != '':
             uploaded_file.save('fv_app/static/uploads/what_fruit_veggie_am_I.png')
-    img = io.imread('fv_app/static/uploads/what_fruit_veggie_am_I.png')        
+    img = io.imread('fv_app/static/uploads/what_fruit_veggie_am_I.png')
     size = resize(img, (32, 32))
     ravel = size.ravel()
     ########### MNB Loaded Goods ######################
@@ -60,7 +60,7 @@ def predict_nut_facts():
     # new_pred_cnn = vals[new_pred] ## not working yet, getting a shape error
     final = pd.DataFrame({'name' : np.array(vals),'probability' :pred_cnn[0]})
     final, new_pred_cnn  =final.sort_values(by = 'probability',ascending=False), vals[new_pred]
-    print('new_pred_cnn*****************', new_pred_cnn)    
+    print('new_pred_cnn*****************', new_pred_cnn)
     print('final', final)
     ########### End Of CNN Loaded Goods ###############
     ########### Loaded Data Frame #####################

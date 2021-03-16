@@ -9,6 +9,7 @@ __pycache__/
 *.html
 *.css
 *.eot
+*.pem
 /home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/fv_app/static/fonts/glyphicons-halflings-regular.svg
 *.ttf
 *.woff
