@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSe
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
 from open_get_xy_class import OpenGet
+from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import pickle as pickle
 import numpy as np
@@ -22,7 +23,9 @@ class ModelsFruitsVeggies():
         self.edge = edge
 
     def grid_search(self, X_train, y_train):
-        '''return best parameters for random_forest'''
+        '''
+        return best parameters for random_forest
+        '''
         random_forest_grid = {'n_estimators': [20, 40, 50, 100],
                             'criterion':['gini', 'entropy'],
                             'max_depth': list(range(1, 6)),
@@ -42,16 +45,27 @@ class ModelsFruitsVeggies():
         return best_rf_model
 
     ## parameters of Random_Forest_Classifier will change after grid_search
-    def fit_the_models(self, fit_model, X_train, y_train):
+    def fit_the_models(self, model, X_train, y_train, pca_shape):
+        '''
+        FIT THE MODELS
+        '''
+        # THIS PART FITS FOR RF AND MNB
         if model == RandomForestClassifier():
-            model = RandomForestClassifier()
+            model_to_fit = RandomForestClassifier()
         elif model == MultinomialNB():
-            model = MultinomialNB()
+            model_to_fit = MultinomialNB()
         fit_model = model.fit(X_train, y_train)
+        # THIS PART FITS FOR PCA
+        if model == PCA():
+            model_to_fit = PCA()
+            fit_model = model_to_fit.fit(X=pca_shape)
+
         return fit_model
 
     def roc_you_curve(self, fit_model, edge, grayscale, X_test, y_test):
-        '''returns Receiver Operating Characteristic Curve for NB'''
+        '''
+        returns Receiver Operating Characteristic Curve for NB
+        '''
         if edge and grayscale:
             name = 'ROC Curve for Edge Images'
             plt.savefig('images/edge_roccurve.png',  bbox_inches='tight')
@@ -67,7 +81,9 @@ class ModelsFruitsVeggies():
         return plt
 
     def plot_conf_matrix(self, fit_model, X_test, y_test, labels, edge, grayscale):
-        '''returns Confusion Matrix from NB'''
+        '''
+        returns Confusion Matrix from NB
+        '''
         plot_confusion_matrix(fit_model, X_test, y_test, labels=labels, xticks_rotation=50)
         if edge and grayscale:
                 plt.title('Edge Confusion Matrix')
@@ -82,21 +98,25 @@ class ModelsFruitsVeggies():
         return plt
 
     def random_forest(self, fit_model, X_test, y_test):
-        '''return Classification Report from RF'''
+        '''
+        return Classification Report from RF
+        '''
         y_pred = fit_model.predict(X_test)
         report = classification_report(y_test, y_pred, digits=2)
         return report
 
     def naive_bayes(self, fit_model, X_test, y_test):
-        '''returns Classification Report from NB'''
+        '''
+        returns Classification Report from NB
+        '''
         y_pred = fit_model.predict(X_test)
         report = classification_report(y_test, y_pred, digits=2)
         return report
 
 def main():
-
-    '''run all class instances'''
-
+    '''
+    run all class instances
+    '''
     ## paths to images
     all_train_fv = os.listdir('data/Train')
     all_test_fv = os.listdir('data/Test')
@@ -119,11 +139,12 @@ def main():
     ## models
     best_rf_model = fru_veg_class.grid_search(X_train, y_train)
     print("Random Forest best parameters:", best_rf_model)
-    model = [RandomForestClassifier(), MultinomialNB()]
+    model = [RandomForestClassifier(), MultinomialNB(), PCA()]
     print('model')
     # TODO: run grid_search to find best parameters, before running below
+    shape = (78756, 138)
     for m in model:
-        fit_model = fru_veg_class.fit_the_models(m, X_train, y_train)
+        fit_model = fru_veg_class.fit_the_models(m, X_train, y_train, pca_shape=shape)
         fru_veg_class.roc_you_curve(fit_model, edge, grayscale, X_test, y_test)
         fru_veg_class.plot_conf_matrix(fit_model, X_test, y_test, all_train_fv, edge, grayscale)
         if m == RandomForestClassifier():
@@ -136,7 +157,10 @@ def main():
             # print(report)
             # filename_nb = 'fv_app/fv_nb_model.sav'
             # pickle.dump(fit_model, open(filename_nb, 'wb'))
-    return (rf_mod, rf_report), (nb_mod, nb_report)
+        elif m == PCA():
+            pca_model = fit_model
+
+    return (rf_mod, rf_report), (nb_mod, nb_report), pca_model
 
 if __name__ == '__main__':
 

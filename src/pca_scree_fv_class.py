@@ -1,3 +1,4 @@
+from models_fv_class import ModelsFruitsVeggies
 from open_get_xy_class import OpenGet
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
@@ -5,11 +6,8 @@ import numpy as np
 import os
 
 class PCAFruitsVeggies():
-    def __init__(self, X, pca, total_variance, cum_variance, prop_var_expl):
-        self.X = X
+    def __init__(self, pca, prop_var_expl):
         self.pca = pca
-        self.total_variance = total_variance
-        self.cum_variance = cum_variance
         self.prop_var_expl = prop_var_expl
 
     def scree_plot(self, model):
@@ -70,17 +68,19 @@ def main():
     all_train_fv = os.listdir('data/Train')
     open_get_class = OpenGet(X, y)
     X, _ = open_get_class.get_X_y_fv(all_train_fv, folder)
-    pca = PCA()
-    pca.fit(X=(78756, 138))
+    model = PCA()
+    pca_model = ModelsFruitsVeggies(X, None, None, None, None, None)
+    # FIT_PCA REPLACES pca.fit(X=(78756, 138))
+    fit_pca = pca_model.fit_the_models(model=model, X_train=X, y_train=None, pca_shape=(78756, 138))
     ## calculations for modles
-    total_variance = np.sum(pca.explained_variance_)
-    cum_variance = np.cumsum(pca.explained_variance_)
+    total_variance = np.sum(fit_pca.explained_variance_)
+    cum_variance = np.cumsum(fit_pca.explained_variance_)
     prop_var_expl = cum_variance/total_variance
     list_of_colors = list(range(138))
-    ## models
-    fru_veg_pca = PCAFruitsVeggies(X, pca, total_variance, cum_variance, prop_var_expl)
-    screech, var_exp, plot_pca = fru_veg_pca.scree_plot(pca), fru_veg_pca.variance_explained(prop_var_expl), \
-                                    fru_veg_pca.pca_plot(pca, list_of_colors, pca)
+    ## model
+    fru_veg_pca = PCAFruitsVeggies(fit_pca, prop_var_expl)
+    screech, var_exp, plot_pca = fru_veg_pca.scree_plot(fit_pca), fru_veg_pca.variance_explained(prop_var_expl), \
+                                    fru_veg_pca.pca_plot(fit_pca, list_of_colors, X)
 
     return screech, var_exp, plot_pca
 
