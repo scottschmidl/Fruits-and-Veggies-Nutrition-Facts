@@ -45,7 +45,7 @@ class ModelsFruitsVeggies():
         return best_rf_model
 
     ## parameters of Random_Forest_Classifier will change after grid_search
-    def fit_the_models(self, model, X_train, y_train, pca_shape):
+    def fit_the_models(self, model, X_train, y_train, pca_shape=None):
         '''
         FIT THE MODELS
         '''
@@ -113,6 +113,34 @@ class ModelsFruitsVeggies():
         report = classification_report(y_test, y_pred, digits=2)
         return report
 
+def run_model_helper(model, X_train, X_test, y_train, y_test, all_train_fv, grayscale, edge):
+    '''
+    HELPER TO RUN THE MODELS
+    '''
+    ## instantiate class
+    fru_veg_class = ModelsFruitsVeggies(X_train, X_test, y_train, y_test, grayscale, edge)
+    print('fruits veggies class instantiated')
+    ## models
+    best_rf_model = fru_veg_class.grid_search(X_train, y_train)
+    print("Random Forest best parameters:", best_rf_model)
+    # TODO: run grid_search to find best parameters, before running below
+    for m in model:
+        fit_model = fru_veg_class.fit_the_models(m, X_train, y_train)
+        fru_veg_class.roc_you_curve(fit_model, edge, grayscale, X_test, y_test)
+        fru_veg_class.plot_conf_matrix(fit_model, X_test, y_test, all_train_fv, edge, grayscale)
+        if m == RandomForestClassifier():
+            rf_report = fru_veg_class.random_forest(fit_model, X_test, y_test)
+            # print(report)
+            # filename_rf = 'fv_app/fv_rf_model.sav'
+            # pickle.dump(fit_model, open(filename_rf, 'wb'))
+        elif m == MultinomialNB():
+            nb_report = fru_veg_class.naive_bayes(fit_model, X_test, y_test)
+            # print(report)
+            # filename_nb = 'fv_app/fv_nb_model.sav'
+            # pickle.dump(fit_model, open(filename_nb, 'wb'))
+
+    return rf_report, nb_report
+
 def main():
     '''
     run all class instances
@@ -133,35 +161,13 @@ def main():
     print('this is x_train, y_train')
     X_test, y_test = open_get_class.get_X_y_fv(all_fru_veg=all_test_fv, folder='Test')
     print('this is x_test, y_test')
-    ## instantiate class
-    fru_veg_class = ModelsFruitsVeggies(X_train, X_test, y_train, y_test, grayscale, edge)
-    print('fruits veggies class instantiated')
-    ## models
-    best_rf_model = fru_veg_class.grid_search(X_train, y_train)
-    print("Random Forest best parameters:", best_rf_model)
-    model = [RandomForestClassifier(), MultinomialNB(), PCA()]
+    #MODEL RUN
+    models = [RandomForestClassifier(), MultinomialNB()]
     print('model')
-    # TODO: run grid_search to find best parameters, before running below
-    shape = (78756, 138)
-    for m in model:
-        fit_model = fru_veg_class.fit_the_models(m, X_train, y_train, pca_shape=shape)
-        fru_veg_class.roc_you_curve(fit_model, edge, grayscale, X_test, y_test)
-        fru_veg_class.plot_conf_matrix(fit_model, X_test, y_test, all_train_fv, edge, grayscale)
-        if m == RandomForestClassifier():
-            rf_mod, rf_report = fru_veg_class.random_forest(fit_model, X_test, y_test)
-            # print(report)
-            # filename_rf = 'fv_app/fv_rf_model.sav'
-            # pickle.dump(fit_model, open(filename_rf, 'wb'))
-        elif m == MultinomialNB():
-            nb_mod, nb_report = fru_veg_class.naive_bayes(fit_model, X_test, y_test)
-            # print(report)
-            # filename_nb = 'fv_app/fv_nb_model.sav'
-            # pickle.dump(fit_model, open(filename_nb, 'wb'))
-        elif m == PCA():
-            pca_model = fit_model
-
-    return (rf_mod, rf_report), (nb_mod, nb_report), pca_model
+    rf_report, nb_report = run_model_helper(models, X_train, X_test, y_train, y_test,
+                                                        all_train_fv, grayscale, edge)
+    print(f'Random Forest Classification Report:\n{rf_report}')
+    print(f'Naive Bayes Classification Report:\n{nb_report}')
 
 if __name__ == '__main__':
-
     main()
