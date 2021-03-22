@@ -12,19 +12,11 @@ import argparse
 import glob
 import os
 
-class ModelsFruitsVeggies():
-
-    def __init__(self, X_train, X_test, y_train, y_test, grayscale, edge):
-        self.X_train = X_train
-        self.X_test = X_test
-        self.y_train = y_train
-        self.y_test = y_test
-        self.grayscale = grayscale
-        self.edge = edge
+class ModelsFruitsVeggies:
 
     def grid_search(self, X_train, y_train):
         '''
-        return best parameters for random_forest
+        RETURN BEST PARAMETERS FOR RANDOM FOREST
         '''
         random_forest_grid = {'n_estimators': [20, 40, 50, 100],
                             'criterion':['gini', 'entropy'],
@@ -62,9 +54,9 @@ class ModelsFruitsVeggies():
 
         return fit_model
 
-    def roc_you_curve(self, fit_model, edge, grayscale, X_test, y_test):
+    def roc_you_curve(self, fit_model, X_test, y_test, grayscale, edge):
         '''
-        returns Receiver Operating Characteristic Curve for NB
+        RETURN RECEIVER OPERATing CHARACTERSTIC CURVE
         '''
         if edge and grayscale:
             name = 'ROC Curve for Edge Images'
@@ -82,7 +74,7 @@ class ModelsFruitsVeggies():
 
     def plot_conf_matrix(self, fit_model, X_test, y_test, labels, edge, grayscale):
         '''
-        returns Confusion Matrix from NB
+        RETURNS CONFUSION MATRIX
         '''
         plot_confusion_matrix(fit_model, X_test, y_test, labels=labels, xticks_rotation=50)
         if edge and grayscale:
@@ -99,7 +91,7 @@ class ModelsFruitsVeggies():
 
     def random_forest(self, fit_model, X_test, y_test):
         '''
-        return Classification Report from RF
+        RETURNS CLASSIFICAITON REPORT FOR RF
         '''
         y_pred = fit_model.predict(X_test)
         report = classification_report(y_test, y_pred, digits=2)
@@ -107,7 +99,7 @@ class ModelsFruitsVeggies():
 
     def naive_bayes(self, fit_model, X_test, y_test):
         '''
-        returns Classification Report from NB
+        RETURNS CLASSIFICATION REPORT FOR NB
         '''
         y_pred = fit_model.predict(X_test)
         report = classification_report(y_test, y_pred, digits=2)
@@ -118,7 +110,7 @@ def run_model_helper(model, X_train, X_test, y_train, y_test, all_train_fv, gray
     HELPER TO RUN THE MODELS
     '''
     ## instantiate class
-    fru_veg_class = ModelsFruitsVeggies(X_train, X_test, y_train, y_test, grayscale, edge)
+    fru_veg_class = ModelsFruitsVeggies()
     print('fruits veggies class instantiated')
     ## models
     best_rf_model = fru_veg_class.grid_search(X_train, y_train)
@@ -143,7 +135,7 @@ def run_model_helper(model, X_train, X_test, y_train, y_test, all_train_fv, gray
 
 def main():
     '''
-    run all class instances
+    RUN ALL CLASS INSTANCES AND MODELS
     '''
     ## paths to images
     all_train_fv = os.listdir('data/Train')
@@ -155,11 +147,11 @@ def main():
     grayscale = False
     edge = False
     ## instaniate class
-    open_get_class = OpenGet(X, y)
+    open_get_class = OpenGet()
     ## open up images and get X_train, X_test, y_train, y_test
-    X_train, y_train = open_get_class.get_X_y_fv(all_fru_veg=all_train_fv, folder='Train')
+    X_train, y_train = open_get_class.get_X_y_fv(X, y, all_fru_veg=all_train_fv, folder='Train')
     print('this is x_train, y_train')
-    X_test, y_test = open_get_class.get_X_y_fv(all_fru_veg=all_test_fv, folder='Test')
+    X_test, y_test = open_get_class.get_X_y_fv(X, y, all_fru_veg=all_test_fv, folder='Test')
     print('this is x_test, y_test')
     #MODEL RUN
     models = [RandomForestClassifier(), MultinomialNB()]

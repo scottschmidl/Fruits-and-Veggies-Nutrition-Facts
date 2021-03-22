@@ -6,13 +6,10 @@ import numpy as np
 import glob
 import os
 
-class OpenGet():
-    def __init__(self, X, y):
-        self.X = X
-        self.y = y
+class OpenGet:
 
     def open_images(self, path):
-        '''open images, resize, ravel'''
+        '''OPEN IMAGES, RESIZE, RAVEL'''
         color_images = io.imread(path)
         color_size = resize(color_images, (32, 32))
         ## rescale image as resize scales down the pixels
@@ -21,8 +18,8 @@ class OpenGet():
         final_image = rescaled_image.astype(np.uint8)
         return final_image
 
-    def get_X_y_fv(self, all_fru_veg, folder):
-        '''opens images and return an array'''
+    def get_X_y_fv(self, X, y, all_fru_veg, folder):
+        '''OPENS IMAGES AND RETURN AN ARRAY'''
         ## updating this .py file to augment images in 20% subsets of each fv
         for fru_veg in all_fru_veg:
             label = fru_veg
@@ -35,32 +32,32 @@ class OpenGet():
                 path_80 = int(len(path) * 0.80)
                 for p in path[:path_20 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    self.X.append(Augmentation.rand_noise(self, final_image))
-                    self.y.append(label)
+                    X.append(Augmentation.rand_noise(self, final_image))
+                    y.append(label)
                 for p in path[path_20 + 1:path_40 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    self.X.append(Augmentation.shift(self, final_image, direction='up', shift=10, roll=False))
-                    self.y.append(label)
+                    X.append(Augmentation.shift(self, final_image, direction='up', shift=10, roll=False))
+                    y.append(label)
                 for p in path[path_40 + 1:path_60 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    self.X.append(Augmentation.hue_saturation(self, final_image))
-                    self.y.append(label)
+                    X.append(Augmentation.hue_saturation(self, final_image))
+                    y.append(label)
                 for p in path[path_60 + 1:path_80 + 1]:
                     final_image = OpenGet.open_images(self, p)
-                    self.X.append(final_image)
-                    self.y.append(label)
+                    X.append(final_image)
+                    y.append(label)
                 for p in path[path_80 + 1:]:
                     final_image = OpenGet.open_images(self, p)
-                    self.X.append(Augmentation.sharpen(self, final_image))
-                    self.y.append(label)
+                    X.append(Augmentation.sharpen(self, final_image))
+                    y.append(label)
             elif folder == 'Test':
                 path = glob.glob('data/Test/{}/*'.format(fru_veg))
                 for p in path:
                     final_image = OpenGet.open_images(self, p)
-                    self.X.append(final_image)
-                    self.y.append(label)
-        X = np.asarray(self.X)
-        y = np.asarray(self.y)
+                    X.append(final_image)
+                    y.append(label)
+        X = np.asarray(X)
+        y = np.asarray(y)
         X, y = shuffle(X, y)
         return X, y
 

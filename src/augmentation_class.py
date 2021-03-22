@@ -4,9 +4,7 @@ from skimage.color import rgb2gray
 from skimage import filters
 import numpy as np
 
-class Augmentation():
-    def __init__(self, final_image):
-        self.final_image = final_image
+class Augmentation:
 
     def gray_aug(self, final_image):
         gray_image = rgb2gray(final_image).ravel()

@@ -9,7 +9,7 @@ import tensorflow as tf
 import numpy as np
 
 np.random.seed(1337)
-class fruit_veggies_cnn():
+class fruit_veggies_cnn:
     pass
 
 def get_X_data(data_gen, batch_size):

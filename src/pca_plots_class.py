@@ -5,10 +5,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-class PCAFruitsVeggies():
-    def __init__(self, pca, prop_var_expl):
-        self.pca = pca
-        self.prop_var_expl = prop_var_expl
+class PCAFruitsVeggies:
+
+    def proportion_variance_explained(self, model):
+        '''
+        CALCULATE THE PROPORATION OF VARIANCE THAT IS EXPLAINED IN PRINCIPAL COMPONENTS
+        '''
+        total_variance = np.sum(model)
+        cum_variance = np.cumsum(model)
+        prop_var_expl = cum_variance/total_variance
+        return prop_var_expl
 
     def scree_plot(self, model):
         '''get a Scree Plot to find number of components'''
@@ -66,19 +72,18 @@ def main():
     y = []
     folder = 'Train'
     all_train_fv = os.listdir('data/Train')
-    open_get_class = OpenGet(X, y)
-    X, _ = open_get_class.get_X_y_fv(all_train_fv, folder)
+    open_get_class = OpenGet()
+    X, _ = open_get_class.get_X_y_fv(X, y, all_train_fv, folder)
     model = PCA()
     pca_model = ModelsFruitsVeggies(X, None, None, None, None, None)
     # FIT_PCA REPLACES pca.fit(X=(78756, 138))
     fit_pca = pca_model.fit_the_models(model=model, X_train=X, y_train=None, pca_shape=(78756, 138))
     ## calculations for modles
-    total_variance = np.sum(fit_pca.explained_variance_)
-    cum_variance = np.cumsum(fit_pca.explained_variance_)
-    prop_var_expl = cum_variance/total_variance
+    explained_variance = fit_pca.explained_variance_
     list_of_colors = list(range(138))
     ## model
-    fru_veg_pca = PCAFruitsVeggies(fit_pca, prop_var_expl)
+    fru_veg_pca = PCAFruitsVeggies()
+    prop_var_expl = fru_veg_pca.proportion_variance_explained(explained_variance)
     screech, var_exp, plot_pca = fru_veg_pca.scree_plot(fit_pca), fru_veg_pca.variance_explained(prop_var_expl), \
                                     fru_veg_pca.pca_plot(fit_pca, list_of_colors, X)
 
