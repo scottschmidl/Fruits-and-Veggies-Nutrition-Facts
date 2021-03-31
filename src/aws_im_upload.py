@@ -13,7 +13,7 @@ import os
 # multipart_upload = s3.MultipartUpload(bucket_name=bucket_name, object_key=object_key, id=id)
 
 def upload_files(path):
-    # THIS WORKED TO UPLOAD THE IMAGES
+
     s3 = boto3.Session().resource('s3')
     bucket = s3.Bucket('fruitsveggiesimages')
     i = 0
@@ -27,7 +27,7 @@ def upload_files(path):
                     print(f'Completed Uploading Image: {i} of 78756!\n')
 
 def main():
-    # THE BELOW WORKED TO UPLOAD IMAGES TO AWS
+
     path = '../data/Train'
     upload_files(path)
     print('\nCompleted Upload of Images!')
