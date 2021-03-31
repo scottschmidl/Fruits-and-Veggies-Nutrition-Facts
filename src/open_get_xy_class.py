@@ -25,7 +25,7 @@ class OpenGet:
             label = fru_veg
             ## TODO: shuffle each fv image per folder, but after augment. Ensure X, y are shuffled the same way
             if folder == 'Train':
-                path = glob.glob('data/Train/{}/*'.format(fru_veg))
+                path = glob.glob(f'data/Train/{fru_veg}/*')
                 path_20 = int(len(path) * 0.20)
                 path_40 = int(len(path) * 0.40)
                 path_60 = int(len(path) * 0.60)

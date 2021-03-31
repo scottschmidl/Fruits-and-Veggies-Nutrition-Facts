@@ -7,6 +7,7 @@ from open_get_xy_class import OpenGet
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import pickle as pickle
+import xgboost as xgb
 import numpy as np
 import argparse
 import glob
