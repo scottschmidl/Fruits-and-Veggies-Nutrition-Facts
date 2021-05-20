@@ -60,6 +60,3 @@ class OpenGet:
         y = np.asarray(y)
         X, y = shuffle(X, y)
         return X, y
-
-if __name__ == '__main__':
-    pass

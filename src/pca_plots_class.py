@@ -78,7 +78,7 @@ def main():
     pca_model = ModelsFruitsVeggies(X, None, None, None, None, None)
     # FIT_PCA REPLACES pca.fit(X=(78756, 138))
     fit_pca = pca_model.fit_the_models(model=model, X_train=X, y_train=None, pca_shape=(78756, 138))
-    ## calculations for modles
+    ## calculations for models
     explained_variance = fit_pca.explained_variance_
     list_of_colors = list(range(138))
     ## model
