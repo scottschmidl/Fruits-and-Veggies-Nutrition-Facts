@@ -47,6 +47,3 @@ class Augmentation:
             if roll:
                 final_image[-shift:,:] = final_image[:shift, :]
         return final_image
-
-if __name__ == '__main__':
-    pass

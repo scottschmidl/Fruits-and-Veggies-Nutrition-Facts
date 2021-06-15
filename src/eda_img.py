@@ -146,29 +146,31 @@ def look_at_edges(fruit_name, grayimage):
     sobel_ravel = sobel_img.ravel()
     return sobel_ravel
 
-def main(grayscale=False, thres=False, threshold=0.7):
+def main():
+    grayscale, thres , threshold = False, False, 0.7
     fruits_list = ['Tomato','Pear']
     for fruit in fruits_list:
-        ## look at fruit
+        ## LOOK AT FRUIT
         see = see_fruit(fruit)
+        # print(see)
 
-        ## get average images
+        ## GET AVERAGE IMAGES
         plot_avg_images = avg_img(fruit)
+        # print(plot_avg_images)
 
-        ## look at scale
+        ## LOOK AT SCALE
         color_gray = scale_fruit(fruit)
+        # print(color_gray)
 
-        ## plot pixel intensities
-        plot_intense = plot_pixel_intensities(fruit, grayscale, thres, threshold)
+        ## PLOT PIXEL INTENSITIES
+        plot_pixel_intensities(fruit, grayscale, thres, threshold)
 
-        ## plot kmeans
+        ## PLOT KMEANS
         dim = ((480, 322), (320,258))
-        plot_km = plot_kmeans('Tomato', dim[0]) if fruit == 'Tomato' else plot_kmeans('Pear', dim[1])
+        plot_kmeans('Tomato', dim[0]) if fruit == 'Tomato' else plot_kmeans('Pear', dim[1])
 
-        ## Featurization-Looking for edges in images
-        plot_edges = look_at_edges(fruit, grayimage=None)
-
-    return see, plot_avg_images, color_gray, plot_intense, plot_km, plot_edges
+        ## FEATURIZATION-LOOKING FOR EDGES IN IMAGES
+        look_at_edges(fruit, grayimage=None)
 
 if __name__ == '__main__':
     main()

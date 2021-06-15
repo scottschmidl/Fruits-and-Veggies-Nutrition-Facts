@@ -9,62 +9,62 @@ import tensorflow as tf
 import numpy as np
 
 np.random.seed(1337)
-class fruit_veggies_cnn:
-    pass
 
-def get_X_data(data_gen, batch_size):
-    X_train_generator = data_gen.flow_from_directory(directory='data/Train',
-                                                        target_size=(32, 32),
-                                                        color_mode='rgb',
-                                                        class_mode='binary',
-                                                        batch_size=batch_size,
-                                                        shuffle=True,
-                                                        seed=23,
-                                                        subset='training')
-    X_validation_generator = data_gen.flow_from_directory(directory='data/Test',
+class fruit_veggies_cnn:
+
+    def get_X_data(data_gen, batch_size):
+        X_train_generator = data_gen.flow_from_directory(directory='data/Train',
                                                             target_size=(32, 32),
                                                             color_mode='rgb',
                                                             class_mode='binary',
                                                             batch_size=batch_size,
                                                             shuffle=True,
                                                             seed=23,
-                                                            subset='validation')
-    return X_train_generator, X_validation_generator
+                                                            subset='training')
+        X_validation_generator = data_gen.flow_from_directory(directory='data/Test',
+                                                                target_size=(32, 32),
+                                                                color_mode='rgb',
+                                                                class_mode='binary',
+                                                                batch_size=batch_size,
+                                                                shuffle=True,
+                                                                seed=23,
+                                                                subset='validation')
+        return X_train_generator, X_validation_generator
 
-def fv_cnn(nb_filters, nb_classes, kernel_size, input_shape, pool_size, activ_func):
-    '''Fruits and Veggies Convolution Neural Network'''
-    model = Sequential()
-    # 1st conv. layer
-    model.add(Conv2D(kernel_size=kernel_size,
-                    filters=nb_filters,
-                    padding='valid',
-                    input_shape=input_shape))
-    model.add(Activation(activ_func)) # Activation specification necessary for Conv2D and Dense layers
-    # 2nd conv. layer
-    model.add(Conv2D(nb_filters,
-                    (kernel_size[0], kernel_size[1]),
-                    padding='valid'))
-    model.add(Activation(activ_func))
+    def fv_cnn(nb_filters, nb_classes, kernel_size, input_shape, pool_size, activ_func):
+        '''Fruits and Veggies Convolution Neural Network'''
+        model = Sequential()
+        # 1st conv. layer
+        model.add(Conv2D(kernel_size=kernel_size,
+                        filters=nb_filters,
+                        padding='valid',
+                        input_shape=input_shape))
+        model.add(Activation(activ_func)) # Activation specification necessary for Conv2D and Dense layers
+        # 2nd conv. layer
+        model.add(Conv2D(nb_filters,
+                        (kernel_size[0], kernel_size[1]),
+                        padding='valid'))
+        model.add(Activation(activ_func))
 
-    model.add(MaxPooling2D(pool_size=pool_size)) # decreases size, helps prevent overfitting
-    model.add(Dropout(0.5)) # zeros out some fraction of inputs, helps prevent overfitting
+        model.add(MaxPooling2D(pool_size=pool_size)) # decreases size, helps prevent overfitting
+        model.add(Dropout(0.5)) # zeros out some fraction of inputs, helps prevent overfitting
 
-    model.add(Flatten()) # necessary to flatten before going into conventional dense layer
-    print('Model flattened out to ', model.output_shape)
+        model.add(Flatten()) # necessary to flatten before going into conventional dense layer
+        print('Model flattened out to ', model.output_shape)
 
-    model.add(Dense(32)) # 32 neurons in this layer
-    model.add(Activation(activ_func))
+        model.add(Dense(32)) # 32 neurons in this layer
+        model.add(Activation(activ_func))
 
-    model.add(Dropout(0.5)) # zeros out some fraction of inputs, helps prevent overfitting
+        model.add(Dropout(0.5)) # zeros out some fraction of inputs, helps prevent overfitting
 
-    model.add(Dense(nb_classes)) # 2 final nodes (one for each class)
-    model.add(Activation('sigmoid')) # sigmoid at end to pick between classes 0-1
+        model.add(Dense(nb_classes)) # 2 final nodes (one for each class)
+        model.add(Activation('sigmoid')) # sigmoid at end to pick between classes 0-1
 
-    model.compile(loss='binary_crossentropy',
-                optimizer='adam',
-                metrics=['accuracy'])
-    model.summary()
-    return model
+        model.compile(loss='binary_crossentropy',
+                    optimizer='adam',
+                    metrics=['accuracy'])
+        model.summary()
+        return model
 
 def main(tensorboard=False, easystop=False):
     ###### TODO: turn this into a class ######
@@ -90,12 +90,14 @@ def main(tensorboard=False, easystop=False):
                                     data_format='channels_last',
                                     validation_split=0.2)
     print(f'datagen: {datagen}\n')
+    # INSTANTIATE CLASS
+    fvcnn = fruit_veggies_cnn()
     ###get X_train and X_validation
-    X_train_generator, X_validation_generator = get_X_data(data_gen=datagen, batch_size=batch_size)
+    X_train_generator, X_validation_generator = fvcnn.get_X_data(data_gen=datagen, batch_size=batch_size)
     print(f'X_train_gen: {X_train_generator}\n')
     print(f'X_val_gen: {X_validation_generator}\n')
     ### run the model
-    model = fv_cnn(nb_filters, nb_classes, kernel_size, input_shape, pool_size, activ_func)
+    model = fvcnn.fv_cnn(nb_filters, nb_classes, kernel_size, input_shape, pool_size, activ_func)
     ### fit the model
     ### when tensorboard or easystop is true: after python script run successfully,
             #then in terminal run: tensorboard --logdir logs

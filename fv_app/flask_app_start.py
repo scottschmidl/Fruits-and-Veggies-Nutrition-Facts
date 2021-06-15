@@ -103,7 +103,7 @@ def word_cloud_facts():
     full_nf = get_nutri_facts(nutri_facts_filename)
     full_names = full_nf['Fruits_Vegetables_Name'].tolist()
     full_facts = full_nf['Nutrition_Facts'].tolist()
-    name_fact_dict = dict(zip(full_names, full_facts))    
+    name_fact_dict = dict(zip(full_names, full_facts))
     return render_template('word_cloud.html', full_names_facts=name_fact_dict)
 
 ## contact information page
