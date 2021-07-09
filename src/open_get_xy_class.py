@@ -5,7 +5,6 @@ from sklearn.utils import shuffle
 from skimage import io
 import numpy as np
 import glob
-import os
 
 class OpenGet:
 
