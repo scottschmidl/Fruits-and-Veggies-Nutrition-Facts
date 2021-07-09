@@ -141,18 +141,15 @@ def main():
     ## paths to images
     all_train_fv = os.listdir('data/Train')
     all_test_fv = os.listdir('data/Test')
-    ## instantiate lists
-    X = []
-    y = []
     ## use augments
     grayscale = False
     edge = False
     ## instaniate class
     open_get_class = OpenGet()
     ## open up images and get X_train, X_test, y_train, y_test
-    X_train, y_train = open_get_class.get_X_y_fv(X, y, all_fru_veg=all_train_fv, folder='Train')
+    X_train, y_train = open_get_class.get_X_y_fv(all_fru_veg=all_train_fv, folder='Train')
     print('this is x_train, y_train')
-    X_test, y_test = open_get_class.get_X_y_fv(X, y, all_fru_veg=all_test_fv, folder='Test')
+    X_test, y_test = open_get_class.get_X_y_fv(all_fru_veg=all_test_fv, folder='Test')
     print('this is x_test, y_test')
     #MODEL RUN
     models = [RandomForestClassifier(), MultinomialNB()]
