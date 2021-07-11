@@ -68,12 +68,10 @@ class PCAFruitsVeggies:
         return plt
 
 def main():
-    X = []
-    y = []
-    folder = 'Train'
-    all_train_fv = os.listdir('data/Train')
+    folder = 'fruits_vegetables'
+    all_train_fv = os.listdir('data/fruits_vegetables')
     open_get_class = OpenGet()
-    X, _ = open_get_class.get_X_y_fv(X, y, all_train_fv, folder)
+    X, _ = open_get_class.get_X_y_fv(all_train_fv, folder)
     model = PCA()
     pca_model = ModelsFruitsVeggies(X, None, None, None, None, None)
     # FIT_PCA REPLACES pca.fit(X=(78756, 138))
