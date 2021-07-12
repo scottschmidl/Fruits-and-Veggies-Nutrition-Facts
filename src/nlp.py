@@ -4,3 +4,9 @@
 ### for when images aren't readily available ###
 class NLP:
     pass
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()

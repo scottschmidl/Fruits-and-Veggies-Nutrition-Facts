@@ -1,5 +1,5 @@
-from models_fv_class import ModelsFruitsVeggies
-from open_get_xy_class import OpenGet
+from models import ModelsFruitsVeggies
+from imgsXy import OpenGet
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import numpy as np

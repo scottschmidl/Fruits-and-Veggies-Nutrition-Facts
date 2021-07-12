@@ -4,3 +4,9 @@
 ### for when you don't like the taste of or are allergic to a fruit or vegetable but do not want to miss great nutrition ###
 class KMeans:
     pass
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()
