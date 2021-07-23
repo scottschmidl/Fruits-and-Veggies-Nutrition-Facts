@@ -1,5 +1,4 @@
-from re import X
-from augmentation_class import Augmentation
+from augmentation import Augmentation
 from skimage.transform import resize
 from sklearn.utils import shuffle
 from skimage import io
