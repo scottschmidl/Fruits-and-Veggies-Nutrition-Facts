@@ -10,7 +10,7 @@ import numpy as np
 
 np.random.seed(1337)
 
-class fruit_veggies_cnn:
+class FruitVeggiesCNN:
 
     def get_X_data(data_gen, batch_size):
         X_train_generator = data_gen.flow_from_directory(directory='data/Train',
@@ -91,7 +91,7 @@ def main(tensorboard=False, easystop=False):
                                     validation_split=0.2)
     print(f'datagen: {datagen}\n')
     # INSTANTIATE CLASS
-    fvcnn = fruit_veggies_cnn()
+    fvcnn = FruitVeggiesCNN()
     ###get X_train and X_validation
     X_train_generator, X_validation_generator = fvcnn.get_X_data(data_gen=datagen, batch_size=batch_size)
     print(f'X_train_gen: {X_train_generator}\n')

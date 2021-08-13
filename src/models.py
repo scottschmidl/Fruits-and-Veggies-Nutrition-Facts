@@ -3,10 +3,10 @@ from sklearn.metrics import (classification_report, plot_confusion_matrix,
 from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
-from imgsXy import OpenGet
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
-import pickle as pickle
+from imgsXy import OpenGet
+import pickle as pkl
 import xgboost as xgb
 import os
 

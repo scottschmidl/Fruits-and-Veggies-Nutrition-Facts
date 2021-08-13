@@ -1,6 +1,6 @@
-import imgaug.augmenters as iaa
 from skimage.util import random_noise
 from skimage.color import rgb2gray
+import imgaug.augmenters as iaa
 from skimage import filters
 import numpy as np
 

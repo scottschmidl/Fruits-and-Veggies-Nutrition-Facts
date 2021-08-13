@@ -1,7 +1,7 @@
 from models import ModelsFruitsVeggies
-from imgsXy import OpenGet
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
+from imgsXy import OpenGet
 import numpy as np
 import os
 
