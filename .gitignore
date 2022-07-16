@@ -10,7 +10,7 @@
 *.css
 *.eot
 *.pem
-/home/leonardo-leads/Documents/galvanize_dsi/Fruits-and-Veggies-Nutrition-Facts/fv_app/static/fonts/glyphicons-halflings-regular.svg
+*.svg
 *.ttf
 *.woff
 *.woff2
@@ -22,3 +22,4 @@
 *.ipynb_checkpoints/
 *.csv
 *.xlsx
+django_app/fv_app/fv_app/settings.py
