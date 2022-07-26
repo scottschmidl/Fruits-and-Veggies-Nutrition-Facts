@@ -3,14 +3,16 @@
 ![](images/fv_world_cloud.png)
 
 # Table of Contents
-1. [Background and Motivation](#BackGround-and-Motivation)
-2. [Questions](#Questions)
-3. [Data](#Data)
-4. [Closer Look](#Closer-Look)
-5. [Visualization](#Visualization)
-6. [Conclusion](#Conclusion)
-7. [Photo and Data Credits](#Photo-and-Data-Credits)
-8. [Extras](#Extras)
+- [Fruits, Veggies and Nutrition](#fruits-veggies-and-nutrition)
+- [Table of Contents](#table-of-contents)
+- [Background and Motivation](#background-and-motivation)
+- [Data](#data)
+- [Goals](#goals)
+- [Closer Look](#closer-look)
+- [Visualization](#visualization)
+- [Conclusion](#conclusion)
+- [Data Credit](#data-credit)
+- [Extras](#extras)
 
 ![](images/index.jpeg)
 
@@ -31,7 +33,7 @@ This book is my main motivation for this project.
 I was able to find a couple data sets on kaggle named ‘Fruits 360’ and 'Fruit Recognition'.
 The former data set is comprised of 90,483 100x100 ‘.jpgs’ of fruits and vegetables. 90,380 of those pictures are either a fruit or
 vegetable and 103 have multiple fruits or vegetables. The 90,380 images were split into Training and Testing Folders. The data set has 131 folders for each class of fruits
-and vegetables as different varieties of the same item were stored as belonging to different classes. There are 68 unique fruits and vegetables. 
+and vegetables as different varieties of the same item were stored as belonging to different classes. There are 68 unique fruits and vegetables.
 The latter data set has 44,406 labelled fruit images. They are each 320×258 '.png'.
 I, also, built my own data set of each item and some of its nutrition facts, which I placed into a ‘.csv’ and called as a data frame in pandas.
 As part of my check of the data set I verified there were no broken nor fraudulent images.
@@ -45,10 +47,10 @@ Learn Nutrition Facts of various fruits and vegetables.
 
 # Closer Look
 
-How this project started: 
+How this project started:
 
 I spent quite a while deciding if I would use the whole data set with all unique items, but settled on a binary approach. I was left with deciding fruits and vegetables or which 2 unique fruits or vegetables. I ultimately decided on the latter.
-I chose to combine the Training, Testing, and variety folders to their own unique folders, for simplicity. To start I've used a subset of Pears and Tomatoes from these two data sets. I settled on 2313 images of Tomatoes and 3175 images of Pears. With my goals in mind, I started by taking a look at the images and for visualization I got the average images. 
+I chose to combine the Training, Testing, and variety folders to their own unique folders, for simplicity. To start I've used a subset of Pears and Tomatoes from these two data sets. I settled on 2313 images of Tomatoes and 3175 images of Pears. With my goals in mind, I started by taking a look at the images and for visualization I got the average images.
 
 Where it will go:
 
@@ -119,7 +121,7 @@ Grayscale Confusion Matrix/Grayscale ROC Curve:
 | ![](images/grayscale_confusion_matrix.png) | ![](images/grayscale_roccurve.png) |
 
 Classification Report For Grayscale Images:
- 
+
 | | Precision | Recall | F1_Score | Support |
 |  --: |  --: | --: | --: | --: |
 |  Pear| 0.84|  0.85| 0.85| 822|
@@ -166,7 +168,7 @@ Classification Report For Grayscale Images:
 |             | Precision |   Recall | F1_Score |  Support |
 |         --: |    --:    |    --:   |    --:  |       --: |
 |        Pear |      0.97 |     0.96  |    0.96   |    822 |
-|      Tomato |      0.94 |     0.95  |    0.95   |    550 |        
+|      Tomato |      0.94 |     0.95  |    0.95   |    550 |
 |    accuracy |           |           |    0.96   |   1372 |
 |   macro avg |      0.96 |     0.96  |    0.96   |   1372 |
 |weighted avg |      0.96 |     0.96  |    0.96   |   1372 |
@@ -176,7 +178,7 @@ Classification Report For Color Images:
 |             | Precision |   Recall | F1_Score |  Support |
 |         --: |    --:    |    --:   |    --:  |       --: |
 |        Pear |      0.98 |     0.99  |    0.98   |    800 |
-|      Tomato |      0.98 |     0.97  |    0.98   |    572 |        
+|      Tomato |      0.98 |     0.97  |    0.98   |    572 |
 |    accuracy |           |           |    0.98   |   1372 |
 |   macro avg |      0.98 |     0.98  |    0.98   |   1372 |
 |weighted avg |      0.98 |     0.98  |    0.98   |   1372 |
@@ -186,7 +188,7 @@ Classification Report For Edge Images:
 |             | Precision |   Recall | F1_Score |  Support |
 |         --: |    --:    |    --:   |    --:  |       --: |
 |        Pear |      0.90 |     0.94  |    0.92   |    835 |
-|      Tomato |      0.90 |     0.84  |    0.87   |    537 |        
+|      Tomato |      0.90 |     0.84  |    0.87   |    537 |
 |    accuracy |           |           |    0.90   |   1372 |
 |   macro avg |      0.90 |     0.89  |    0.89   |   1372 |
 |weighted avg |      0.90 |     0.90  |    0.90   |   1372 |
@@ -216,7 +218,7 @@ Using Random Forest:
 The color images performed the best, scoring 98%/98% for Tomato/pear for F1. Grayscale was second 95%/96% Tomato/Pear. The edge filter was last scoring 87%/92% Tomato/Pear.
 
 Using the Convolution Neural Network:
-The CNN be performed best with color images and so only the color images have been reported. It scord a 96% with validation accuracy.
+The CNN be performed best with color images and so only the color images have been reported. It scored a 96% with validation accuracy.
 
 As a future project I will be adding a Recommender/Natural Language Processing to take nutrition facts and recommend a fruit or vegetable. The purpose behind this project is for those that know what kind of nutrition they want to achieve, but are not sure what to eat.
 For another project I will use a Recommender/Unsupervised Learning to cluster fruits and vegetables by nutrition facts and return the cluster of fruits or vegetables that share those nutrition facts. The purpose behind this  project is for people that know what nutrition they want, but are allergic to or do not like certain foods, and so would like other recommendations.
@@ -249,7 +251,7 @@ Below needs to be updated.
 Below is a table of the 68 unique fruits and vegetables and some nutriion facts.
 
 | Fruits Vegetables Name | Nutrition Facts |
-| --: | --: |  
+| --: | --: |
 Apple |	Good for weight loss and your Heart. They're linked to a lower risk of Diabetes. They have Prebiotic effects and promote good Gut Bacteria, help prevent Cancer and contain compounds that can help fight Asthma.|
 Apricot | Increases metabolism, which improves digestion preventing constipation and can help the body feel fuller, longer to aid in weight loss. Can help lower bad cholesterol levels.|
 Avocado | Great source for Omega-3 Fatty Acids, antioxidants, Vitamin E, Vitamin K and Fiber. Eating avocados on a regular basis helps develop strong hair, nails, and healthy skin.|
@@ -261,7 +263,7 @@ Cactus Fruit | Decrease blood sugar, reduce inflammation, and lower cholesterol.
 Cantaloupe | 100% of the daily value for vitamin C. A powerful antioxidant that protects your cells from damage. All your daily value of vitamin A, which helps keep your eyes, skin, bones, and immune system healthy.|
 Carambula | Is anti-inflammatory and Heart-friendly. It Promotes weight loss, regulates blood pressure, boosts digestion and is diabetic-friendly. It improve metabolism, helps reduce cholesterol levels, and improve respiratory health.|
 Cauliflower | High in fiber and B-vitamins. It provides antioxidants and phytonutrients that can protect against Cancer. It also contains fiber to enhance weight loss and digestion and Choline that is essential for learning and memory.|
-Cherry | High in antioxidants, a great source of Beta Carotene, Vitamin C and Vitamin E.| 
+Cherry | High in antioxidants, a great source of Beta Carotene, Vitamin C and Vitamin E.|
 Chestnut | Contain fat-soluble B vitamins that promote healthy skin, produce red blood cells and improve brain function. Contains high amounts of carbohydrates, which are needed for short and long term energy. They also help with nervous system function|
 Clementine | Improves brain health and skin. Promotes strong bones, healthy muscles, oral health, and heart health. It has anti-cancer properties. Aids in digestion and electrolytes balance.|
 Coconut | Provides good fats, enhances weight loss, keeps you hydrated improves skin health. Fights bacteria. Ensures healthy teeth and bones. Eliminates scalp infections.|
@@ -295,11 +297,11 @@ Onion | Benefit Heart Health. Loaded with Antioxidants. Helps control blood suga
 Orange | Healthy immune system. Prevents skin damage. Keeps blood pressure in check. Lowers cholesterol. Controls blood sugar level. Lowers the risk of cancer.|
 Papaya | Helps in improving eye health. Aids digestion. Anti-ageing. Boosts Immunity. Helps in weight loss. Better kidney health. Great for diabetics. Better cardiovascular health.|
 Passion_Fruit | Passion fruit is highly rich in Vitamin C, Beta-Cryptoxanthin and Alpha-Carotene that boosts your immunity. It also has Iron which increases Haemoglobin in red blood cells. The rich content of Riboflavin (Vitamin B6) and Niacin (Vitamin B3) in passion fruit helps in regulating the thyroid activity in our body|
-Peach | Peaches are full of Vitamin C, Vitamin A, Vitamin K, Vitamin B6, Potassium, Magnesium, Ccalcium and Iron.| 
+Peach | Peaches are full of Vitamin C, Vitamin A, Vitamin K, Vitamin B6, Potassium, Magnesium, Ccalcium and Iron.|
 Pear | promote gut health. Contain beneficial plant compounds. Have anti-inflammatory properties. offer anticancer effects. Linked to a lower risk of diabetes. boost heart health. help you lose weight.|
 Pecan | Pecan nuts contain Monounsaturated Fats such as Oleic Acid along with Phenolic Antioxidants which help reduce the risk of Heart Disease. Improves Digestion. Helps with weight Loss. Reduces the Risk of Cancer. Anti-Inflammatory benefits. Boosts immunity. Prevents skin problems. Anti-aging benefits.|
 Pepino | Reduces the risks of stress. Reduces the risk of hypertension. Helps in preventing diabetes. It lowers the blood cholesterol levels. It is essential in increasing stamina.|
-Bell Pepper | Reduced risk of many chronic illnesses, such as Cancer and Heart Disease. Eye health. Anemia prevention.| 
+Bell Pepper | Reduced risk of many chronic illnesses, such as Cancer and Heart Disease. Eye health. Anemia prevention.|
 Physalis | Used as a Diuretic. Protecting Liver and Kidney against Fibrosis. Healthy Pregnancy. Relief of Arthritis Pain. Improved cognitive ability. Cardiovascular functions. Improves Eyesight.|
 Pineapple |	Contains disease-fighting antioxidants. Its enzymes can ease digestion. help reduce the risk of Cancer. boost immunity and suppress inflammation. ease symptoms of Arthritis. speed recovery after surgery or strenuous exercise|
 Pitahaya Red | It's rich in antioxidants like Flavonoids, Phenolic Acid, and Betacyanin. It's naturally fat-free and high in Fiber. It help lower your blood sugar. It contains Prebiotics, which are foods that feed the healthy bacteria called Probiotics in your gut. Heart Healthy. Skin Care. |
@@ -309,7 +311,7 @@ Pomelo Sweetie | Promotes weight loss. Rich in antioxidants. Boosts heart health
 Potato | Contains Antioxidants. Potatoes are rich in compounds like flavonoids, carotenoids and phenolic acids. Improve Blood Sugar Control. Improve Digestive Health.|
 Quince | Anti-inflammatory, helps weight loss, treats ulcers. Treats stomach ailments, antioxidants. Treats nausea and vomiting. Antiviral. Lowers blood pressure. Lowers cholesterol. Relieves stress. Treats Liver and eye disease.|
 Rambutan |	Decreases unwanted fat due to high fiber and water content and low calorie count. Source of iron. Skin and hair care. Rich in Vitamin C. Improves sperm quality. Anti-Cancer.|
-Raspberry |	They protect against diabetes, cancer, obesity, arthritis and provide anti-aging effects.| 
+Raspberry |	They protect against diabetes, cancer, obesity, arthritis and provide anti-aging effects.|
 Redcurrant | Helps to fortify the capillaries, protecting the body tissues and preventing Arteriosclerosis, Apoplexy and Diabetes.|
 Salak |	Improves eye sight. Good for Stomach. Memory booster. Control of blood sugar level. Maintain cardivascular health. Maintain stamana. Cure nearsightedness. Good for pregancy. Helps in weight loss.|
 Strawberry | Protect your heart, increase HDL (good) cholesterol, lower your blood pressure, and guard against Cancer.|
