@@ -122,12 +122,12 @@ def run_model_helper(model, X_train, X_test, y_train, y_test, all_train_fv, gray
             rf_report = fru_veg_class.random_forest(fit_model, X_test, y_test)
             # print(report)
             # filename_rf = 'fv_app/fv_rf_model.sav'
-            # pickle.dump(fit_model, open(filename_rf, 'wb'))
+            # pkl.dump(fit_model, open(filename_rf, 'wb'))
         elif m == MultinomialNB():
             nb_report = fru_veg_class.naive_bayes(fit_model, X_test, y_test)
             # print(report)
             # filename_nb = 'fv_app/fv_nb_model.sav'
-            # pickle.dump(fit_model, open(filename_nb, 'wb'))
+            # pkl.dump(fit_model, open(filename_nb, 'wb'))
 
     return rf_report, nb_report
 

@@ -7,7 +7,7 @@ from skimage import io
 import pandas as pd
 import numpy as np
 import tensorflow
-import pickle
+import pickle as pkl
 import sys
 import os
 sys.path.append('src')
@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 ## navie bayes model to run through flask app
 filename_nb = 'fv_app/fv_nb_model.sav'
-loaded_model_nb = pickle.load(open(filename_nb, 'rb'))
+loaded_model_nb = pkl.load(open(filename_nb, 'rb'))
 
 ## convolutional neural network model to run through flask app
 filename_cnn = 'fv_app/fv_cnn_model.sav'
