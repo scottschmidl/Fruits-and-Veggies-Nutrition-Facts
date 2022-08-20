@@ -14,21 +14,21 @@ class FruitVeggiesCNN:
 
     def get_X_data(data_gen, batch_size):
         X_train_generator = data_gen.flow_from_directory(directory='data/Train',
-                                                            target_size=(32, 32),
-                                                            color_mode='rgb',
-                                                            class_mode='binary',
-                                                            batch_size=batch_size,
-                                                            shuffle=True,
-                                                            seed=23,
-                                                            subset='training')
+                                                         target_size=(32, 32),
+                                                         color_mode='rgb',
+                                                         class_mode='binary',
+                                                         batch_size=batch_size,
+                                                         shuffle=True,
+                                                         seed=23,
+                                                         subset='training')
         X_validation_generator = data_gen.flow_from_directory(directory='data/Test',
-                                                                target_size=(32, 32),
-                                                                color_mode='rgb',
-                                                                class_mode='binary',
-                                                                batch_size=batch_size,
-                                                                shuffle=True,
-                                                                seed=23,
-                                                                subset='validation')
+                                                              target_size=(32, 32),
+                                                              color_mode='rgb',
+                                                              class_mode='binary',
+                                                              batch_size=batch_size,
+                                                              shuffle=True,
+                                                              seed=23,
+                                                              subset='validation')
         return X_train_generator, X_validation_generator
 
     def fv_cnn(nb_filters, nb_classes, kernel_size, input_shape, pool_size, activ_func):
@@ -66,14 +66,15 @@ class FruitVeggiesCNN:
         model.summary()
         return model
 
-def main(tensorboard=False, easystop=False):
+def main():
     ###### TODO: turn this into a class ######
+    tensorboard, easystop = False, False
     #activations = ['linear', 'sigmoid', 'tanh', 'relu', 'softplus', 'softsign']
     batch_size = 32 # number of training samples used at a time to update the weights
     nb_classes = 1 # number of output possibilities: [0 - 1]
     nb_epoch = 10 # number of passes through the entire train dataset before weights "final"
     img_rows, img_cols, chan  = 32, 32, 3 # the size of the fruits/veggies images
-    input_shape = (img_rows, img_cols, chan) # 1 channel image input (grayscale)
+    input_shape = (img_rows, img_cols, chan) # 1 channel mage input (grayscale)
     nb_filters = 4 # number of convolutional filters to use
     pool_size = (3, 3) # pooling decreases image size, reduces computation, adds translational invariance
     kernel_size = (4, 4) # convolutional kernel size, slides over image to learn features
