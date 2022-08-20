@@ -1,7 +1,7 @@
 ### TODO: once images are loaded to AWS this needs update for multiclass ###
 ### this is currently setup for binary classification for tomatoes and pears ###
 from tensorflow.keras.layers import (Dense, Dropout, Activation, Flatten,
-                                        Conv2D, MaxPooling2D)
+                                     Conv2D, MaxPooling2D)
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import TensorBoard, EarlyStopping
 from tensorflow.keras.models import Sequential
